@@ -1,0 +1,14 @@
+
+##############################################
+
+				TIMER CODE
+
+##############################################
+
+
+1. timer code 's aaaa, bbbb, cccc, or dddd must be 4 aligned
+
+2. if not 4 aligned, use nop operation
+
+3. trace_printf code must before any target.
+

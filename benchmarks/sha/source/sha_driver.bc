@@ -1,0 +1,79 @@
+; ModuleID = 'sha_driver.c'
+source_filename = "sha_driver.c"
+target datalayout = "e-m:e-i64:64-f80:128-n8:16:32:64-S128"
+target triple = "x86_64-unknown-linux-gnu"
+
+%struct._IO_FILE = type { i32, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, %struct._IO_marker*, %struct._IO_FILE*, i32, i32, i64, i16, i8, [1 x i8], i8*, i64, i8*, i8*, i8*, i8*, i64, i32, [20 x i8] }
+%struct._IO_marker = type { %struct._IO_marker*, %struct._IO_FILE*, i32 }
+%struct.timeval = type { i64, i64 }
+%struct.SHA_INFO = type { [5 x i64], i64, i64, [16 x i64] }
+%struct.timezone = type { i32, i32 }
+
+@.str = private unnamed_addr constant [16 x i8] c"input_small.asc\00", align 1
+@.str.1 = private unnamed_addr constant [3 x i8] c"rb\00", align 1
+@.str.2 = private unnamed_addr constant [21 x i8] c" [target finished!]\0A\00", align 1
+@.str.3 = private unnamed_addr constant [31 x i8] c" [target] Execution Time: %ld\0A\00", align 1
+@is_signature_queue_full = external global i32, align 4
+
+; Function Attrs: noinline nounwind optnone uwtable
+define i32 @main(i32, i8**) #0 {
+  %3 = alloca i32, align 4
+  %4 = alloca i32, align 4
+  %5 = alloca i8**, align 8
+  %6 = alloca %struct._IO_FILE*, align 8
+  %7 = alloca %struct.timeval, align 8
+  %8 = alloca %struct.timeval, align 8
+  %9 = alloca %struct.SHA_INFO, align 8
+  store i32 0, i32* %3, align 4
+  store i32 %0, i32* %4, align 4
+  store i8** %1, i8*** %5, align 8
+  %10 = call i32 @gettimeofday(%struct.timeval* %7, %struct.timezone* null) #3
+  %11 = call %struct._IO_FILE* @fopen(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @.str, i32 0, i32 0), i8* getelementptr inbounds ([3 x i8], [3 x i8]* @.str.1, i32 0, i32 0))
+  store %struct._IO_FILE* %11, %struct._IO_FILE** %6, align 8
+  %12 = load %struct._IO_FILE*, %struct._IO_FILE** %6, align 8
+  call void @sha_stream(%struct.SHA_INFO* %9, %struct._IO_FILE* %12)
+  call void @sha_print(%struct.SHA_INFO* %9)
+  %13 = load %struct._IO_FILE*, %struct._IO_FILE** %6, align 8
+  %14 = call i32 @fclose(%struct._IO_FILE* %13)
+  %15 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([21 x i8], [21 x i8]* @.str.2, i32 0, i32 0))
+  %16 = call i32 @gettimeofday(%struct.timeval* %8, %struct.timezone* null) #3
+  %17 = getelementptr inbounds %struct.timeval, %struct.timeval* %8, i32 0, i32 0
+  %18 = load i64, i64* %17, align 8
+  %19 = getelementptr inbounds %struct.timeval, %struct.timeval* %7, i32 0, i32 0
+  %20 = load i64, i64* %19, align 8
+  %21 = sub nsw i64 %18, %20
+  %22 = mul nsw i64 %21, 1000000
+  %23 = getelementptr inbounds %struct.timeval, %struct.timeval* %8, i32 0, i32 1
+  %24 = load i64, i64* %23, align 8
+  %25 = getelementptr inbounds %struct.timeval, %struct.timeval* %7, i32 0, i32 1
+  %26 = load i64, i64* %25, align 8
+  %27 = sub nsw i64 %24, %26
+  %28 = add nsw i64 %22, %27
+  %29 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([31 x i8], [31 x i8]* @.str.3, i32 0, i32 0), i64 %28)
+  store i32 1, i32* @is_signature_queue_full, align 4
+  ret i32 0
+}
+
+; Function Attrs: nounwind
+declare i32 @gettimeofday(%struct.timeval*, %struct.timezone*) #1
+
+declare %struct._IO_FILE* @fopen(i8*, i8*) #2
+
+declare void @sha_stream(%struct.SHA_INFO*, %struct._IO_FILE*) #2
+
+declare void @sha_print(%struct.SHA_INFO*) #2
+
+declare i32 @fclose(%struct._IO_FILE*) #2
+
+declare i32 @printf(i8*, ...) #2
+
+attributes #0 = { noinline nounwind optnone uwtable "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #1 = { nounwind "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #2 = { "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #3 = { nounwind }
+
+!llvm.module.flags = !{!0}
+!llvm.ident = !{!1}
+
+!0 = !{i32 1, !"wchar_size", i32 4}
+!1 = !{!"clang version 5.0.0 (tags/RELEASE_500/final)"}

@@ -1,0 +1,406 @@
+
+out.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <sub_func1_3>:
+   0:	55                   	push   %rbp
+   1:	48 89 e5             	mov    %rsp,%rbp
+   4:	48 83 ec 10          	sub    $0x10,%rsp
+   8:	48 bf 00 00 00 00 00 	movabs $0x0,%rdi
+   f:	00 00 00 
+  12:	c7 45 fc 03 00 00 00 	movl   $0x3,-0x4(%rbp)
+  19:	b0 00                	mov    $0x0,%al
+  1b:	e8 00 00 00 00       	callq  20 <sub_func1_3+0x20>
+  20:	b8 01 00 00 00       	mov    $0x1,%eax
+  25:	48 83 c4 10          	add    $0x10,%rsp
+  29:	5d                   	pop    %rbp
+  2a:	c3                   	retq   
+  2b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+0000000000000030 <sub_func1_2>:
+  30:	55                   	push   %rbp
+  31:	48 89 e5             	mov    %rsp,%rbp
+  34:	48 83 ec 10          	sub    $0x10,%rsp
+  38:	48 bf 00 00 00 00 00 	movabs $0x0,%rdi
+  3f:	00 00 00 
+  42:	c7 45 fc 03 00 00 00 	movl   $0x3,-0x4(%rbp)
+  49:	b0 00                	mov    $0x0,%al
+  4b:	e8 00 00 00 00       	callq  50 <sub_func1_2+0x20>
+  50:	b8 01 00 00 00       	mov    $0x1,%eax
+  55:	48 83 c4 10          	add    $0x10,%rsp
+  59:	5d                   	pop    %rbp
+  5a:	c3                   	retq   
+  5b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+0000000000000060 <sub_func1_1>:
+  60:	55                   	push   %rbp
+  61:	48 89 e5             	mov    %rsp,%rbp
+  64:	48 83 ec 10          	sub    $0x10,%rsp
+  68:	48 bf 00 00 00 00 00 	movabs $0x0,%rdi
+  6f:	00 00 00 
+  72:	c7 45 fc 03 00 00 00 	movl   $0x3,-0x4(%rbp)
+  79:	b0 00                	mov    $0x0,%al
+  7b:	e8 00 00 00 00       	callq  80 <sub_func1_1+0x20>
+  80:	b8 01 00 00 00       	mov    $0x1,%eax
+  85:	48 83 c4 10          	add    $0x10,%rsp
+  89:	5d                   	pop    %rbp
+  8a:	c3                   	retq   
+  8b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+0000000000000090 <sub_func2_2>:
+  90:	55                   	push   %rbp
+  91:	48 89 e5             	mov    %rsp,%rbp
+  94:	48 83 ec 10          	sub    $0x10,%rsp
+  98:	48 bf 00 00 00 00 00 	movabs $0x0,%rdi
+  9f:	00 00 00 
+  a2:	c7 45 fc 03 00 00 00 	movl   $0x3,-0x4(%rbp)
+  a9:	b0 00                	mov    $0x0,%al
+  ab:	e8 00 00 00 00       	callq  b0 <sub_func2_2+0x20>
+  b0:	b8 01 00 00 00       	mov    $0x1,%eax
+  b5:	48 83 c4 10          	add    $0x10,%rsp
+  b9:	5d                   	pop    %rbp
+  ba:	c3                   	retq   
+  bb:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+00000000000000c0 <sub_func2_1>:
+  c0:	55                   	push   %rbp
+  c1:	48 89 e5             	mov    %rsp,%rbp
+  c4:	48 83 ec 10          	sub    $0x10,%rsp
+  c8:	48 bf 00 00 00 00 00 	movabs $0x0,%rdi
+  cf:	00 00 00 
+  d2:	c7 45 fc 03 00 00 00 	movl   $0x3,-0x4(%rbp)
+  d9:	b0 00                	mov    $0x0,%al
+  db:	e8 00 00 00 00       	callq  e0 <sub_func2_1+0x20>
+  e0:	b8 01 00 00 00       	mov    $0x1,%eax
+  e5:	48 83 c4 10          	add    $0x10,%rsp
+  e9:	5d                   	pop    %rbp
+  ea:	c3                   	retq   
+  eb:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+00000000000000f0 <sub_func3_1>:
+  f0:	55                   	push   %rbp
+  f1:	48 89 e5             	mov    %rsp,%rbp
+  f4:	48 83 ec 10          	sub    $0x10,%rsp
+  f8:	48 bf 00 00 00 00 00 	movabs $0x0,%rdi
+  ff:	00 00 00 
+ 102:	c7 45 fc 03 00 00 00 	movl   $0x3,-0x4(%rbp)
+ 109:	b0 00                	mov    $0x0,%al
+ 10b:	e8 00 00 00 00       	callq  110 <sub_func3_1+0x20>
+ 110:	b8 01 00 00 00       	mov    $0x1,%eax
+ 115:	48 83 c4 10          	add    $0x10,%rsp
+ 119:	5d                   	pop    %rbp
+ 11a:	c3                   	retq   
+ 11b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+0000000000000120 <sub_func4_4>:
+ 120:	55                   	push   %rbp
+ 121:	48 89 e5             	mov    %rsp,%rbp
+ 124:	48 83 ec 10          	sub    $0x10,%rsp
+ 128:	48 bf 00 00 00 00 00 	movabs $0x0,%rdi
+ 12f:	00 00 00 
+ 132:	c7 45 fc 03 00 00 00 	movl   $0x3,-0x4(%rbp)
+ 139:	b0 00                	mov    $0x0,%al
+ 13b:	e8 00 00 00 00       	callq  140 <sub_func4_4+0x20>
+ 140:	b8 01 00 00 00       	mov    $0x1,%eax
+ 145:	48 83 c4 10          	add    $0x10,%rsp
+ 149:	5d                   	pop    %rbp
+ 14a:	c3                   	retq   
+ 14b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+0000000000000150 <sub_func4_3>:
+ 150:	55                   	push   %rbp
+ 151:	48 89 e5             	mov    %rsp,%rbp
+ 154:	48 83 ec 10          	sub    $0x10,%rsp
+ 158:	48 bf 00 00 00 00 00 	movabs $0x0,%rdi
+ 15f:	00 00 00 
+ 162:	c7 45 fc 03 00 00 00 	movl   $0x3,-0x4(%rbp)
+ 169:	b0 00                	mov    $0x0,%al
+ 16b:	e8 00 00 00 00       	callq  170 <sub_func4_3+0x20>
+ 170:	b8 01 00 00 00       	mov    $0x1,%eax
+ 175:	48 83 c4 10          	add    $0x10,%rsp
+ 179:	5d                   	pop    %rbp
+ 17a:	c3                   	retq   
+ 17b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+0000000000000180 <sub_func4_2>:
+ 180:	55                   	push   %rbp
+ 181:	48 89 e5             	mov    %rsp,%rbp
+ 184:	48 83 ec 10          	sub    $0x10,%rsp
+ 188:	48 bf 00 00 00 00 00 	movabs $0x0,%rdi
+ 18f:	00 00 00 
+ 192:	c7 45 fc 03 00 00 00 	movl   $0x3,-0x4(%rbp)
+ 199:	b0 00                	mov    $0x0,%al
+ 19b:	e8 00 00 00 00       	callq  1a0 <sub_func4_2+0x20>
+ 1a0:	b8 01 00 00 00       	mov    $0x1,%eax
+ 1a5:	48 83 c4 10          	add    $0x10,%rsp
+ 1a9:	5d                   	pop    %rbp
+ 1aa:	c3                   	retq   
+ 1ab:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+00000000000001b0 <sub_func4_1>:
+ 1b0:	55                   	push   %rbp
+ 1b1:	48 89 e5             	mov    %rsp,%rbp
+ 1b4:	48 83 ec 10          	sub    $0x10,%rsp
+ 1b8:	48 bf 00 00 00 00 00 	movabs $0x0,%rdi
+ 1bf:	00 00 00 
+ 1c2:	c7 45 fc 03 00 00 00 	movl   $0x3,-0x4(%rbp)
+ 1c9:	b0 00                	mov    $0x0,%al
+ 1cb:	e8 00 00 00 00       	callq  1d0 <sub_func4_1+0x20>
+ 1d0:	b8 01 00 00 00       	mov    $0x1,%eax
+ 1d5:	48 83 c4 10          	add    $0x10,%rsp
+ 1d9:	5d                   	pop    %rbp
+ 1da:	c3                   	retq   
+ 1db:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+00000000000001e0 <sub_func5_1>:
+ 1e0:	55                   	push   %rbp
+ 1e1:	48 89 e5             	mov    %rsp,%rbp
+ 1e4:	48 83 ec 10          	sub    $0x10,%rsp
+ 1e8:	48 bf 00 00 00 00 00 	movabs $0x0,%rdi
+ 1ef:	00 00 00 
+ 1f2:	e9 00 00 00 00       	jmpq   1f7 <sub_func5_1+0x17>
+ 1f7:	c7 45 fc 03 00 00 00 	movl   $0x3,-0x4(%rbp)
+ 1fe:	b0 00                	mov    $0x0,%al
+ 200:	e8 00 00 00 00       	callq  205 <sub_func5_1+0x25>
+ 205:	b8 01 00 00 00       	mov    $0x1,%eax
+ 20a:	48 83 c4 10          	add    $0x10,%rsp
+ 20e:	5d                   	pop    %rbp
+ 20f:	c3                   	retq   
+
+0000000000000210 <sub_func5_2>:
+ 210:	55                   	push   %rbp
+ 211:	48 89 e5             	mov    %rsp,%rbp
+ 214:	48 83 ec 10          	sub    $0x10,%rsp
+ 218:	48 bf 00 00 00 00 00 	movabs $0x0,%rdi
+ 21f:	00 00 00 
+ 222:	c7 45 fc 03 00 00 00 	movl   $0x3,-0x4(%rbp)
+ 229:	b0 00                	mov    $0x0,%al
+ 22b:	e8 00 00 00 00       	callq  230 <sub_func5_2+0x20>
+ 230:	b8 01 00 00 00       	mov    $0x1,%eax
+ 235:	48 83 c4 10          	add    $0x10,%rsp
+ 239:	5d                   	pop    %rbp
+ 23a:	c3                   	retq   
+ 23b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+0000000000000240 <sub_func5_3>:
+ 240:	55                   	push   %rbp
+ 241:	48 89 e5             	mov    %rsp,%rbp
+ 244:	48 83 ec 10          	sub    $0x10,%rsp
+ 248:	48 bf 00 00 00 00 00 	movabs $0x0,%rdi
+ 24f:	00 00 00 
+ 252:	c7 45 fc 03 00 00 00 	movl   $0x3,-0x4(%rbp)
+ 259:	b0 00                	mov    $0x0,%al
+ 25b:	e8 00 00 00 00       	callq  260 <sub_func5_3+0x20>
+ 260:	b8 01 00 00 00       	mov    $0x1,%eax
+ 265:	48 83 c4 10          	add    $0x10,%rsp
+ 269:	5d                   	pop    %rbp
+ 26a:	c3                   	retq   
+ 26b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+0000000000000270 <sub_func5_4>:
+ 270:	55                   	push   %rbp
+ 271:	48 89 e5             	mov    %rsp,%rbp
+ 274:	48 83 ec 10          	sub    $0x10,%rsp
+ 278:	48 bf 00 00 00 00 00 	movabs $0x0,%rdi
+ 27f:	00 00 00 
+ 282:	c7 45 fc 03 00 00 00 	movl   $0x3,-0x4(%rbp)
+ 289:	b0 00                	mov    $0x0,%al
+ 28b:	e8 00 00 00 00       	callq  290 <sub_func5_4+0x20>
+ 290:	b8 01 00 00 00       	mov    $0x1,%eax
+ 295:	48 83 c4 10          	add    $0x10,%rsp
+ 299:	5d                   	pop    %rbp
+ 29a:	c3                   	retq   
+ 29b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+00000000000002a0 <sub_func5_5>:
+ 2a0:	55                   	push   %rbp
+ 2a1:	48 89 e5             	mov    %rsp,%rbp
+ 2a4:	48 83 ec 10          	sub    $0x10,%rsp
+ 2a8:	48 bf 00 00 00 00 00 	movabs $0x0,%rdi
+ 2af:	00 00 00 
+ 2b2:	c7 45 fc 03 00 00 00 	movl   $0x3,-0x4(%rbp)
+ 2b9:	b0 00                	mov    $0x0,%al
+ 2bb:	e8 00 00 00 00       	callq  2c0 <sub_func5_5+0x20>
+ 2c0:	b8 01 00 00 00       	mov    $0x1,%eax
+ 2c5:	48 83 c4 10          	add    $0x10,%rsp
+ 2c9:	5d                   	pop    %rbp
+ 2ca:	c3                   	retq   
+ 2cb:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+00000000000002d0 <sub_func6_1>:
+ 2d0:	55                   	push   %rbp
+ 2d1:	48 89 e5             	mov    %rsp,%rbp
+ 2d4:	48 83 ec 10          	sub    $0x10,%rsp
+ 2d8:	48 bf 00 00 00 00 00 	movabs $0x0,%rdi
+ 2df:	00 00 00 
+ 2e2:	c7 45 fc 03 00 00 00 	movl   $0x3,-0x4(%rbp)
+ 2e9:	b0 00                	mov    $0x0,%al
+ 2eb:	e8 00 00 00 00       	callq  2f0 <sub_func6_1+0x20>
+ 2f0:	b8 01 00 00 00       	mov    $0x1,%eax
+ 2f5:	48 83 c4 10          	add    $0x10,%rsp
+ 2f9:	5d                   	pop    %rbp
+ 2fa:	c3                   	retq   
+ 2fb:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+0000000000000300 <func1>:
+ 300:	55                   	push   %rbp
+ 301:	48 89 e5             	mov    %rsp,%rbp
+ 304:	48 83 ec 10          	sub    $0x10,%rsp
+ 308:	48 bf 00 00 00 00 00 	movabs $0x0,%rdi
+ 30f:	00 00 00 
+ 312:	b0 00                	mov    $0x0,%al
+ 314:	e8 00 00 00 00       	callq  319 <func1+0x19>
+ 319:	c7 45 fc 03 00 00 00 	movl   $0x3,-0x4(%rbp)
+ 320:	e8 00 00 00 00       	callq  325 <func1+0x25>
+ 325:	e8 00 00 00 00       	callq  32a <func1+0x2a>
+ 32a:	e8 00 00 00 00       	callq  32f <func1+0x2f>
+ 32f:	b8 01 00 00 00       	mov    $0x1,%eax
+ 334:	48 83 c4 10          	add    $0x10,%rsp
+ 338:	5d                   	pop    %rbp
+ 339:	c3                   	retq   
+ 33a:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+
+0000000000000340 <func2>:
+ 340:	55                   	push   %rbp
+ 341:	48 89 e5             	mov    %rsp,%rbp
+ 344:	48 83 ec 10          	sub    $0x10,%rsp
+ 348:	48 bf 00 00 00 00 00 	movabs $0x0,%rdi
+ 34f:	00 00 00 
+ 352:	b0 00                	mov    $0x0,%al
+ 354:	e8 00 00 00 00       	callq  359 <func2+0x19>
+ 359:	c7 45 fc 03 00 00 00 	movl   $0x3,-0x4(%rbp)
+ 360:	e8 00 00 00 00       	callq  365 <func2+0x25>
+ 365:	e8 00 00 00 00       	callq  36a <func2+0x2a>
+ 36a:	b8 02 00 00 00       	mov    $0x2,%eax
+ 36f:	48 83 c4 10          	add    $0x10,%rsp
+ 373:	5d                   	pop    %rbp
+ 374:	c3                   	retq   
+ 375:	90                   	nop
+ 376:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+ 37d:	00 00 00 
+
+0000000000000380 <func3>:
+ 380:	55                   	push   %rbp
+ 381:	48 89 e5             	mov    %rsp,%rbp
+ 384:	48 83 ec 10          	sub    $0x10,%rsp
+ 388:	48 bf 00 00 00 00 00 	movabs $0x0,%rdi
+ 38f:	00 00 00 
+ 392:	b0 00                	mov    $0x0,%al
+ 394:	e8 00 00 00 00       	callq  399 <func3+0x19>
+ 399:	c7 45 fc 03 00 00 00 	movl   $0x3,-0x4(%rbp)
+ 3a0:	e8 00 00 00 00       	callq  3a5 <func3+0x25>
+ 3a5:	b8 03 00 00 00       	mov    $0x3,%eax
+ 3aa:	48 83 c4 10          	add    $0x10,%rsp
+ 3ae:	5d                   	pop    %rbp
+ 3af:	c3                   	retq   
+
+00000000000003b0 <func4>:
+ 3b0:	55                   	push   %rbp
+ 3b1:	48 89 e5             	mov    %rsp,%rbp
+ 3b4:	48 83 ec 10          	sub    $0x10,%rsp
+ 3b8:	48 bf 00 00 00 00 00 	movabs $0x0,%rdi
+ 3bf:	00 00 00 
+ 3c2:	b0 00                	mov    $0x0,%al
+ 3c4:	e8 00 00 00 00       	callq  3c9 <func4+0x19>
+ 3c9:	c7 45 fc 03 00 00 00 	movl   $0x3,-0x4(%rbp)
+ 3d0:	e8 00 00 00 00       	callq  3d5 <func4+0x25>
+ 3d5:	e8 00 00 00 00       	callq  3da <func4+0x2a>
+ 3da:	e8 00 00 00 00       	callq  3df <func4+0x2f>
+ 3df:	e8 00 00 00 00       	callq  3e4 <func4+0x34>
+ 3e4:	b8 04 00 00 00       	mov    $0x4,%eax
+ 3e9:	48 83 c4 10          	add    $0x10,%rsp
+ 3ed:	5d                   	pop    %rbp
+ 3ee:	c3                   	retq   
+ 3ef:	90                   	nop
+
+00000000000003f0 <func5>:
+ 3f0:	55                   	push   %rbp
+ 3f1:	48 89 e5             	mov    %rsp,%rbp
+ 3f4:	48 83 ec 10          	sub    $0x10,%rsp
+ 3f8:	48 bf 00 00 00 00 00 	movabs $0x0,%rdi
+ 3ff:	00 00 00 
+ 402:	b0 00                	mov    $0x0,%al
+ 404:	e8 00 00 00 00       	callq  409 <func5+0x19>
+ 409:	c7 45 fc 03 00 00 00 	movl   $0x3,-0x4(%rbp)
+ 410:	e8 00 00 00 00       	callq  415 <func5+0x25>
+ 415:	e8 00 00 00 00       	callq  41a <func5+0x2a>
+ 41a:	e8 00 00 00 00       	callq  41f <func5+0x2f>
+ 41f:	e8 00 00 00 00       	callq  424 <func5+0x34>
+ 424:	e8 00 00 00 00       	callq  429 <func5+0x39>
+ 429:	b8 05 00 00 00       	mov    $0x5,%eax
+ 42e:	48 83 c4 10          	add    $0x10,%rsp
+ 432:	5d                   	pop    %rbp
+ 433:	c3                   	retq   
+ 434:	66 90                	xchg   %ax,%ax
+ 436:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+ 43d:	00 00 00 
+
+0000000000000440 <func6>:
+ 440:	55                   	push   %rbp
+ 441:	48 89 e5             	mov    %rsp,%rbp
+ 444:	48 83 ec 10          	sub    $0x10,%rsp
+ 448:	48 bf 00 00 00 00 00 	movabs $0x0,%rdi
+ 44f:	00 00 00 
+ 452:	b0 00                	mov    $0x0,%al
+ 454:	e8 00 00 00 00       	callq  459 <func6+0x19>
+ 459:	c7 45 fc 03 00 00 00 	movl   $0x3,-0x4(%rbp)
+ 460:	e8 00 00 00 00       	callq  465 <func6+0x25>
+ 465:	b8 06 00 00 00       	mov    $0x6,%eax
+ 46a:	48 83 c4 10          	add    $0x10,%rsp
+ 46e:	5d                   	pop    %rbp
+ 46f:	c3                   	retq   
+
+0000000000000470 <main>:
+ 470:	55                   	push   %rbp
+ 471:	48 89 e5             	mov    %rsp,%rbp
+ 474:	48 83 ec 30          	sub    $0x30,%rsp
+ 478:	48 8d 7d d0          	lea    -0x30(%rbp),%rdi
+ 47c:	c7 45 f8 00 00 00 00 	movl   $0x0,-0x8(%rbp)
+ 483:	31 f6                	xor    %esi,%esi
+ 485:	e8 00 00 00 00       	callq  48a <main+0x1a>
+ 48a:	c7 45 fc 00 00 00 00 	movl   $0x0,-0x4(%rbp)
+ 491:	83 7d fc 64          	cmpl   $0x64,-0x4(%rbp)
+ 495:	7d 41                	jge    4d8 <main+0x68>
+ 497:	48 bf 00 00 00 00 00 	movabs $0x0,%rdi
+ 49e:	00 00 00 
+ 4a1:	b0 00                	mov    $0x0,%al
+ 4a3:	e8 00 00 00 00       	callq  4a8 <main+0x38>
+ 4a8:	c7 45 f4 03 00 00 00 	movl   $0x3,-0xc(%rbp)
+ 4af:	e8 00 00 00 00       	callq  4b4 <main+0x44>
+ 4b4:	e8 00 00 00 00       	callq  4b9 <main+0x49>
+ 4b9:	e8 00 00 00 00       	callq  4be <main+0x4e>
+ 4be:	e8 00 00 00 00       	callq  4c3 <main+0x53>
+ 4c3:	e8 00 00 00 00       	callq  4c8 <main+0x58>
+ 4c8:	e8 00 00 00 00       	callq  4cd <main+0x5d>
+ 4cd:	8b 45 fc             	mov    -0x4(%rbp),%eax
+ 4d0:	83 c0 01             	add    $0x1,%eax
+ 4d3:	89 45 fc             	mov    %eax,-0x4(%rbp)
+ 4d6:	eb b9                	jmp    491 <main+0x21>
+ 4d8:	48 bf 00 00 00 00 00 	movabs $0x0,%rdi
+ 4df:	00 00 00 
+ 4e2:	b0 00                	mov    $0x0,%al
+ 4e4:	e8 00 00 00 00       	callq  4e9 <main+0x79>
+ 4e9:	48 8d 7d e0          	lea    -0x20(%rbp),%rdi
+ 4ed:	31 f6                	xor    %esi,%esi
+ 4ef:	e8 00 00 00 00       	callq  4f4 <main+0x84>
+ 4f4:	48 bf 00 00 00 00 00 	movabs $0x0,%rdi
+ 4fb:	00 00 00 
+ 4fe:	b9 e8 03 00 00       	mov    $0x3e8,%ecx
+ 503:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+ 507:	48 2b 45 d0          	sub    -0x30(%rbp),%rax
+ 50b:	48 69 f0 e8 03 00 00 	imul   $0x3e8,%rax,%rsi
+ 512:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+ 516:	48 2b 45 d8          	sub    -0x28(%rbp),%rax
+ 51a:	48 99                	cqto   
+ 51c:	48 f7 f9             	idiv   %rcx
+ 51f:	48 01 c6             	add    %rax,%rsi
+ 522:	b0 00                	mov    $0x0,%al
+ 524:	e8 00 00 00 00       	callq  529 <main+0xb9>
+ 529:	c7 04 25 00 00 00 00 	movl   $0x1,0x0
+ 530:	01 00 00 00 
+ 534:	8b 45 f8             	mov    -0x8(%rbp),%eax
+ 537:	48 83 c4 30          	add    $0x30,%rsp
+ 53b:	5d                   	pop    %rbp
+ 53c:	c3                   	retq   
