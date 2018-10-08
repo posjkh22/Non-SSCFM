@@ -564,6 +564,17 @@ void verify_signature(int* compile_time_signature_1, int* compile_time_signature
 	if((unsigned int)value != (*compile_time_signature_1) && (unsigned int)value != (*compile_time_signature_2))
 	{
 		printf(" [monitor][error] control-flow error occurs in %u, [%u, %u]\n", (unsigned int)value, *compile_time_signature_1, *compile_time_signature_2);
+		
+		
+		FILE* detected = fopen("./detected.rst", "a");
+		
+		if(detected == NULL)
+		{
+			printf(" fopen error!\n");
+		}
+		
+		fprintf(detected, "Found Error!\n");
+		fclose(detected);
 		exit(1);
 	}
 	else

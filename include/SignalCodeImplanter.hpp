@@ -47,6 +47,11 @@ private:
 	//std::map<std::string, llvm::Value*> m_meta_map;
 	std::vector<Meta*> m_meta;
 
+public:
+	GlobalVariable* main_value_ptr_1;
+	GlobalVariable* main_value_ptr_2;
+
+
 typedef enum
 {
 	FINE_GRAINED_LEVEL,

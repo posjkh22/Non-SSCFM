@@ -1,5 +1,14 @@
 
 #include "CFE_INJECTION.h"
+#include "CFE_RANDOM.h"
+//#define CFE_JUMP "jmp 0x400b10 ;"
+//#define CFE_JUMP "jmp 0x402ec5 ;"
+//#define CFE_JUMP "jmp 0x402ea0 ;"	// checkPoint
+//#define CFE_JUMP "jmp 0x400bf0 ;"  // main
+
+//#define CFE_JUMP "jmp 0x400e86;"
+//#define CFE_JUMP "jmp 0x400e72;"
+
 #include <time.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -36,7 +45,7 @@ void CFE_INJECTION(int i, int type)
 
 	if(CFE_OCCUR_FLAG == 1)
 	{	
-		printf(" CFE_OCCURS_FLAG ON: pass CFE INJECTION\n");
+		//printf(" CFE_OCCURS_FLAG ON: pass CFE INJECTION\n");
 		return;
 	}
 
@@ -79,8 +88,20 @@ void CFE_INJECTION(int i, int type)
 		//asm ("jmp 0x4035d5;");
 
 		/* 2. jmp to main */
-		main(); // (0)
-		//asm ("jmp 0x400da0;");
+		//main(); // (0)
+		//asm (CFE_JUMP);
+
+		//main();
+		//IsPowerOfTwo();
+
+		//asm ("jmp 0x400ca9;");
+		//asm ("jmp 0x400e1a;");
+		//asm ("jmp 0x400e8b;");
+		//asm ("jmp 0x400e7c;");
+		//asm ("jmp 0x400e86;");
+		asm (CFE_JUMP);
+		
+		
 		//asm ("jmp 0x4035d5;");
 
 	}

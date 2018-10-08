@@ -31,19 +31,25 @@ coarse_objects: monitor aces_stack aces_list aces_avltree aces_hash coarse_initi
 
 
 ifeq ($(IPCFG_TYPE), hash)
-link: fine_objects input CFE_INJECTION.o
+link: fine_objects input 
+	make -C ./CFE_RANDOM
+	gcc -c CFE_INJECTION.c
 	gcc -o $(FINAL_OUTPUT_BINARY) $(INPUT_MAIN).o fine_initialize_monitor.o monitor.o CFE_INJECTION.o $(STACK)/aces_stack.o $(HASH)/aces_hash.o -lm -lpthread
 	@echo [IPCFG: Hash]
 endif
 
 ifeq ($(IPCFG_TYPE), avltree)
-link: fine_objects input CFE_INECTION.o
+link: fine_objects input 
+	make -C ./CFE_RANDOM
+	gcc -c CFE_INJECTION.c
 	gcc -o $(FINAL_OUTPUT_BINARY) $(INPUT_MAIN).o fine_initialize_monitor.o monitor.o CFE_INJECTION.o $(STACK)/aces_stack.o $(TREE)/aces_avltree.o -lm -lpthread
 	@echo [IPCFG: avltree]
 endif
 
 ifeq ($(IPCFG_TYPE), list)
-link: fine_objects input CFE_INJECTION.o
+link: fine_objects input
+	make -C ./CFE_RANDOM
+	gcc -c CFE_INJECTION.c
 	gcc -o $(FINAL_OUTPUT_BINARY) $(INPUT_MAIN).o fine_initialize_monitor.o monitor.o CFE_INJECTION.o $(STACK)/aces_stack.o $(LIST)/aces_list.o -lm -lpthread
 	@echo [IPCFG: List]
 endif
@@ -67,9 +73,8 @@ coarse_initiailize_monitor:
 	cp -f $(BENCH_MARK)/coarse_initialize_monitor.c .
 	gcc -c coarse_initialize_monitor.c
 
-CFE_INJECTION.o:
+CFE_INJECTION.o: 
 	gcc -c CFE_INJECTION.c
-
 
 # libraries #
 

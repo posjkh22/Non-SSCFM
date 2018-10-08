@@ -146,6 +146,8 @@ bool SignalCodeImplanter::RunFineGrainedLevel()
 		std::cout << "Test: " << CurrentwFunc->getName() << std::endl;
 
 
+
+
 		/* 	GET BRANCH INFORMATION */
 		for(auto iter_bb = Target->begin();
 				iter_bb != Target->end(); iter_bb++)
@@ -212,6 +214,7 @@ bool SignalCodeImplanter::RunFineGrainedLevel()
 		}
 	
 
+
 			
 		llvm::Instruction *TargetCloned1
 			= getTargetInstClonedforChecker(*p_ParsedIRmodule);
@@ -227,20 +230,28 @@ bool SignalCodeImplanter::RunFineGrainedLevel()
 				TargetCloned1
 				);
 		
-		/*	update_verification */
-		llvm::Instruction *TargetCloned2
-			= getTargetInstClonedforChecker_with_entry(*p_ParsedIRmodule);
-		
-		ImplantSignalCodes_begin(
-				*p_ParsedIRmodule, 
-				m_context, 
-				builder, 
-				Target,
-				node_id,
-				TargetCloned2
-				);
+		if(Target == &(*(CurrentFunc->begin())))
+		{
+			continue;
+		}
 
+		else
+		{
+	
+			/*	update_verification */
+			llvm::Instruction *TargetCloned2
+				= getTargetInstClonedforChecker_with_entry(*p_ParsedIRmodule);
+			
+			ImplantSignalCodes_begin(
+					*p_ParsedIRmodule, 
+					m_context, 
+					builder, 
+					Target,
+					node_id,
+					TargetCloned2
+					);
 
+		}
 		
 		/*	
 		if(sd->type == 3)
@@ -428,6 +439,9 @@ bool SignalCodeImplanter::ImplantSignalCodes_begin(
 			//newInst->setOperand(0, signature_value);
 			//newInst->setOperand(1, signature_value);
 			//newInst->setOperand(2, node_id_value);
+			
+			signature_value_1 = main_value_ptr_1;
+			signature_value_2 = main_value_ptr_2;
 		
 			newInst->setOperand(0, signature_value_1);
 			newInst->setOperand(1, signature_value_2);
@@ -510,6 +524,9 @@ bool SignalCodeImplanter::ImplantSignalCodes_end(
 			newInst->setOperand(2, node_id_value);
 			newInst->setOperand(3, node_id_value);
 			*/
+
+			signature_value_1 = main_value_ptr_1;
+			signature_value_2 = main_value_ptr_2;
 
 			newInst->setOperand(0, signature_value_1);
 			newInst->setOperand(1, signature_value_2);
@@ -981,7 +998,18 @@ bool SignalCodeImplanter::DeclareSignalCodes(
 	Constant *value_ptr_2 = nullptr;;
 	
 	Constant *constant_zero = llvm::ConstantInt::get(i32_type, 0, true);
-  	
+  
+
+	std::string main_sig_nam_1("main_run_signature_1");
+	value_ptr_1 = m->getOrInsertGlobal(main_sig_nam_1, integer_type);
+	main_value_ptr_1 = cast<GlobalVariable>(value_ptr_1);
+	main_value_ptr_1->setInitializer(constant_zero);
+	
+	std::string main_sig_nam_2("main_run_signature_2");
+	value_ptr_2 = m->getOrInsertGlobal(main_sig_nam_2, integer_type);
+	main_value_ptr_2 = cast<GlobalVariable>(value_ptr_2);
+	main_value_ptr_2->setInitializer(constant_zero);
+		
 
 	for(auto iter1 = m->getFunctionList().begin(); 
 			iter1 != m->getFunctionList().end(); iter1++) 
