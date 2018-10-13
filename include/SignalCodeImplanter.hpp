@@ -83,8 +83,12 @@ private:
 	bool DeclareSignalCodes(ParsedIRmodule &, LLVMContext &, IRBuilder<> &);
 	bool ImplantSignalCodes_begin(ParsedIRmodule &, LLVMContext &, IRBuilder<> &, 
 			BasicBlock *, unsigned int, Instruction *);
+	bool ImplantSignalCodes_middle(ParsedIRmodule &, LLVMContext &, IRBuilder<> &, 
+			BasicBlock *, unsigned int, unsigned int, Instruction *);
 	bool ImplantSignalCodes_end(ParsedIRmodule &, LLVMContext &, IRBuilder<> &, 
 			BasicBlock *, unsigned int, unsigned int, Instruction *);
+	bool ImplantSignalCodes_exit(ParsedIRmodule &, LLVMContext &, IRBuilder<> &, 
+			BasicBlock *, unsigned int, Instruction *);
 	bool GenerateImplantedIRmodule();
 
 private:

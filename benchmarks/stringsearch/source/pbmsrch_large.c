@@ -20,7 +20,7 @@
 static size_t table[UCHAR_MAX + 1];
 static size_t len;
 static char *findme;
-extern unsigned int is_signature_queue_full;
+//extern unsigned int is_signature_queue_full;
 
 /*
 **  Call this with the string to locate to initialize the table
@@ -2759,7 +2759,7 @@ NULL};
 	printf(" [target finished!]\n");
 	gettimeofday(&endTick, NULL);
 	printf(" [target] Execution Time: %ld\n", (endTick.tv_sec - begTick.tv_sec) * 1000000 + (endTick.tv_usec - begTick.tv_usec));
-	is_signature_queue_full =1;
+	//is_signature_queue_full =1;
 
       return 0;
 }

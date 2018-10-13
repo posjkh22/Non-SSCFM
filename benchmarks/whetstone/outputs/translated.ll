@@ -15,30 +15,51 @@ target triple = "x86_64-unknown-linux-gnu"
 @L = common global i32 0, align 4
 @.str = private unnamed_addr constant [25 x i8] c" [target has finished!]\0A\00", align 1
 @.str.1 = private unnamed_addr constant [15 x i8] c" [target] %ld\0A\00", align 1
-@main_signature = global i32 0
-@gettimeofday_signature = global i32 0
-@PA_signature = global i32 0
-@atan_signature = global i32 0
-@sin_signature = global i32 0
-@cos_signature = global i32 0
-@P3_signature = global i32 0
-@P0_signature = global i32 0
-@sqrt_signature = global i32 0
-@exp_signature = global i32 0
-@log_signature = global i32 0
-@printf_signature = global i32 0
-@init_monitor_signature = global i32 0
-@update_signature_signature = global i32 0
-@verify_signature_signature = global i32 0
-@enqueue_signature_with_return_signature = global i32 0
-@enqueue_signature_with_remainder_process_signature = global i32 0
-@update_signature2_signature = global i32 0
-@update_signature3_signature = global i32 0
-@CallcheckerSet_signature = global i32 0
+@main_run_signature_1 = global i32 0
+@main_run_signature_2 = global i32 0
+@main_signature_1 = global i32 0
+@main_signature_2 = global i32 0
+@gettimeofday_signature_1 = global i32 0
+@gettimeofday_signature_2 = global i32 0
+@PA_signature_1 = global i32 0
+@PA_signature_2 = global i32 0
+@atan_signature_1 = global i32 0
+@atan_signature_2 = global i32 0
+@sin_signature_1 = global i32 0
+@sin_signature_2 = global i32 0
+@cos_signature_1 = global i32 0
+@cos_signature_2 = global i32 0
+@P3_signature_1 = global i32 0
+@P3_signature_2 = global i32 0
+@P0_signature_1 = global i32 0
+@P0_signature_2 = global i32 0
+@sqrt_signature_1 = global i32 0
+@sqrt_signature_2 = global i32 0
+@exp_signature_1 = global i32 0
+@exp_signature_2 = global i32 0
+@log_signature_1 = global i32 0
+@log_signature_2 = global i32 0
+@printf_signature_1 = global i32 0
+@printf_signature_2 = global i32 0
+@init_monitor_signature_1 = global i32 0
+@init_monitor_signature_2 = global i32 0
+@update_signature_signature_1 = global i32 0
+@update_signature_signature_2 = global i32 0
+@verify_signature_signature_1 = global i32 0
+@verify_signature_signature_2 = global i32 0
+@enqueue_signature_with_return_signature_1 = global i32 0
+@enqueue_signature_with_return_signature_2 = global i32 0
+@exit_with_remainder_process_signature_1 = global i32 0
+@exit_with_remainder_process_signature_2 = global i32 0
+@update_signature2_signature_1 = global i32 0
+@update_signature2_signature_2 = global i32 0
+@update_signature3_signature_1 = global i32 0
+@update_signature3_signature_2 = global i32 0
+@CallcheckerSet_signature_1 = global i32 0
+@CallcheckerSet_signature_2 = global i32 0
 
 ; Function Attrs: noinline nounwind optnone uwtable
 define i32 @main() #0 {
-  call void @update_signature(i32* @main_signature, i32 65537)
   %1 = alloca i32, align 4
   %2 = alloca i64, align 8
   %3 = alloca i64, align 8
@@ -55,6 +76,7 @@ define i32 @main() #0 {
   %14 = alloca double, align 8
   %15 = alloca double, align 8
   %16 = alloca double, align 8
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65538, i32 0)
   %17 = alloca double, align 8
   %18 = alloca double, align 8
   %19 = alloca double, align 8
@@ -72,17 +94,16 @@ define i32 @main() #0 {
   store i64 100, i64* %23, align 8
   store i32 0, i32* %27, align 4
   %30 = call i32 @gettimeofday(%struct.timeval* %28, %struct.timezone* null) #3
-  call void @verify_signature(i32* @main_signature, i32 65537)
   br label %31
 
 ; <label>:31:                                     ; preds = %0
-  call void @update_signature(i32* @main_signature, i32 65538)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65538)
   store i32 1, i32* %21, align 4
-  call void @verify_signature(i32* @main_signature, i32 65538)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65539, i32 0)
   br label %32
 
 ; <label>:32:                                     ; preds = %31
-  call void @update_signature(i32* @main_signature, i32 65539)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65539)
   store double 4.999750e-01, double* @T, align 8
   store double 5.002500e-01, double* @T1, align 8
   store double 2.000000e+00, double* @T2, align 8
@@ -90,11 +111,11 @@ define i32 @main() #0 {
   store i64 %33, i64* %20, align 8
   store i32 1, i32* %21, align 4
   store i32 1, i32* %22, align 4
-  call void @verify_signature(i32* @main_signature, i32 65539)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65540, i32 0)
   br label %34
 
 ; <label>:34:                                     ; preds = %356, %32
-  call void @update_signature(i32* @main_signature, i32 65540)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65540)
   store i64 0, i64* %3, align 8
   %35 = load i64, i64* %20, align 8
   %36 = mul nsw i64 12, %35
@@ -110,6 +131,7 @@ define i32 @main() #0 {
   store i64 %42, i64* %7, align 8
   %43 = load i64, i64* %20, align 8
   %44 = mul nsw i64 32, %43
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65541, i32 0)
   store i64 %44, i64* %8, align 8
   %45 = load i64, i64* %20, align 8
   %46 = mul nsw i64 899, %45
@@ -126,19 +148,18 @@ define i32 @main() #0 {
   store double -1.000000e+00, double* %15, align 8
   store double -1.000000e+00, double* %16, align 8
   store i64 1, i64* %2, align 8
-  call void @verify_signature(i32* @main_signature, i32 65540)
   br label %51
 
 ; <label>:51:                                     ; preds = %93, %34
-  call void @update_signature(i32* @main_signature, i32 65541)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65541)
   %52 = load i64, i64* %2, align 8
   %53 = load i64, i64* %3, align 8
   %54 = icmp sle i64 %52, %53
-  call void @verify_signature(i32* @main_signature, i32 65541)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65542, i32 65544)
   br i1 %54, label %55, label %96
 
 ; <label>:55:                                     ; preds = %51
-  call void @update_signature(i32* @main_signature, i32 65542)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65542)
   %56 = load double, double* %13, align 8
   %57 = load double, double* %14, align 8
   %58 = fadd double %56, %57
@@ -159,6 +180,7 @@ define i32 @main() #0 {
   %72 = load double, double* @T, align 8
   %73 = fmul double %71, %72
   store double %73, double* %14, align 8
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65543, i32 0)
   %74 = load double, double* %13, align 8
   %75 = load double, double* %14, align 8
   %76 = fsub double %74, %75
@@ -180,37 +202,36 @@ define i32 @main() #0 {
   %91 = load double, double* @T, align 8
   %92 = fmul double %90, %91
   store double %92, double* %16, align 8
-  call void @verify_signature(i32* @main_signature, i32 65542)
   br label %93
 
 ; <label>:93:                                     ; preds = %55
-  call void @update_signature(i32* @main_signature, i32 65543)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65543)
   %94 = load i64, i64* %2, align 8
   %95 = add nsw i64 %94, 1
   store i64 %95, i64* %2, align 8
-  call void @verify_signature(i32* @main_signature, i32 65543)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65541, i32 0)
   br label %51
 
 ; <label>:96:                                     ; preds = %51
-  call void @update_signature(i32* @main_signature, i32 65544)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65544)
   store double 1.000000e+00, double* getelementptr inbounds ([5 x double], [5 x double]* @E1, i64 0, i64 1), align 8
   store double -1.000000e+00, double* getelementptr inbounds ([5 x double], [5 x double]* @E1, i64 0, i64 2), align 16
   store double -1.000000e+00, double* getelementptr inbounds ([5 x double], [5 x double]* @E1, i64 0, i64 3), align 8
   store double -1.000000e+00, double* getelementptr inbounds ([5 x double], [5 x double]* @E1, i64 0, i64 4), align 16
   store i64 1, i64* %2, align 8
-  call void @verify_signature(i32* @main_signature, i32 65544)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65545, i32 0)
   br label %97
 
 ; <label>:97:                                     ; preds = %139, %96
-  call void @update_signature(i32* @main_signature, i32 65545)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65545)
   %98 = load i64, i64* %2, align 8
   %99 = load i64, i64* %4, align 8
   %100 = icmp sle i64 %98, %99
-  call void @verify_signature(i32* @main_signature, i32 65545)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65546, i32 65548)
   br i1 %100, label %101, label %142
 
 ; <label>:101:                                    ; preds = %97
-  call void @update_signature(i32* @main_signature, i32 65546)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65546)
   %102 = load double, double* getelementptr inbounds ([5 x double], [5 x double]* @E1, i64 0, i64 1), align 8
   %103 = load double, double* getelementptr inbounds ([5 x double], [5 x double]* @E1, i64 0, i64 2), align 16
   %104 = fadd double %102, %103
@@ -231,6 +252,7 @@ define i32 @main() #0 {
   %118 = load double, double* @T, align 8
   %119 = fmul double %117, %118
   store double %119, double* getelementptr inbounds ([5 x double], [5 x double]* @E1, i64 0, i64 2), align 16
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65547, i32 0)
   %120 = load double, double* getelementptr inbounds ([5 x double], [5 x double]* @E1, i64 0, i64 1), align 8
   %121 = load double, double* getelementptr inbounds ([5 x double], [5 x double]* @E1, i64 0, i64 2), align 16
   %122 = fsub double %120, %121
@@ -252,149 +274,148 @@ define i32 @main() #0 {
   %137 = load double, double* @T, align 8
   %138 = fmul double %136, %137
   store double %138, double* getelementptr inbounds ([5 x double], [5 x double]* @E1, i64 0, i64 4), align 16
-  call void @verify_signature(i32* @main_signature, i32 65546)
   br label %139
 
 ; <label>:139:                                    ; preds = %101
-  call void @update_signature(i32* @main_signature, i32 65547)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65547)
   %140 = load i64, i64* %2, align 8
   %141 = add nsw i64 %140, 1
   store i64 %141, i64* %2, align 8
-  call void @verify_signature(i32* @main_signature, i32 65547)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65545, i32 0)
   br label %97
 
 ; <label>:142:                                    ; preds = %97
-  call void @update_signature(i32* @main_signature, i32 65548)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65548)
   store i64 1, i64* %2, align 8
-  call void @verify_signature(i32* @main_signature, i32 65548)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65549, i32 0)
   br label %143
 
 ; <label>:143:                                    ; preds = %148, %142
-  call void @update_signature(i32* @main_signature, i32 65549)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65549)
   %144 = load i64, i64* %2, align 8
   %145 = load i64, i64* %5, align 8
   %146 = icmp sle i64 %144, %145
-  call void @verify_signature(i32* @main_signature, i32 65549)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65550, i32 65552)
   br i1 %146, label %147, label %151
 
 ; <label>:147:                                    ; preds = %143
-  call void @update_signature(i32* @main_signature, i32 65550)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65550)
   call void @PA(double* getelementptr inbounds ([5 x double], [5 x double]* @E1, i32 0, i32 0))
-  call void @verify_signature(i32* @main_signature, i32 65550)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65551, i32 0)
   br label %148
 
 ; <label>:148:                                    ; preds = %147
-  call void @update_signature(i32* @main_signature, i32 65551)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65551)
   %149 = load i64, i64* %2, align 8
   %150 = add nsw i64 %149, 1
   store i64 %150, i64* %2, align 8
-  call void @verify_signature(i32* @main_signature, i32 65551)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65549, i32 0)
   br label %143
 
 ; <label>:151:                                    ; preds = %143
-  call void @update_signature(i32* @main_signature, i32 65552)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65552)
   store i32 1, i32* @J, align 4
   store i64 1, i64* %2, align 8
-  call void @verify_signature(i32* @main_signature, i32 65552)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65553, i32 0)
   br label %152
 
 ; <label>:152:                                    ; preds = %172, %151
-  call void @update_signature(i32* @main_signature, i32 65553)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65553)
   %153 = load i64, i64* %2, align 8
   %154 = load i64, i64* %6, align 8
   %155 = icmp sle i64 %153, %154
-  call void @verify_signature(i32* @main_signature, i32 65553)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65554, i32 65565)
   br i1 %155, label %156, label %175
 
 ; <label>:156:                                    ; preds = %152
-  call void @update_signature(i32* @main_signature, i32 65554)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65554)
   %157 = load i32, i32* @J, align 4
   %158 = icmp eq i32 %157, 1
-  call void @verify_signature(i32* @main_signature, i32 65554)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65555, i32 65556)
   br i1 %158, label %159, label %160
 
 ; <label>:159:                                    ; preds = %156
-  call void @update_signature(i32* @main_signature, i32 65555)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65555)
   store i32 2, i32* @J, align 4
-  call void @verify_signature(i32* @main_signature, i32 65555)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65557, i32 0)
   br label %161
 
 ; <label>:160:                                    ; preds = %156
-  call void @update_signature(i32* @main_signature, i32 65556)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65556)
   store i32 3, i32* @J, align 4
-  call void @verify_signature(i32* @main_signature, i32 65556)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65557, i32 0)
   br label %161
 
 ; <label>:161:                                    ; preds = %160, %159
-  call void @update_signature(i32* @main_signature, i32 65557)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65557)
   %162 = load i32, i32* @J, align 4
   %163 = icmp sgt i32 %162, 2
-  call void @verify_signature(i32* @main_signature, i32 65557)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65558, i32 65559)
   br i1 %163, label %164, label %165
 
 ; <label>:164:                                    ; preds = %161
-  call void @update_signature(i32* @main_signature, i32 65558)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65558)
   store i32 0, i32* @J, align 4
-  call void @verify_signature(i32* @main_signature, i32 65558)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65560, i32 0)
   br label %166
 
 ; <label>:165:                                    ; preds = %161
-  call void @update_signature(i32* @main_signature, i32 65559)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65559)
   store i32 1, i32* @J, align 4
-  call void @verify_signature(i32* @main_signature, i32 65559)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65560, i32 0)
   br label %166
 
 ; <label>:166:                                    ; preds = %165, %164
-  call void @update_signature(i32* @main_signature, i32 65560)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65560)
   %167 = load i32, i32* @J, align 4
   %168 = icmp slt i32 %167, 1
-  call void @verify_signature(i32* @main_signature, i32 65560)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65561, i32 65562)
   br i1 %168, label %169, label %170
 
 ; <label>:169:                                    ; preds = %166
-  call void @update_signature(i32* @main_signature, i32 65561)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65561)
   store i32 1, i32* @J, align 4
-  call void @verify_signature(i32* @main_signature, i32 65561)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65563, i32 0)
   br label %171
 
 ; <label>:170:                                    ; preds = %166
-  call void @update_signature(i32* @main_signature, i32 65562)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65562)
   store i32 0, i32* @J, align 4
-  call void @verify_signature(i32* @main_signature, i32 65562)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65563, i32 0)
   br label %171
 
 ; <label>:171:                                    ; preds = %170, %169
-  call void @update_signature(i32* @main_signature, i32 65563)
-  call void @verify_signature(i32* @main_signature, i32 65563)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65563)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65564, i32 0)
   br label %172
 
 ; <label>:172:                                    ; preds = %171
-  call void @update_signature(i32* @main_signature, i32 65564)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65564)
   %173 = load i64, i64* %2, align 8
   %174 = add nsw i64 %173, 1
   store i64 %174, i64* %2, align 8
-  call void @verify_signature(i32* @main_signature, i32 65564)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65553, i32 0)
   br label %152
 
 ; <label>:175:                                    ; preds = %152
-  call void @update_signature(i32* @main_signature, i32 65565)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65565)
   store i32 1, i32* @J, align 4
   store i32 2, i32* @K, align 4
   store i32 3, i32* @L, align 4
   store i64 1, i64* %2, align 8
-  call void @verify_signature(i32* @main_signature, i32 65565)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65566, i32 0)
   br label %176
 
 ; <label>:176:                                    ; preds = %226, %175
-  call void @update_signature(i32* @main_signature, i32 65566)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65566)
   %177 = load i64, i64* %2, align 8
   %178 = load i64, i64* %7, align 8
   %179 = icmp sle i64 %177, %178
-  call void @verify_signature(i32* @main_signature, i32 65566)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65567, i32 65569)
   br i1 %179, label %180, label %229
 
 ; <label>:180:                                    ; preds = %176
-  call void @update_signature(i32* @main_signature, i32 65567)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65567)
   %181 = load i32, i32* @J, align 4
   %182 = load i32, i32* @K, align 4
   %183 = load i32, i32* @J, align 4
@@ -420,6 +441,7 @@ define i32 @main() #0 {
   %201 = sub nsw i32 %199, %200
   %202 = load i32, i32* @K, align 4
   %203 = load i32, i32* @J, align 4
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65568, i32 0)
   %204 = add nsw i32 %202, %203
   %205 = mul nsw i32 %201, %204
   store i32 %205, i32* @L, align 4
@@ -445,175 +467,174 @@ define i32 @main() #0 {
   %224 = sext i32 %223 to i64
   %225 = getelementptr inbounds [5 x double], [5 x double]* @E1, i64 0, i64 %224
   store double %221, double* %225, align 8
-  call void @verify_signature(i32* @main_signature, i32 65567)
   br label %226
 
 ; <label>:226:                                    ; preds = %180
-  call void @update_signature(i32* @main_signature, i32 65568)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65568)
   %227 = load i64, i64* %2, align 8
   %228 = add nsw i64 %227, 1
   store i64 %228, i64* %2, align 8
-  call void @verify_signature(i32* @main_signature, i32 65568)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65566, i32 0)
   br label %176
 
 ; <label>:229:                                    ; preds = %176
-  call void @update_signature(i32* @main_signature, i32 65569)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65569)
   store double 5.000000e-01, double* %17, align 8
   store double 5.000000e-01, double* %18, align 8
   store i64 1, i64* %2, align 8
-  call void @verify_signature(i32* @main_signature, i32 65569)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65570, i32 0)
   br label %230
 
 ; <label>:230:                                    ; preds = %287, %229
-  call void @update_signature(i32* @main_signature, i32 65570)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65570)
   %231 = load i64, i64* %2, align 8
   %232 = load i64, i64* %8, align 8
   %233 = icmp sle i64 %231, %232
-  call void @verify_signature(i32* @main_signature, i32 65570)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65571, i32 65583)
   br i1 %233, label %234, label %290
 
 ; <label>:234:                                    ; preds = %230
-  call void @update_signature(i32* @main_signature, i32 65571)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65571)
   %235 = load double, double* @T, align 8
   %236 = load double, double* @T2, align 8
   %237 = load double, double* %17, align 8
   %238 = call double @sin(double %237) #3
-  call void @verify_signature(i32* @main_signature, i32 65571)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65572, i32 0)
   br label %239
 
 ; <label>:239:                                    ; preds = %234
-  call void @update_signature(i32* @main_signature, i32 65572)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65572)
   %240 = fmul double %236, %238
   %241 = load double, double* %17, align 8
   %242 = call double @cos(double %241) #3
-  call void @verify_signature(i32* @main_signature, i32 65572)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65573, i32 0)
   br label %243
 
 ; <label>:243:                                    ; preds = %239
-  call void @update_signature(i32* @main_signature, i32 65573)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65573)
   %244 = fmul double %240, %242
   %245 = load double, double* %17, align 8
   %246 = load double, double* %18, align 8
   %247 = fadd double %245, %246
   %248 = call double @cos(double %247) #3
-  call void @verify_signature(i32* @main_signature, i32 65573)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65574, i32 0)
   br label %249
 
 ; <label>:249:                                    ; preds = %243
-  call void @update_signature(i32* @main_signature, i32 65574)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65574)
   %250 = load double, double* %17, align 8
   %251 = load double, double* %18, align 8
   %252 = fsub double %250, %251
   %253 = call double @cos(double %252) #3
-  call void @verify_signature(i32* @main_signature, i32 65574)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65575, i32 0)
   br label %254
 
 ; <label>:254:                                    ; preds = %249
-  call void @update_signature(i32* @main_signature, i32 65575)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65575)
   %255 = fadd double %248, %253
   %256 = fsub double %255, 1.000000e+00
   %257 = fdiv double %244, %256
   %258 = call double @atan(double %257) #3
-  call void @verify_signature(i32* @main_signature, i32 65575)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65576, i32 0)
   br label %259
 
 ; <label>:259:                                    ; preds = %254
-  call void @update_signature(i32* @main_signature, i32 65576)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65576)
   %260 = fmul double %235, %258
   store double %260, double* %17, align 8
   %261 = load double, double* @T, align 8
   %262 = load double, double* @T2, align 8
   %263 = load double, double* %18, align 8
   %264 = call double @sin(double %263) #3
-  call void @verify_signature(i32* @main_signature, i32 65576)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65577, i32 0)
   br label %265
 
 ; <label>:265:                                    ; preds = %259
-  call void @update_signature(i32* @main_signature, i32 65577)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65577)
   %266 = fmul double %262, %264
   %267 = load double, double* %18, align 8
   %268 = call double @cos(double %267) #3
-  call void @verify_signature(i32* @main_signature, i32 65577)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65578, i32 0)
   br label %269
 
 ; <label>:269:                                    ; preds = %265
-  call void @update_signature(i32* @main_signature, i32 65578)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65578)
   %270 = fmul double %266, %268
   %271 = load double, double* %17, align 8
   %272 = load double, double* %18, align 8
   %273 = fadd double %271, %272
   %274 = call double @cos(double %273) #3
-  call void @verify_signature(i32* @main_signature, i32 65578)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65579, i32 0)
   br label %275
 
 ; <label>:275:                                    ; preds = %269
-  call void @update_signature(i32* @main_signature, i32 65579)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65579)
   %276 = load double, double* %17, align 8
   %277 = load double, double* %18, align 8
   %278 = fsub double %276, %277
   %279 = call double @cos(double %278) #3
-  call void @verify_signature(i32* @main_signature, i32 65579)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65580, i32 0)
   br label %280
 
 ; <label>:280:                                    ; preds = %275
-  call void @update_signature(i32* @main_signature, i32 65580)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65580)
   %281 = fadd double %274, %279
   %282 = fsub double %281, 1.000000e+00
   %283 = fdiv double %270, %282
   %284 = call double @atan(double %283) #3
-  call void @verify_signature(i32* @main_signature, i32 65580)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65581, i32 0)
   br label %285
 
 ; <label>:285:                                    ; preds = %280
-  call void @update_signature(i32* @main_signature, i32 65581)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65581)
   %286 = fmul double %261, %284
   store double %286, double* %18, align 8
-  call void @verify_signature(i32* @main_signature, i32 65581)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65582, i32 0)
   br label %287
 
 ; <label>:287:                                    ; preds = %285
-  call void @update_signature(i32* @main_signature, i32 65582)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65582)
   %288 = load i64, i64* %2, align 8
   %289 = add nsw i64 %288, 1
   store i64 %289, i64* %2, align 8
-  call void @verify_signature(i32* @main_signature, i32 65582)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65570, i32 0)
   br label %230
 
 ; <label>:290:                                    ; preds = %230
-  call void @update_signature(i32* @main_signature, i32 65583)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65583)
   store double 1.000000e+00, double* %17, align 8
   store double 1.000000e+00, double* %18, align 8
   store double 1.000000e+00, double* %19, align 8
   store i64 1, i64* %2, align 8
-  call void @verify_signature(i32* @main_signature, i32 65583)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65584, i32 0)
   br label %291
 
 ; <label>:291:                                    ; preds = %298, %290
-  call void @update_signature(i32* @main_signature, i32 65584)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65584)
   %292 = load i64, i64* %2, align 8
   %293 = load i64, i64* %9, align 8
   %294 = icmp sle i64 %292, %293
-  call void @verify_signature(i32* @main_signature, i32 65584)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65585, i32 65587)
   br i1 %294, label %295, label %301
 
 ; <label>:295:                                    ; preds = %291
-  call void @update_signature(i32* @main_signature, i32 65585)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65585)
   %296 = load double, double* %17, align 8
   %297 = load double, double* %18, align 8
   call void @P3(double %296, double %297, double* %19)
-  call void @verify_signature(i32* @main_signature, i32 65585)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65586, i32 0)
   br label %298
 
 ; <label>:298:                                    ; preds = %295
-  call void @update_signature(i32* @main_signature, i32 65586)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65586)
   %299 = load i64, i64* %2, align 8
   %300 = add nsw i64 %299, 1
   store i64 %300, i64* %2, align 8
-  call void @verify_signature(i32* @main_signature, i32 65586)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65584, i32 0)
   br label %291
 
 ; <label>:301:                                    ; preds = %291
-  call void @update_signature(i32* @main_signature, i32 65587)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65587)
   store i32 1, i32* @J, align 4
   store i32 2, i32* @K, align 4
   store i32 3, i32* @L, align 4
@@ -621,49 +642,49 @@ define i32 @main() #0 {
   store double 2.000000e+00, double* getelementptr inbounds ([5 x double], [5 x double]* @E1, i64 0, i64 2), align 16
   store double 3.000000e+00, double* getelementptr inbounds ([5 x double], [5 x double]* @E1, i64 0, i64 3), align 8
   store i64 1, i64* %2, align 8
-  call void @verify_signature(i32* @main_signature, i32 65587)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65588, i32 0)
   br label %302
 
 ; <label>:302:                                    ; preds = %307, %301
-  call void @update_signature(i32* @main_signature, i32 65588)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65588)
   %303 = load i64, i64* %2, align 8
   %304 = load i64, i64* %10, align 8
   %305 = icmp sle i64 %303, %304
-  call void @verify_signature(i32* @main_signature, i32 65588)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65589, i32 65591)
   br i1 %305, label %306, label %310
 
 ; <label>:306:                                    ; preds = %302
-  call void @update_signature(i32* @main_signature, i32 65589)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65589)
   call void @P0()
-  call void @verify_signature(i32* @main_signature, i32 65589)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65590, i32 0)
   br label %307
 
 ; <label>:307:                                    ; preds = %306
-  call void @update_signature(i32* @main_signature, i32 65590)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65590)
   %308 = load i64, i64* %2, align 8
   %309 = add nsw i64 %308, 1
   store i64 %309, i64* %2, align 8
-  call void @verify_signature(i32* @main_signature, i32 65590)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65588, i32 0)
   br label %302
 
 ; <label>:310:                                    ; preds = %302
-  call void @update_signature(i32* @main_signature, i32 65591)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65591)
   store i32 2, i32* @J, align 4
   store i32 3, i32* @K, align 4
   store i64 1, i64* %2, align 8
-  call void @verify_signature(i32* @main_signature, i32 65591)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65592, i32 0)
   br label %311
 
 ; <label>:311:                                    ; preds = %330, %310
-  call void @update_signature(i32* @main_signature, i32 65592)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65592)
   %312 = load i64, i64* %2, align 8
   %313 = load i64, i64* %11, align 8
   %314 = icmp sle i64 %312, %313
-  call void @verify_signature(i32* @main_signature, i32 65592)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65593, i32 65595)
   br i1 %314, label %315, label %333
 
 ; <label>:315:                                    ; preds = %311
-  call void @update_signature(i32* @main_signature, i32 65593)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65593)
   %316 = load i32, i32* @J, align 4
   %317 = load i32, i32* @K, align 4
   %318 = add nsw i32 %316, %317
@@ -673,6 +694,7 @@ define i32 @main() #0 {
   %321 = add nsw i32 %319, %320
   store i32 %321, i32* @K, align 4
   %322 = load i32, i32* @K, align 4
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65594, i32 0)
   %323 = load i32, i32* @J, align 4
   %324 = sub nsw i32 %322, %323
   store i32 %324, i32* @J, align 4
@@ -682,102 +704,102 @@ define i32 @main() #0 {
   %328 = load i32, i32* @J, align 4
   %329 = sub nsw i32 %327, %328
   store i32 %329, i32* @K, align 4
-  call void @verify_signature(i32* @main_signature, i32 65593)
   br label %330
 
 ; <label>:330:                                    ; preds = %315
-  call void @update_signature(i32* @main_signature, i32 65594)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65594)
   %331 = load i64, i64* %2, align 8
   %332 = add nsw i64 %331, 1
   store i64 %332, i64* %2, align 8
-  call void @verify_signature(i32* @main_signature, i32 65594)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65592, i32 0)
   br label %311
 
 ; <label>:333:                                    ; preds = %311
-  call void @update_signature(i32* @main_signature, i32 65595)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65595)
   store double 7.500000e-01, double* %17, align 8
   store i64 1, i64* %2, align 8
-  call void @verify_signature(i32* @main_signature, i32 65595)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65596, i32 0)
   br label %334
 
 ; <label>:334:                                    ; preds = %348, %333
-  call void @update_signature(i32* @main_signature, i32 65596)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65596)
   %335 = load i64, i64* %2, align 8
   %336 = load i64, i64* %12, align 8
   %337 = icmp sle i64 %335, %336
-  call void @verify_signature(i32* @main_signature, i32 65596)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65597, i32 65602)
   br i1 %337, label %338, label %351
 
 ; <label>:338:                                    ; preds = %334
-  call void @update_signature(i32* @main_signature, i32 65597)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65597)
   %339 = load double, double* %17, align 8
   %340 = call double @log(double %339) #3
-  call void @verify_signature(i32* @main_signature, i32 65597)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65598, i32 0)
   br label %341
 
 ; <label>:341:                                    ; preds = %338
-  call void @update_signature(i32* @main_signature, i32 65598)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65598)
   %342 = load double, double* @T1, align 8
   %343 = fdiv double %340, %342
   %344 = call double @exp(double %343) #3
-  call void @verify_signature(i32* @main_signature, i32 65598)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65599, i32 0)
   br label %345
 
 ; <label>:345:                                    ; preds = %341
-  call void @update_signature(i32* @main_signature, i32 65599)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65599)
   %346 = call double @sqrt(double %344) #3
-  call void @verify_signature(i32* @main_signature, i32 65599)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65600, i32 0)
   br label %347
 
 ; <label>:347:                                    ; preds = %345
-  call void @update_signature(i32* @main_signature, i32 65600)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65600)
   store double %346, double* %17, align 8
-  call void @verify_signature(i32* @main_signature, i32 65600)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65601, i32 0)
   br label %348
 
 ; <label>:348:                                    ; preds = %347
-  call void @update_signature(i32* @main_signature, i32 65601)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65601)
   %349 = load i64, i64* %2, align 8
   %350 = add nsw i64 %349, 1
   store i64 %350, i64* %2, align 8
-  call void @verify_signature(i32* @main_signature, i32 65601)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65596, i32 0)
   br label %334
 
 ; <label>:351:                                    ; preds = %334
-  call void @update_signature(i32* @main_signature, i32 65602)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65602)
   %352 = load i32, i32* %22, align 4
   %353 = add nsw i32 %352, 1
   store i32 %353, i32* %22, align 4
   %354 = load i32, i32* %21, align 4
   %355 = icmp sle i32 %353, %354
-  call void @verify_signature(i32* @main_signature, i32 65602)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65603, i32 65604)
   br i1 %355, label %356, label %357
 
 ; <label>:356:                                    ; preds = %351
-  call void @update_signature(i32* @main_signature, i32 65603)
-  call void @verify_signature(i32* @main_signature, i32 65603)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65603)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65540, i32 0)
   br label %34
 
 ; <label>:357:                                    ; preds = %351
-  call void @update_signature(i32* @main_signature, i32 65604)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65604)
   %358 = call i32 @gettimeofday(%struct.timeval* %29, %struct.timezone* null) #3
-  call void @verify_signature(i32* @main_signature, i32 65604)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65605, i32 0)
   br label %359
 
 ; <label>:359:                                    ; preds = %357
-  call void @update_signature(i32* @main_signature, i32 65605)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65605)
   %360 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([25 x i8], [25 x i8]* @.str, i32 0, i32 0))
-  call void @verify_signature(i32* @main_signature, i32 65605)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65606, i32 0)
   br label %361
 
 ; <label>:361:                                    ; preds = %359
-  call void @update_signature(i32* @main_signature, i32 65606)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65606)
   %362 = getelementptr inbounds %struct.timeval, %struct.timeval* %29, i32 0, i32 0
   %363 = load i64, i64* %362, align 8
   %364 = getelementptr inbounds %struct.timeval, %struct.timeval* %28, i32 0, i32 0
   %365 = load i64, i64* %364, align 8
   %366 = sub nsw i64 %363, %365
   %367 = mul nsw i64 %366, 1000000
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65607, i32 0)
   %368 = getelementptr inbounds %struct.timeval, %struct.timeval* %29, i32 0, i32 1
   %369 = load i64, i64* %368, align 8
   %370 = getelementptr inbounds %struct.timeval, %struct.timeval* %28, i32 0, i32 1
@@ -785,12 +807,11 @@ define i32 @main() #0 {
   %372 = sub nsw i64 %369, %371
   %373 = add nsw i64 %367, %372
   %374 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @.str.1, i32 0, i32 0), i64 %373)
-  call void @verify_signature(i32* @main_signature, i32 65606)
   br label %375
 
 ; <label>:375:                                    ; preds = %361
-  call void @update_signature(i32* @main_signature, i32 65607)
-  call void @verify_signature(i32* @main_signature, i32 65607)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65607)
+  call void @exit_with_remainder_process(i32 65607)
   ret i32 0
 }
 
@@ -799,15 +820,14 @@ declare i32 @gettimeofday(%struct.timeval*, %struct.timezone*) #1
 
 ; Function Attrs: noinline nounwind optnone uwtable
 define void @PA(double*) #0 {
-  call void @update_signature(i32* @PA_signature, i32 196609)
   %2 = alloca double*, align 8
   store double* %0, double** %2, align 8
   store i32 0, i32* @J, align 4
-  call void @verify_signature(i32* @PA_signature, i32 196609)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 196610, i32 0)
   br label %3
 
 ; <label>:3:                                      ; preds = %85, %1
-  call void @update_signature(i32* @PA_signature, i32 196610)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 196610)
   %4 = load double*, double** %2, align 8
   %5 = getelementptr inbounds double, double* %4, i64 1
   %6 = load double, double* %5, align 8
@@ -851,6 +871,7 @@ define void @PA(double*) #0 {
   %42 = load double*, double** %2, align 8
   %43 = getelementptr inbounds double, double* %42, i64 1
   %44 = load double, double* %43, align 8
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 196611, i32 196612)
   %45 = load double*, double** %2, align 8
   %46 = getelementptr inbounds double, double* %45, i64 2
   %47 = load double, double* %46, align 8
@@ -894,17 +915,15 @@ define void @PA(double*) #0 {
   store i32 %82, i32* @J, align 4
   %83 = load i32, i32* @J, align 4
   %84 = icmp slt i32 %83, 6
-  call void @verify_signature(i32* @PA_signature, i32 196610)
   br i1 %84, label %85, label %86
 
 ; <label>:85:                                     ; preds = %3
-  call void @update_signature(i32* @PA_signature, i32 196611)
-  call void @verify_signature(i32* @PA_signature, i32 196611)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 196611)
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 196610, i32 0)
   br label %3
 
 ; <label>:86:                                     ; preds = %3
-  call void @update_signature(i32* @PA_signature, i32 196612)
-  call void @verify_signature(i32* @PA_signature, i32 196612)
+  call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 196612)
   ret void
 }
 
@@ -919,7 +938,6 @@ declare double @cos(double) #1
 
 ; Function Attrs: noinline nounwind optnone uwtable
 define void @P3(double, double, double*) #0 {
-  call void @update_signature(i32* @P3_signature, i32 458753)
   %4 = alloca double, align 8
   %5 = alloca double, align 8
   %6 = alloca double*, align 8
@@ -951,13 +969,11 @@ define void @P3(double, double, double*) #0 {
   %25 = fdiv double %23, %24
   %26 = load double*, double** %6, align 8
   store double %25, double* %26, align 8
-  call void @verify_signature(i32* @P3_signature, i32 458753)
   ret void
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
 define void @P0() #0 {
-  call void @update_signature(i32* @P0_signature, i32 524289)
   %1 = load i32, i32* @K, align 4
   %2 = sext i32 %1 to i64
   %3 = getelementptr inbounds [5 x double], [5 x double]* @E1, i64 0, i64 %2
@@ -982,7 +998,6 @@ define void @P0() #0 {
   %20 = sext i32 %19 to i64
   %21 = getelementptr inbounds [5 x double], [5 x double]* @E1, i64 0, i64 %20
   store double %18, double* %21, align 8
-  call void @verify_signature(i32* @P0_signature, i32 524289)
   ret void
 }
 
@@ -999,13 +1014,13 @@ declare i32 @printf(i8*, ...) #2
 
 declare void @init_monitor()
 
-declare void @update_signature(i32*, i32)
+declare void @update_signature(i32*, i32*, i32, i32)
 
-declare void @verify_signature(i32*, i32)
+declare void @verify_signature(i32*, i32*, i32)
 
 declare void @enqueue_signature_with_return(i32)
 
-declare void @enqueue_signature_with_remainder_process(i32)
+declare void @exit_with_remainder_process(i32)
 
 declare void @update_signature2(i32*, i32)
 
@@ -1014,10 +1029,10 @@ declare void @update_signature3(i32, i32)
 define void @CallcheckerSet() {
 entry:
   call void @init_monitor()
-  call void @update_signature(i32* @CallcheckerSet_signature, i32 1)
-  call void @verify_signature(i32* @CallcheckerSet_signature, i32 1)
+  call void @update_signature(i32* @CallcheckerSet_signature_1, i32* @CallcheckerSet_signature_1, i32 1, i32 1)
+  call void @verify_signature(i32* @CallcheckerSet_signature_1, i32* @CallcheckerSet_signature_1, i32 1)
   call void @enqueue_signature_with_return(i32 1)
-  call void @enqueue_signature_with_remainder_process(i32 1)
+  call void @exit_with_remainder_process(i32 1)
   ret void
 }
 

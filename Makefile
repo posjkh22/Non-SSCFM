@@ -33,7 +33,12 @@ link: result_clean
 	cp -f $(TARGET) ./benchmarks/dijkstra/
 	cp -f $(TARGET) ./benchmarks/dhrystone/
 	cp -f $(TARGET) ./benchmarks/whetstone/
-	cp -f $(TARGET) ./benchmarks/simple/
+	cp -f $(TARGET) ./benchmarks/basicmath
+	cp -f $(TARGET) ./benchmarks/crc32
+	cp -f $(TARGET) ./benchmarks/patricia
+	cp -f $(TARGET) ./benchmarks/sha
+	cp -f $(TARGET) ./benchmarks/stringsearch
+
 
 all: clean \
 		main \
@@ -59,8 +64,13 @@ all: clean \
 	cp -f $(TARGET) ./benchmarks/dijkstra/
 	cp -f $(TARGET) ./benchmarks/dhrystone/
 	cp -f $(TARGET) ./benchmarks/whetstone/
-	cp -f $(TARGET) ./benchmarks/dijkstra/
-	cp -f $(TARGET) ./benchmarks/simple/
+	cp -f $(TARGET) ./benchmarks/basicmath
+	cp -f $(TARGET) ./benchmarks/crc32
+	cp -f $(TARGET) ./benchmarks/patricia
+	cp -f $(TARGET) ./benchmarks/sha
+	cp -f $(TARGET) ./benchmarks/stringsearch
+
+
 #-ljsoncpp -L../json/lib \
 	
 	

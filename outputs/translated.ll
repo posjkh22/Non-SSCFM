@@ -58,8 +58,8 @@ target triple = "x86_64-unknown-linux-gnu"
 @verify_signature_signature_2 = global i32 0
 @enqueue_signature_with_return_signature_1 = global i32 0
 @enqueue_signature_with_return_signature_2 = global i32 0
-@enqueue_signature_with_remainder_process_signature_1 = global i32 0
-@enqueue_signature_with_remainder_process_signature_2 = global i32 0
+@exit_with_remainder_process_signature_1 = global i32 0
+@exit_with_remainder_process_signature_2 = global i32 0
 @update_signature2_signature_1 = global i32 0
 @update_signature2_signature_2 = global i32 0
 @update_signature3_signature_1 = global i32 0
@@ -77,6 +77,7 @@ define i32 @main() #0 {
   %6 = alloca float*, align 8
   %7 = alloca float*, align 8
   %8 = alloca float*, align 8
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65538, i32 0)
   %9 = alloca float*, align 8
   %10 = alloca float*, align 8
   %11 = alloca float*, align 8
@@ -86,7 +87,6 @@ define i32 @main() #0 {
   store i32 0, i32* %1, align 4
   store i32 0, i32* %12, align 4
   %15 = call i32 @gettimeofday(%struct.timeval* %13, %struct.timezone* null) #3
-  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65538, i32 0)
   br label %16
 
 ; <label>:16:                                     ; preds = %0
@@ -272,6 +272,7 @@ define i32 @main() #0 {
   %103 = fpext float %102 to double
   %104 = load float*, float** %11, align 8
   %105 = load i32, i32* %5, align 4
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65558, i32 0)
   %106 = zext i32 %105 to i64
   %107 = getelementptr inbounds float, float* %104, i64 %106
   %108 = load float, float* %107, align 4
@@ -280,7 +281,6 @@ define i32 @main() #0 {
   %111 = fmul float %108, %110
   %112 = fpext float %111 to double
   %113 = call double @cos(double %112) #3
-  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65558, i32 0)
   br label %114
 
 ; <label>:114:                                    ; preds = %97
@@ -290,12 +290,12 @@ define i32 @main() #0 {
   %117 = load i32, i32* %4, align 4
   %118 = zext i32 %117 to i64
   %119 = getelementptr inbounds float, float* %116, i64 %118
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65561, i32 0)
   %120 = load float, float* %119, align 4
   %121 = fpext float %120 to double
   %122 = fadd double %121, %115
   %123 = fptrunc double %122 to float
   store float %123, float* %119, align 4
-  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65561, i32 0)
   br label %151
 
 ; <label>:124:                                    ; preds = %94
@@ -308,6 +308,7 @@ define i32 @main() #0 {
   %130 = fpext float %129 to double
   %131 = load float*, float** %11, align 8
   %132 = load i32, i32* %5, align 4
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65560, i32 0)
   %133 = zext i32 %132 to i64
   %134 = getelementptr inbounds float, float* %131, i64 %133
   %135 = load float, float* %134, align 4
@@ -316,7 +317,6 @@ define i32 @main() #0 {
   %138 = fmul float %135, %137
   %139 = fpext float %138 to double
   %140 = call double @sin(double %139) #3
-  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65560, i32 0)
   br label %141
 
 ; <label>:141:                                    ; preds = %124
@@ -326,12 +326,12 @@ define i32 @main() #0 {
   %144 = load i32, i32* %4, align 4
   %145 = zext i32 %144 to i64
   %146 = getelementptr inbounds float, float* %143, i64 %145
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65561, i32 0)
   %147 = load float, float* %146, align 4
   %148 = fpext float %147 to double
   %149 = fadd double %148, %142
   %150 = fptrunc double %149 to float
   store float %150, float* %146, align 4
-  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65561, i32 0)
   br label %151
 
 ; <label>:151:                                    ; preds = %141, %114
@@ -440,6 +440,7 @@ define i32 @main() #0 {
   %196 = sub nsw i64 %193, %195
   %197 = mul nsw i64 %196, 1000
   %198 = getelementptr inbounds %struct.timeval, %struct.timeval* %14, i32 0, i32 1
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65574, i32 0)
   %199 = load i64, i64* %198, align 8
   %200 = getelementptr inbounds %struct.timeval, %struct.timeval* %13, i32 0, i32 1
   %201 = load i64, i64* %200, align 8
@@ -447,13 +448,12 @@ define i32 @main() #0 {
   %203 = sdiv i64 %202, 1000
   %204 = add nsw i64 %197, %203
   %205 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @.str, i32 0, i32 0), i64 %204)
-  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65574, i32 0)
   br label %206
 
 ; <label>:206:                                    ; preds = %191
   call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 65574)
   %207 = load i32, i32* %1, align 4
-  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 0, i32 0)
+  call void @exit_with_remainder_process(i32 65574)
   ret i32 %207
 }
 
@@ -521,7 +521,6 @@ define i32 @IsPowerOfTwo(i32) #0 {
 ; <label>:15:                                     ; preds = %14, %13, %6
   call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 655366)
   %16 = load i32, i32* %2, align 4
-  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 0, i32 0)
   ret i32 %16
 }
 
@@ -562,7 +561,6 @@ define i32 @NumberOfBitsNeeded(i32) #0 {
 ; <label>:17:                                     ; preds = %11
   call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 720901)
   %18 = load i32, i32* %3, align 4
-  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 0, i32 0)
   ret i32 %18
 
 ; <label>:19:                                     ; preds = %11
@@ -627,7 +625,6 @@ define i32 @ReverseBits(i32, i32) #0 {
 ; <label>:22:                                     ; preds = %7
   call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 851973)
   %23 = load i32, i32* %6, align 4
-  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 0, i32 0)
   ret i32 %23
 }
 
@@ -692,7 +689,6 @@ define double @Index_to_frequency(i32, i32) #0 {
 ; <label>:31:                                     ; preds = %22, %15, %9
   call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 917511)
   %32 = load double, double* %3, align 8
-  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 0, i32 0)
   ret double %32
 }
 
@@ -827,6 +823,7 @@ define void @fft_float(i32, i32, float*, float*, float*, float*) #0 {
   %71 = zext i32 %70 to i64
   %72 = getelementptr inbounds float, float* %69, i64 %71
   %73 = load float, float* %72, align 4
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 983054, i32 983055)
   %74 = load float*, float** %11, align 8
   %75 = load i32, i32* %15, align 4
   %76 = zext i32 %75 to i64
@@ -834,7 +831,6 @@ define void @fft_float(i32, i32, float*, float*, float*, float*) #0 {
   store float %73, float* %77, align 4
   %78 = load float*, float** %10, align 8
   %79 = icmp eq float* %78, null
-  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 983054, i32 983055)
   br i1 %79, label %80, label %81
 
 ; <label>:80:                                     ; preds = %68
@@ -955,6 +951,7 @@ define void @fft_float(i32, i32, float*, float*, float*, float*) #0 {
   %134 = getelementptr inbounds [3 x double], [3 x double]* %29, i64 0, i64 1
   store double %133, double* %134, align 8
   %135 = load double, double* %24, align 8
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 983067, i32 0)
   %136 = getelementptr inbounds [3 x double], [3 x double]* %30, i64 0, i64 2
   store double %135, double* %136, align 16
   %137 = load double, double* %25, align 8
@@ -963,7 +960,6 @@ define void @fft_float(i32, i32, float*, float*, float*, float*) #0 {
   %139 = load i32, i32* %14, align 4
   store i32 %139, i32* %15, align 4
   store i32 0, i32* %17, align 4
-  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 983067, i32 0)
   br label %140
 
 ; <label>:140:                                    ; preds = %258, %130
@@ -1039,6 +1035,7 @@ define void @fft_float(i32, i32, float*, float*, float*, float*) #0 {
   %197 = load float*, float** %12, align 8
   %198 = load i32, i32* %16, align 4
   %199 = zext i32 %198 to i64
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 983069, i32 0)
   %200 = getelementptr inbounds float, float* %197, i64 %199
   %201 = load float, float* %200, align 4
   %202 = fpext float %201 to double
@@ -1102,7 +1099,6 @@ define void @fft_float(i32, i32, float*, float*, float*, float*) #0 {
   %256 = fadd double %255, %249
   %257 = fptrunc double %256 to float
   store float %257, float* %253, align 4
-  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 983069, i32 0)
   br label %258
 
 ; <label>:258:                                    ; preds = %144
@@ -1181,6 +1177,7 @@ define void @fft_float(i32, i32, float*, float*, float*, float*) #0 {
   %291 = fdiv double %290, %284
   %292 = fptrunc double %291 to float
   store float %292, float* %288, align 4
+  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 983078, i32 0)
   %293 = load double, double* %32, align 8
   %294 = load float*, float** %12, align 8
   %295 = load i32, i32* %14, align 4
@@ -1191,7 +1188,6 @@ define void @fft_float(i32, i32, float*, float*, float*, float*) #0 {
   %300 = fdiv double %299, %293
   %301 = fptrunc double %300 to float
   store float %301, float* %297, align 4
-  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 983078, i32 0)
   br label %302
 
 ; <label>:302:                                    ; preds = %283
@@ -1209,7 +1205,6 @@ define void @fft_float(i32, i32, float*, float*, float*, float*) #0 {
 
 ; <label>:306:                                    ; preds = %305, %273
   call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 983080)
-  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 0, i32 0)
   ret void
 }
 
@@ -1234,7 +1229,6 @@ define internal void @CheckPointer(i8*, i8*) #0 {
 
 ; <label>:11:                                     ; preds = %7, %2
   call void @verify_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 1048579)
-  call void @update_signature(i32* @main_run_signature_1, i32* @main_run_signature_2, i32 0, i32 0)
   ret void
 }
 
@@ -1246,7 +1240,7 @@ declare void @verify_signature(i32*, i32*, i32)
 
 declare void @enqueue_signature_with_return(i32)
 
-declare void @enqueue_signature_with_remainder_process(i32)
+declare void @exit_with_remainder_process(i32)
 
 declare void @update_signature2(i32*, i32)
 
@@ -1258,7 +1252,7 @@ entry:
   call void @update_signature(i32* @CallcheckerSet_signature_1, i32* @CallcheckerSet_signature_1, i32 1, i32 1)
   call void @verify_signature(i32* @CallcheckerSet_signature_1, i32* @CallcheckerSet_signature_1, i32 1)
   call void @enqueue_signature_with_return(i32 1)
-  call void @enqueue_signature_with_remainder_process(i32 1)
+  call void @exit_with_remainder_process(i32 1)
   ret void
 }
 

@@ -1,6 +1,7 @@
 
 #include <string.h>
 #include "SignalCodeImplanter.hpp"
+#include <llvm/ADT/ilist.h>
 
 using namespace llvm;
 
@@ -138,12 +139,12 @@ bool SignalCodeImplanter::RunFineGrainedLevel()
 
 		llvm::Function* CurrentFunc = Target->getParent();
 
-		std::cout << "Test: " << CurrentFunc->getName().str() << std::endl;
+		//std::cout << "Test: " << CurrentFunc->getName().str() << std::endl;
 
 		wFunction* CurrentwFunc = 
 			getAnalyzer()->getMetaDataSet()->SearchFunction(CurrentFunc);
 
-		std::cout << "Test: " << CurrentwFunc->getName() << std::endl;
+		//std::cout << "Test: " << CurrentwFunc->getName() << std::endl;
 
 
 
@@ -168,7 +169,7 @@ bool SignalCodeImplanter::RunFineGrainedLevel()
 					BasicBlock *BranchBB = reinterpret_cast<BasicBlock *>(opnd);
 					wBasicBlock* BranchwBB = CurrentwFunc->SearchBasicBlock(BranchBB);
 
-					std::cout << " [TEST][UNIB] branch_block_id: " << std::oct << BranchwBB->getID() << std::dec << std::endl;
+					//std::cout << " [TEST][UNIB] branch_block_id: " << std::oct << BranchwBB->getID() << std::dec << std::endl;
 					next_node_id1 = BranchwBB->getID();	
 					next_node_id2 = 0;	
 				}
@@ -185,7 +186,7 @@ bool SignalCodeImplanter::RunFineGrainedLevel()
 					BasicBlock *BranchBB1 = reinterpret_cast<BasicBlock *>(opnd1);
 					wBasicBlock* BranchwBB1 = CurrentwFunc->SearchBasicBlock(BranchBB1);
 			
-					std::cout << " [TEST][CONDB] branch_block_id-1: " << std::oct << BranchwBB1->getID() << std::dec << std::endl;
+					//std::cout << " [TEST][CONDB] branch_block_id-1: " << std::oct << BranchwBB1->getID() << std::dec << std::endl;
 					next_node_id1 = BranchwBB1->getID();
 						
 
@@ -193,7 +194,7 @@ bool SignalCodeImplanter::RunFineGrainedLevel()
 					BasicBlock *BranchBB2 = reinterpret_cast<BasicBlock *>(opnd2);
 					wBasicBlock* BranchwBB2 = CurrentwFunc->SearchBasicBlock(BranchBB2);
 					
-					std::cout << " [TEST][CONDB] branch_block_id-2: " << std::oct <<  BranchwBB2->getID() << std::dec << std::endl;
+					//std::cout << " [TEST][CONDB] branch_block_id-2: " << std::oct <<  BranchwBB2->getID() << std::dec << std::endl;
 					next_node_id2 = BranchwBB2->getID();	
 					
 					//std::pair<wBasicBlock* , wBasicBlock *> *BranchwBBpair 
@@ -205,7 +206,7 @@ bool SignalCodeImplanter::RunFineGrainedLevel()
 
 				else
 				{
-					std::cout << "TWO More Branch Target is Detected!!" << std::endl;
+					std::cout << " [ERROR] TWO More Branch Target is Detected!!" << std::endl;
 
 				}
 			}
@@ -216,11 +217,26 @@ bool SignalCodeImplanter::RunFineGrainedLevel()
 
 
 			
+		/* 	update_signature */
 		llvm::Instruction *TargetCloned1
 			= getTargetInstClonedforChecker(*p_ParsedIRmodule);
 
-		/* 	update_signature */
-		ImplantSignalCodes_end(
+		/* 	function return basicblock */
+		if(sd->type == 0)
+		{
+			/* empty */
+		}
+
+		/* program exit basicblock */
+		else if(sd->type == 4)
+		{
+			/* empty */
+		}
+
+		/* call basicblock */	
+		else if(sd->type == 3)
+		{
+			ImplantSignalCodes_end(
 				*p_ParsedIRmodule, 
 				m_context, 
 				builder, 
@@ -229,18 +245,38 @@ bool SignalCodeImplanter::RunFineGrainedLevel()
 				next_node_id2,
 				TargetCloned1
 				);
+		}	
+
+		/* else other all type of basicblock */
+		else
+		{
+			ImplantSignalCodes_middle(
+				*p_ParsedIRmodule, 
+				m_context, 
+				builder, 
+				Target,
+				next_node_id1,
+				next_node_id2,
+				TargetCloned1
+				);
+
+		}
+
+
+
+		/*	update_verification */
+		llvm::Instruction *TargetCloned2
+			= getTargetInstClonedforChecker_with_entry(*p_ParsedIRmodule);
 		
+
+		/*  function entry basicblock */
 		if(Target == &(*(CurrentFunc->begin())))
 		{
-			continue;
+			/* empty */
 		}
 
 		else
 		{
-	
-			/*	update_verification */
-			llvm::Instruction *TargetCloned2
-				= getTargetInstClonedforChecker_with_entry(*p_ParsedIRmodule);
 			
 			ImplantSignalCodes_begin(
 					*p_ParsedIRmodule, 
@@ -252,7 +288,31 @@ bool SignalCodeImplanter::RunFineGrainedLevel()
 					);
 
 		}
+			
+	
+		/* remainder process */	
 		
+		llvm::Instruction *TargetCloned3 
+				= getTargetInstClonedforChecker_with_remainder_process(*p_ParsedIRmodule);
+
+		if(sd->type == 4)
+		{
+			ImplantSignalCodes_exit(
+					*p_ParsedIRmodule, 
+					m_context, 
+					builder, 
+					Target,
+					node_id,
+					TargetCloned3
+					);
+		}
+
+		else
+		{
+			/* empty */
+		}
+
+
 		/*	
 		if(sd->type == 3)
 		{
@@ -422,6 +482,7 @@ bool SignalCodeImplanter::ImplantSignalCodes_begin(
 			llvm::Value* signature_value_1 = nullptr;
 			llvm::Value* signature_value_2 = nullptr;
 
+			/*
 			for(auto iter = m_meta.begin();
 					iter != m_meta.end(); iter++)
 			{
@@ -435,6 +496,7 @@ bool SignalCodeImplanter::ImplantSignalCodes_begin(
 				}
 
 			}
+			*/
 
 			//newInst->setOperand(0, signature_value);
 			//newInst->setOperand(1, signature_value);
@@ -471,6 +533,104 @@ bool SignalCodeImplanter::ImplantSignalCodes_begin(
 			/* End of BasicBlock: ret, br */
 			//bb->getInstList().push_back(newInst);
 		}
+	}
+
+	return true;
+}
+
+/*	update_signature */
+bool SignalCodeImplanter::ImplantSignalCodes_middle(
+		ParsedIRmodule &m, 
+		LLVMContext &context, 
+		IRBuilder<> &builder, 
+		BasicBlock *bb,
+		unsigned int node_id1,
+		unsigned int node_id2,
+		Instruction *inst
+	){
+
+	if(bb->size() > 0)
+	{
+		inst->setParent(bb);
+		llvm::Instruction *newInst = inst->clone();
+
+
+		/* for checker */
+		if(newInst->getNumOperands() > 1)
+		{	
+			llvm::Type *i32_type = llvm::IntegerType::getInt32Ty(context);
+			Value *node_id_value_1 = llvm::ConstantInt::get(i32_type, node_id1, true);
+			Value *node_id_value_2 = llvm::ConstantInt::get(i32_type, node_id2, true);
+			
+			llvm::Function* f = bb->getParent();
+			llvm::Value* signature_value_1 = nullptr;
+			llvm::Value* signature_value_2 = nullptr;
+
+			for(auto iter = m_meta.begin();
+					iter != m_meta.end(); iter++)
+			{
+				Meta* p_meta = *iter;
+				
+				if(p_meta->fnam == f->getName().str())
+				{
+					signature_value_1 = p_meta->val_1;
+					signature_value_2 = p_meta->val_2;
+					break;
+				}
+
+			}
+
+			/*
+			newInst->setOperand(0, signature_value);
+			newInst->setOperand(1, signature_value);
+			newInst->setOperand(2, node_id_value);
+			newInst->setOperand(3, node_id_value);
+			*/
+
+			signature_value_1 = main_value_ptr_1;
+			signature_value_2 = main_value_ptr_2;
+
+			newInst->setOperand(0, signature_value_1);
+			newInst->setOperand(1, signature_value_2);
+			newInst->setOperand(2, node_id_value_1);
+			newInst->setOperand(3, node_id_value_2);
+		}
+
+		
+				
+		llvm::Instruction& first_inst = *(bb->getInstList().begin());
+
+		/* Front of BasicBlock */
+		//bb->getInstList().push_front(newInst);
+		
+
+		/* Before ret or br */
+		//bb->getInstList().insert(--(bb->getInstList().end()), newInst);
+		
+		
+		/* End of BasicBlock: ret, br */
+		//bb->getInstList().push_back(newInst);
+
+
+		/* middle of BasicBlock */
+		int num_instructions = bb->size();
+
+		if(num_instructions <= 10)
+		{
+			bb->getInstList().insert(--(bb->getInstList().end()), newInst);
+		}
+		else
+		{
+			llvm::BasicBlock::iterator iter = --(bb->getInstList().end());
+
+			for(int i=0; i< num_instructions/2; i++)
+			{
+				--iter;
+			}
+			bb->getInstList().insert(iter, newInst);
+
+		}
+
 	}
 
 	return true;
@@ -548,10 +708,96 @@ bool SignalCodeImplanter::ImplantSignalCodes_end(
 		
 		/* End of BasicBlock: ret, br */
 		//bb->getInstList().push_back(newInst);
+
+
+		/* middle of BasicBlock */
+		/*
+		int num_instructions = bb->size();
+
+		if(num_instructions <= 10)
+		{
+			bb->getInstList().insert(--(bb->getInstList().end()), newInst);
+		}
+		else
+		{
+			llvm::BasicBlock::iterator iter = --(bb->getInstList().end());
+
+			for(int i=0; i< num_instructions/2; i++)
+			{
+				--iter;
+			}
+			bb->getInstList().insert(iter, newInst);
+
+		}
+		*/
+
 	}
 
 	return true;
 }
+
+
+
+
+
+
+/*	update_signature */
+bool SignalCodeImplanter::ImplantSignalCodes_exit(
+		ParsedIRmodule &m, 
+		LLVMContext &context, 
+		IRBuilder<> &builder, 
+		BasicBlock *bb,
+		unsigned int node_id,
+		Instruction *inst
+	){
+
+	if(bb->size() > 0)
+	{
+		inst->setParent(bb);
+		llvm::Instruction *newInst = inst->clone();
+
+
+		/* for checker */
+		if(newInst->getNumOperands() > 1)
+		{	
+			llvm::Type *i32_type = llvm::IntegerType::getInt32Ty(context);
+			Value *node_id_value = llvm::ConstantInt::get(i32_type, node_id, true);
+			
+			llvm::Function* f = bb->getParent();
+
+			/*
+			newInst->setOperand(0, signature_value);
+			newInst->setOperand(1, signature_value);
+			newInst->setOperand(2, node_id_value);
+			newInst->setOperand(3, node_id_value);
+			*/
+
+
+			newInst->setOperand(0, node_id_value);
+		}
+
+		
+				
+		llvm::Instruction& first_inst = *(bb->getInstList().begin());
+
+		/* Front of BasicBlock */
+		//bb->getInstList().push_front(newInst);
+		
+
+		/* Before ret or br */
+		bb->getInstList().insert(--(bb->getInstList().end()), newInst);
+		
+		
+		/* End of BasicBlock: ret, br */
+		//bb->getInstList().push_back(newInst);
+	}
+
+	return true;
+}
+
+
+
+
 
 
 
@@ -956,7 +1202,7 @@ bool SignalCodeImplanter::DeclareSignalCodes(
 	Function *checker4 = cast<Function>(checker4_ptr);
 
 	/* sig_checker (type4: signature & remainder_process) */
-	Constant *checker5_ptr = m->getOrInsertFunction("enqueue_signature_with_remainder_process", void_return_one_integer); 
+	Constant *checker5_ptr = m->getOrInsertFunction("exit_with_remainder_process", void_return_one_integer); 
 	Function *checker5 = cast<Function>(checker5_ptr);
 	
 

@@ -88,6 +88,85 @@ $FINAL_OUTPUT/final_output_binary
 
 
 
+elif [ $1 = "eval" ]; then
+
+#rm -f detected.rst
+#rm -f Non-detected.rst
+
+
+i=1
+
+while [ $i -lt 1883 ]
+do
+
+
+
+# STEP-0 #
+echo
+echo $echo_start$step0$echo_end
+echo
+make -C $BENCH_MARK_FOLDER clean
+make -C $GENERATOR clean 
+make -C $FINAL_OUTPUT clean
+
+
+# BENCHMARK SET-UP #
+echo
+echo $echo_start$benchmark_setup$echo_end
+echo
+make -C $BENCH_MARK_FOLDER
+
+
+# NUMBER OF BasicBlock #
+echo
+echo $echo_start$number_of_bb$echo_end
+echo
+make -C $NUMBER_OF_BASICBLOCKS run
+
+# STEP-1 #
+
+echo
+echo $echo_start$step1$echo_end
+$CORE $BENCH_MARK_FOLDER/$BENCH_MARK.bc
+llvm-dis $OUTPUT/translated.bc
+rm -f CoarseAnalysisForFunctionConnection DebugProcessedModule
+
+
+# STEP-2 #
+
+echo
+echo $echo_start$step2$echo_end
+echo
+make -C $GENERATOR
+
+# STEP-3 #
+
+echo
+echo $echo_start$step3$echo_end
+echo
+make -C $FINAL_OUTPUT
+
+# FINISH #
+
+echo
+echo $echo_start$finish$echo_end
+echo
+
+# RUN $
+echo
+echo $echo_start$run$echo_end
+echo
+
+
+echo " Step $i."
+$FINAL_OUTPUT/final_output_binary
+i=$(($i+1))
+	
+done
+
+
+
+
 
 elif [ $1 = "clean" ]; then
 

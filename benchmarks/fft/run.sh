@@ -92,8 +92,13 @@ $FINAL_OUTPUT/final_output_binary
 
 elif [ $1 = "eval" ]; then
 
-rm -f detected.rst
+#rm -f detected.rst
+#rm -f Non-detected.rst
 
+i=1
+
+while [ $i -lt 10000 ]
+do
 
 # STEP-0 #
 echo
@@ -155,13 +160,11 @@ echo
 echo $echo_start$run$echo_end
 echo
 
-i=1
 
-while [ $i -lt 1000 ]
-do
-	echo " Step $i."
-	$FINAL_OUTPUT/final_output_binary
-	i=$(($i+1))
+echo " Step $i."
+$FINAL_OUTPUT/final_output_binary
+i=$(($i+1))
+	
 done
 
 

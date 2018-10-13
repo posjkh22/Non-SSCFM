@@ -106,8 +106,10 @@ main:                                   # @main
 	.cfi_offset %rbx, -32
 .Lcfi4:
 	.cfi_offset %r14, -24
-	movabsq	$main_signature, %rdi
-	movl	$65537, %esi            # imm = 0x10001
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65538, %edx            # imm = 0x10002
+	xorl	%ecx, %ecx
 	callq	update_signature
 	leaq	-160(%rbp), %rdi
 	movsd	.LCPI0_0(%rip), %xmm0   # xmm0 = mem[0],zero
@@ -123,13 +125,11 @@ main:                                   # @main
 	movq	$0, -168(%rbp)
 	xorl	%esi, %esi
 	callq	gettimeofday
-	movabsq	$main_signature, %rdi
-	movl	$65537, %esi            # imm = 0x10001
-	callq	verify_signature
 # BB#1:
-	movabsq	$main_signature, %rdi
-	movl	$65538, %esi            # imm = 0x10002
-	callq	update_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65538, %edx            # imm = 0x10002
+	callq	verify_signature
 	leaq	-24(%rbp), %rdi
 	leaq	-112(%rbp), %rsi
 	movsd	-56(%rbp), %xmm0        # xmm0 = mem[0],zero
@@ -137,52 +137,67 @@ main:                                   # @main
 	movsd	-40(%rbp), %xmm2        # xmm2 = mem[0],zero
 	movsd	-32(%rbp), %xmm3        # xmm3 = mem[0],zero
 	callq	SolveCubic
-	movabsq	$main_signature, %rdi
-	movl	$65538, %esi            # imm = 0x10002
-	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65539, %edx            # imm = 0x10003
+	xorl	%ecx, %ecx
+	callq	update_signature
 # BB#2:
-	movabsq	$main_signature, %rdi
-	movl	$65539, %esi            # imm = 0x10003
-	callq	update_signature
-	movabsq	$main_signature, %rdi
-	movl	$0, -20(%rbp)
-	movl	$65539, %esi            # imm = 0x10003
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65539, %edx            # imm = 0x10003
 	callq	verify_signature
-.LBB0_3:                                # =>This Inner Loop Header: Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65540, %esi            # imm = 0x10004
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$0, -20(%rbp)
+	movl	$65540, %edx            # imm = 0x10004
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$main_signature, %rdi
+.LBB0_3:                                # =>This Inner Loop Header: Depth=1
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65540, %edx            # imm = 0x10004
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movl	-20(%rbp), %r14d
 	movl	-24(%rbp), %ebx
-	movl	$65540, %esi            # imm = 0x10004
-	callq	verify_signature
+	movl	$65541, %edx            # imm = 0x10005
+	movl	$65543, %ecx            # imm = 0x10007
+	callq	update_signature
 	cmpl	%ebx, %r14d
 	jge	.LBB0_6
 # BB#4:                                 #   in Loop: Header=BB0_3 Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65541, %esi            # imm = 0x10005
-	callq	update_signature
-	movabsq	$main_signature, %rdi
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65541, %edx            # imm = 0x10005
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movsd	.LCPI0_3(%rip), %xmm0   # xmm0 = mem[0],zero
 	movsd	%xmm0, -56(%rbp)
-	movl	$65541, %esi            # imm = 0x10005
-	callq	verify_signature
-# BB#5:                                 #   in Loop: Header=BB0_3 Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65542, %esi            # imm = 0x10006
+	movl	$65542, %edx            # imm = 0x10006
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$main_signature, %rdi
+# BB#5:                                 #   in Loop: Header=BB0_3 Depth=1
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65542, %edx            # imm = 0x10006
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movl	-20(%rbp), %eax
 	addl	$1, %eax
 	movl	%eax, -20(%rbp)
-	movl	$65542, %esi            # imm = 0x10006
-	callq	verify_signature
+	movl	$65540, %edx            # imm = 0x10004
+	xorl	%ecx, %ecx
+	callq	update_signature
 	jmp	.LBB0_3
 .LBB0_6:
-	movabsq	$main_signature, %rdi
-	movl	$65543, %esi            # imm = 0x10007
-	callq	update_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65543, %edx            # imm = 0x10007
+	callq	verify_signature
 	leaq	-24(%rbp), %rdi
 	leaq	-112(%rbp), %rsi
 	movsd	.LCPI0_0(%rip), %xmm0   # xmm0 = mem[0],zero
@@ -196,52 +211,67 @@ main:                                   # @main
 	movsd	-40(%rbp), %xmm2        # xmm2 = mem[0],zero
 	movsd	-32(%rbp), %xmm3        # xmm3 = mem[0],zero
 	callq	SolveCubic
-	movabsq	$main_signature, %rdi
-	movl	$65543, %esi            # imm = 0x10007
-	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65544, %edx            # imm = 0x10008
+	xorl	%ecx, %ecx
+	callq	update_signature
 # BB#7:
-	movabsq	$main_signature, %rdi
-	movl	$65544, %esi            # imm = 0x10008
-	callq	update_signature
-	movabsq	$main_signature, %rdi
-	movl	$0, -20(%rbp)
-	movl	$65544, %esi            # imm = 0x10008
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65544, %edx            # imm = 0x10008
 	callq	verify_signature
-.LBB0_8:                                # =>This Inner Loop Header: Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65545, %esi            # imm = 0x10009
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$0, -20(%rbp)
+	movl	$65545, %edx            # imm = 0x10009
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$main_signature, %rdi
+.LBB0_8:                                # =>This Inner Loop Header: Depth=1
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65545, %edx            # imm = 0x10009
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movl	-20(%rbp), %r14d
 	movl	-24(%rbp), %ebx
-	movl	$65545, %esi            # imm = 0x10009
-	callq	verify_signature
+	movl	$65546, %edx            # imm = 0x1000A
+	movl	$65548, %ecx            # imm = 0x1000C
+	callq	update_signature
 	cmpl	%ebx, %r14d
 	jge	.LBB0_11
 # BB#9:                                 #   in Loop: Header=BB0_8 Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65546, %esi            # imm = 0x1000A
-	callq	update_signature
-	movabsq	$main_signature, %rdi
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65546, %edx            # imm = 0x1000A
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movsd	.LCPI0_3(%rip), %xmm0   # xmm0 = mem[0],zero
 	movsd	%xmm0, -56(%rbp)
-	movl	$65546, %esi            # imm = 0x1000A
-	callq	verify_signature
-# BB#10:                                #   in Loop: Header=BB0_8 Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65547, %esi            # imm = 0x1000B
+	movl	$65547, %edx            # imm = 0x1000B
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$main_signature, %rdi
+# BB#10:                                #   in Loop: Header=BB0_8 Depth=1
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65547, %edx            # imm = 0x1000B
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movl	-20(%rbp), %eax
 	addl	$1, %eax
 	movl	%eax, -20(%rbp)
-	movl	$65547, %esi            # imm = 0x1000B
-	callq	verify_signature
+	movl	$65545, %edx            # imm = 0x10009
+	xorl	%ecx, %ecx
+	callq	update_signature
 	jmp	.LBB0_8
 .LBB0_11:
-	movabsq	$main_signature, %rdi
-	movl	$65548, %esi            # imm = 0x1000C
-	callq	update_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65548, %edx            # imm = 0x1000C
+	callq	verify_signature
 	leaq	-24(%rbp), %rdi
 	leaq	-112(%rbp), %rsi
 	movsd	.LCPI0_6(%rip), %xmm0   # xmm0 = mem[0],zero
@@ -255,52 +285,67 @@ main:                                   # @main
 	movsd	-40(%rbp), %xmm2        # xmm2 = mem[0],zero
 	movsd	-32(%rbp), %xmm3        # xmm3 = mem[0],zero
 	callq	SolveCubic
-	movabsq	$main_signature, %rdi
-	movl	$65548, %esi            # imm = 0x1000C
-	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65549, %edx            # imm = 0x1000D
+	xorl	%ecx, %ecx
+	callq	update_signature
 # BB#12:
-	movabsq	$main_signature, %rdi
-	movl	$65549, %esi            # imm = 0x1000D
-	callq	update_signature
-	movabsq	$main_signature, %rdi
-	movl	$0, -20(%rbp)
-	movl	$65549, %esi            # imm = 0x1000D
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65549, %edx            # imm = 0x1000D
 	callq	verify_signature
-.LBB0_13:                               # =>This Inner Loop Header: Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65550, %esi            # imm = 0x1000E
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$0, -20(%rbp)
+	movl	$65550, %edx            # imm = 0x1000E
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$main_signature, %rdi
+.LBB0_13:                               # =>This Inner Loop Header: Depth=1
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65550, %edx            # imm = 0x1000E
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movl	-20(%rbp), %r14d
 	movl	-24(%rbp), %ebx
-	movl	$65550, %esi            # imm = 0x1000E
-	callq	verify_signature
+	movl	$65551, %edx            # imm = 0x1000F
+	movl	$65553, %ecx            # imm = 0x10011
+	callq	update_signature
 	cmpl	%ebx, %r14d
 	jge	.LBB0_16
 # BB#14:                                #   in Loop: Header=BB0_13 Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65551, %esi            # imm = 0x1000F
-	callq	update_signature
-	movabsq	$main_signature, %rdi
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65551, %edx            # imm = 0x1000F
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movsd	.LCPI0_3(%rip), %xmm0   # xmm0 = mem[0],zero
 	movsd	%xmm0, -56(%rbp)
-	movl	$65551, %esi            # imm = 0x1000F
-	callq	verify_signature
-# BB#15:                                #   in Loop: Header=BB0_13 Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65552, %esi            # imm = 0x10010
+	movl	$65552, %edx            # imm = 0x10010
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$main_signature, %rdi
+# BB#15:                                #   in Loop: Header=BB0_13 Depth=1
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65552, %edx            # imm = 0x10010
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movl	-20(%rbp), %eax
 	addl	$1, %eax
 	movl	%eax, -20(%rbp)
-	movl	$65552, %esi            # imm = 0x10010
-	callq	verify_signature
+	movl	$65550, %edx            # imm = 0x1000E
+	xorl	%ecx, %ecx
+	callq	update_signature
 	jmp	.LBB0_13
 .LBB0_16:
-	movabsq	$main_signature, %rdi
-	movl	$65553, %esi            # imm = 0x10011
-	callq	update_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65553, %edx            # imm = 0x10011
+	callq	verify_signature
 	leaq	-24(%rbp), %rdi
 	leaq	-112(%rbp), %rsi
 	movsd	.LCPI0_9(%rip), %xmm0   # xmm0 = mem[0],zero
@@ -314,52 +359,67 @@ main:                                   # @main
 	movsd	-40(%rbp), %xmm2        # xmm2 = mem[0],zero
 	movsd	-32(%rbp), %xmm3        # xmm3 = mem[0],zero
 	callq	SolveCubic
-	movabsq	$main_signature, %rdi
-	movl	$65553, %esi            # imm = 0x10011
-	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65554, %edx            # imm = 0x10012
+	xorl	%ecx, %ecx
+	callq	update_signature
 # BB#17:
-	movabsq	$main_signature, %rdi
-	movl	$65554, %esi            # imm = 0x10012
-	callq	update_signature
-	movabsq	$main_signature, %rdi
-	movl	$0, -20(%rbp)
-	movl	$65554, %esi            # imm = 0x10012
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65554, %edx            # imm = 0x10012
 	callq	verify_signature
-.LBB0_18:                               # =>This Inner Loop Header: Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65555, %esi            # imm = 0x10013
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$0, -20(%rbp)
+	movl	$65555, %edx            # imm = 0x10013
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$main_signature, %rdi
+.LBB0_18:                               # =>This Inner Loop Header: Depth=1
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65555, %edx            # imm = 0x10013
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movl	-20(%rbp), %r14d
 	movl	-24(%rbp), %ebx
-	movl	$65555, %esi            # imm = 0x10013
-	callq	verify_signature
+	movl	$65556, %edx            # imm = 0x10014
+	movl	$65558, %ecx            # imm = 0x10016
+	callq	update_signature
 	cmpl	%ebx, %r14d
 	jge	.LBB0_21
 # BB#19:                                #   in Loop: Header=BB0_18 Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65556, %esi            # imm = 0x10014
-	callq	update_signature
-	movabsq	$main_signature, %rdi
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65556, %edx            # imm = 0x10014
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movsd	.LCPI0_40(%rip), %xmm0  # xmm0 = mem[0],zero
 	movsd	%xmm0, -56(%rbp)
-	movl	$65556, %esi            # imm = 0x10014
-	callq	verify_signature
-# BB#20:                                #   in Loop: Header=BB0_18 Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65557, %esi            # imm = 0x10015
+	movl	$65557, %edx            # imm = 0x10015
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$main_signature, %rdi
+# BB#20:                                #   in Loop: Header=BB0_18 Depth=1
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65557, %edx            # imm = 0x10015
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movl	-20(%rbp), %eax
 	addl	$1, %eax
 	movl	%eax, -20(%rbp)
-	movl	$65557, %esi            # imm = 0x10015
-	callq	verify_signature
+	movl	$65555, %edx            # imm = 0x10013
+	xorl	%ecx, %ecx
+	callq	update_signature
 	jmp	.LBB0_18
 .LBB0_21:
-	movabsq	$main_signature, %rdi
-	movl	$65558, %esi            # imm = 0x10016
-	callq	update_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65558, %edx            # imm = 0x10016
+	callq	verify_signature
 	leaq	-24(%rbp), %rdi
 	leaq	-112(%rbp), %rsi
 	movsd	.LCPI0_11(%rip), %xmm0  # xmm0 = mem[0],zero
@@ -373,52 +433,67 @@ main:                                   # @main
 	movsd	-40(%rbp), %xmm2        # xmm2 = mem[0],zero
 	movsd	-32(%rbp), %xmm3        # xmm3 = mem[0],zero
 	callq	SolveCubic
-	movabsq	$main_signature, %rdi
-	movl	$65558, %esi            # imm = 0x10016
-	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65559, %edx            # imm = 0x10017
+	xorl	%ecx, %ecx
+	callq	update_signature
 # BB#22:
-	movabsq	$main_signature, %rdi
-	movl	$65559, %esi            # imm = 0x10017
-	callq	update_signature
-	movabsq	$main_signature, %rdi
-	movl	$0, -20(%rbp)
-	movl	$65559, %esi            # imm = 0x10017
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65559, %edx            # imm = 0x10017
 	callq	verify_signature
-.LBB0_23:                               # =>This Inner Loop Header: Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65560, %esi            # imm = 0x10018
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$0, -20(%rbp)
+	movl	$65560, %edx            # imm = 0x10018
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$main_signature, %rdi
+.LBB0_23:                               # =>This Inner Loop Header: Depth=1
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65560, %edx            # imm = 0x10018
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movl	-20(%rbp), %r14d
 	movl	-24(%rbp), %ebx
-	movl	$65560, %esi            # imm = 0x10018
-	callq	verify_signature
+	movl	$65561, %edx            # imm = 0x10019
+	movl	$65563, %ecx            # imm = 0x1001B
+	callq	update_signature
 	cmpl	%ebx, %r14d
 	jge	.LBB0_26
 # BB#24:                                #   in Loop: Header=BB0_23 Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65561, %esi            # imm = 0x10019
-	callq	update_signature
-	movabsq	$main_signature, %rdi
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65561, %edx            # imm = 0x10019
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movsd	.LCPI0_39(%rip), %xmm0  # xmm0 = mem[0],zero
 	movsd	%xmm0, -56(%rbp)
-	movl	$65561, %esi            # imm = 0x10019
-	callq	verify_signature
-# BB#25:                                #   in Loop: Header=BB0_23 Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65562, %esi            # imm = 0x1001A
+	movl	$65562, %edx            # imm = 0x1001A
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$main_signature, %rdi
+# BB#25:                                #   in Loop: Header=BB0_23 Depth=1
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65562, %edx            # imm = 0x1001A
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movl	-20(%rbp), %eax
 	addl	$1, %eax
 	movl	%eax, -20(%rbp)
-	movl	$65562, %esi            # imm = 0x1001A
-	callq	verify_signature
+	movl	$65560, %edx            # imm = 0x10018
+	xorl	%ecx, %ecx
+	callq	update_signature
 	jmp	.LBB0_23
 .LBB0_26:
-	movabsq	$main_signature, %rdi
-	movl	$65563, %esi            # imm = 0x1001B
-	callq	update_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65563, %edx            # imm = 0x1001B
+	callq	verify_signature
 	leaq	-24(%rbp), %rdi
 	leaq	-112(%rbp), %rsi
 	movsd	.LCPI0_14(%rip), %xmm0  # xmm0 = mem[0],zero
@@ -432,52 +507,67 @@ main:                                   # @main
 	movsd	-40(%rbp), %xmm2        # xmm2 = mem[0],zero
 	movsd	-32(%rbp), %xmm3        # xmm3 = mem[0],zero
 	callq	SolveCubic
-	movabsq	$main_signature, %rdi
-	movl	$65563, %esi            # imm = 0x1001B
-	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65564, %edx            # imm = 0x1001C
+	xorl	%ecx, %ecx
+	callq	update_signature
 # BB#27:
-	movabsq	$main_signature, %rdi
-	movl	$65564, %esi            # imm = 0x1001C
-	callq	update_signature
-	movabsq	$main_signature, %rdi
-	movl	$0, -20(%rbp)
-	movl	$65564, %esi            # imm = 0x1001C
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65564, %edx            # imm = 0x1001C
 	callq	verify_signature
-.LBB0_28:                               # =>This Inner Loop Header: Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65565, %esi            # imm = 0x1001D
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$0, -20(%rbp)
+	movl	$65565, %edx            # imm = 0x1001D
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$main_signature, %rdi
+.LBB0_28:                               # =>This Inner Loop Header: Depth=1
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65565, %edx            # imm = 0x1001D
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movl	-20(%rbp), %r14d
 	movl	-24(%rbp), %ebx
-	movl	$65565, %esi            # imm = 0x1001D
-	callq	verify_signature
+	movl	$65566, %edx            # imm = 0x1001E
+	movl	$65568, %ecx            # imm = 0x10020
+	callq	update_signature
 	cmpl	%ebx, %r14d
 	jge	.LBB0_31
 # BB#29:                                #   in Loop: Header=BB0_28 Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65566, %esi            # imm = 0x1001E
-	callq	update_signature
-	movabsq	$main_signature, %rdi
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65566, %edx            # imm = 0x1001E
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movsd	.LCPI0_38(%rip), %xmm0  # xmm0 = mem[0],zero
 	movsd	%xmm0, -56(%rbp)
-	movl	$65566, %esi            # imm = 0x1001E
-	callq	verify_signature
-# BB#30:                                #   in Loop: Header=BB0_28 Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65567, %esi            # imm = 0x1001F
+	movl	$65567, %edx            # imm = 0x1001F
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$main_signature, %rdi
+# BB#30:                                #   in Loop: Header=BB0_28 Depth=1
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65567, %edx            # imm = 0x1001F
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movl	-20(%rbp), %eax
 	addl	$1, %eax
 	movl	%eax, -20(%rbp)
-	movl	$65567, %esi            # imm = 0x1001F
-	callq	verify_signature
+	movl	$65565, %edx            # imm = 0x1001D
+	xorl	%ecx, %ecx
+	callq	update_signature
 	jmp	.LBB0_28
 .LBB0_31:
-	movabsq	$main_signature, %rdi
-	movl	$65568, %esi            # imm = 0x10020
-	callq	update_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65568, %edx            # imm = 0x10020
+	callq	verify_signature
 	leaq	-24(%rbp), %rdi
 	leaq	-112(%rbp), %rsi
 	movsd	.LCPI0_17(%rip), %xmm0  # xmm0 = mem[0],zero
@@ -491,52 +581,67 @@ main:                                   # @main
 	movsd	-40(%rbp), %xmm2        # xmm2 = mem[0],zero
 	movsd	-32(%rbp), %xmm3        # xmm3 = mem[0],zero
 	callq	SolveCubic
-	movabsq	$main_signature, %rdi
-	movl	$65568, %esi            # imm = 0x10020
-	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65569, %edx            # imm = 0x10021
+	xorl	%ecx, %ecx
+	callq	update_signature
 # BB#32:
-	movabsq	$main_signature, %rdi
-	movl	$65569, %esi            # imm = 0x10021
-	callq	update_signature
-	movabsq	$main_signature, %rdi
-	movl	$0, -20(%rbp)
-	movl	$65569, %esi            # imm = 0x10021
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65569, %edx            # imm = 0x10021
 	callq	verify_signature
-.LBB0_33:                               # =>This Inner Loop Header: Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65570, %esi            # imm = 0x10022
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$0, -20(%rbp)
+	movl	$65570, %edx            # imm = 0x10022
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$main_signature, %rdi
+.LBB0_33:                               # =>This Inner Loop Header: Depth=1
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65570, %edx            # imm = 0x10022
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movl	-20(%rbp), %r14d
 	movl	-24(%rbp), %ebx
-	movl	$65570, %esi            # imm = 0x10022
-	callq	verify_signature
+	movl	$65571, %edx            # imm = 0x10023
+	movl	$65573, %ecx            # imm = 0x10025
+	callq	update_signature
 	cmpl	%ebx, %r14d
 	jge	.LBB0_36
 # BB#34:                                #   in Loop: Header=BB0_33 Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65571, %esi            # imm = 0x10023
-	callq	update_signature
-	movabsq	$main_signature, %rdi
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65571, %edx            # imm = 0x10023
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movsd	.LCPI0_37(%rip), %xmm0  # xmm0 = mem[0],zero
 	movsd	%xmm0, -56(%rbp)
-	movl	$65571, %esi            # imm = 0x10023
-	callq	verify_signature
-# BB#35:                                #   in Loop: Header=BB0_33 Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65572, %esi            # imm = 0x10024
+	movl	$65572, %edx            # imm = 0x10024
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$main_signature, %rdi
+# BB#35:                                #   in Loop: Header=BB0_33 Depth=1
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65572, %edx            # imm = 0x10024
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movl	-20(%rbp), %eax
 	addl	$1, %eax
 	movl	%eax, -20(%rbp)
-	movl	$65572, %esi            # imm = 0x10024
-	callq	verify_signature
+	movl	$65570, %edx            # imm = 0x10022
+	xorl	%ecx, %ecx
+	callq	update_signature
 	jmp	.LBB0_33
 .LBB0_36:
-	movabsq	$main_signature, %rdi
-	movl	$65573, %esi            # imm = 0x10025
-	callq	update_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65573, %edx            # imm = 0x10025
+	callq	verify_signature
 	leaq	-24(%rbp), %rdi
 	leaq	-112(%rbp), %rsi
 	movsd	.LCPI0_20(%rip), %xmm0  # xmm0 = mem[0],zero
@@ -550,140 +655,173 @@ main:                                   # @main
 	movsd	-40(%rbp), %xmm2        # xmm2 = mem[0],zero
 	movsd	-32(%rbp), %xmm3        # xmm3 = mem[0],zero
 	callq	SolveCubic
-	movabsq	$main_signature, %rdi
-	movl	$65573, %esi            # imm = 0x10025
-	callq	verify_signature
-# BB#37:
-	movabsq	$main_signature, %rdi
-	movl	$65574, %esi            # imm = 0x10026
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65574, %edx            # imm = 0x10026
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$main_signature, %rdi
-	movl	$0, -20(%rbp)
-	movl	$65574, %esi            # imm = 0x10026
+# BB#37:
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65574, %edx            # imm = 0x10026
 	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$0, -20(%rbp)
+	movl	$65575, %edx            # imm = 0x10027
+	xorl	%ecx, %ecx
+	callq	update_signature
 .LBB0_38:                               # =>This Loop Header: Depth=1
                                         #     Child Loop BB0_40 Depth 2
                                         #       Child Loop BB0_42 Depth 3
                                         #         Child Loop BB0_44 Depth 4
                                         #           Child Loop BB0_46 Depth 5
-	movabsq	$main_signature, %rdi
-	movl	$65575, %esi            # imm = 0x10027
-	callq	update_signature
-	movabsq	$main_signature, %rdi
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65575, %edx            # imm = 0x10027
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movl	-20(%rbp), %r14d
 	movl	-24(%rbp), %ebx
-	movl	$65575, %esi            # imm = 0x10027
-	callq	verify_signature
+	movl	$65576, %edx            # imm = 0x10028
+	movl	$65594, %ecx            # imm = 0x1003A
+	callq	update_signature
 	cmpl	%ebx, %r14d
 	jge	.LBB0_57
 # BB#39:                                #   in Loop: Header=BB0_38 Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65576, %esi            # imm = 0x10028
-	callq	update_signature
-	movabsq	$main_signature, %rdi
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65576, %edx            # imm = 0x10028
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movsd	.LCPI0_3(%rip), %xmm0   # xmm0 = mem[0],zero
 	movsd	%xmm0, -56(%rbp)
-	movl	$65576, %esi            # imm = 0x10028
-	callq	verify_signature
+	movl	$65577, %edx            # imm = 0x10029
+	xorl	%ecx, %ecx
+	callq	update_signature
 .LBB0_40:                               #   Parent Loop BB0_38 Depth=1
                                         # =>  This Loop Header: Depth=2
                                         #       Child Loop BB0_42 Depth 3
                                         #         Child Loop BB0_44 Depth 4
                                         #           Child Loop BB0_46 Depth 5
-	movabsq	$main_signature, %rdi
-	movl	$65577, %esi            # imm = 0x10029
-	callq	update_signature
-	movabsq	$main_signature, %rdi
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65577, %edx            # imm = 0x10029
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movsd	-56(%rbp), %xmm0        # xmm0 = mem[0],zero
 	movsd	%xmm0, -64(%rbp)        # 8-byte Spill
-	movl	$65577, %esi            # imm = 0x10029
-	callq	verify_signature
+	movl	$65578, %edx            # imm = 0x1002A
+	movl	$65592, %ecx            # imm = 0x10038
+	callq	update_signature
 	movsd	.LCPI0_30(%rip), %xmm0  # xmm0 = mem[0],zero
 	ucomisd	-64(%rbp), %xmm0        # 8-byte Folded Reload
 	jbe	.LBB0_55
 # BB#41:                                #   in Loop: Header=BB0_40 Depth=2
-	movabsq	$main_signature, %rdi
-	movl	$65578, %esi            # imm = 0x1002A
-	callq	update_signature
-	movabsq	$main_signature, %rdi
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65578, %edx            # imm = 0x1002A
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movsd	.LCPI0_30(%rip), %xmm0  # xmm0 = mem[0],zero
 	movsd	%xmm0, -48(%rbp)
-	movl	$65578, %esi            # imm = 0x1002A
-	callq	verify_signature
+	movl	$65579, %edx            # imm = 0x1002B
+	xorl	%ecx, %ecx
+	callq	update_signature
 .LBB0_42:                               #   Parent Loop BB0_38 Depth=1
                                         #     Parent Loop BB0_40 Depth=2
                                         # =>    This Loop Header: Depth=3
                                         #         Child Loop BB0_44 Depth 4
                                         #           Child Loop BB0_46 Depth 5
-	movabsq	$main_signature, %rdi
-	movl	$65579, %esi            # imm = 0x1002B
-	callq	update_signature
-	movabsq	$main_signature, %rdi
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65579, %edx            # imm = 0x1002B
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movsd	-48(%rbp), %xmm0        # xmm0 = mem[0],zero
 	movsd	%xmm0, -64(%rbp)        # 8-byte Spill
-	movl	$65579, %esi            # imm = 0x1002B
-	callq	verify_signature
+	movl	$65580, %edx            # imm = 0x1002C
+	movl	$65590, %ecx            # imm = 0x10036
+	callq	update_signature
 	xorps	%xmm0, %xmm0
 	movsd	-64(%rbp), %xmm1        # 8-byte Reload
                                         # xmm1 = mem[0],zero
 	ucomisd	%xmm0, %xmm1
 	jbe	.LBB0_53
 # BB#43:                                #   in Loop: Header=BB0_42 Depth=3
-	movabsq	$main_signature, %rdi
-	movl	$65580, %esi            # imm = 0x1002C
-	callq	update_signature
-	movabsq	$main_signature, %rdi
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65580, %edx            # imm = 0x1002C
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movsd	.LCPI0_12(%rip), %xmm0  # xmm0 = mem[0],zero
 	movsd	%xmm0, -40(%rbp)
-	movl	$65580, %esi            # imm = 0x1002C
-	callq	verify_signature
+	movl	$65581, %edx            # imm = 0x1002D
+	xorl	%ecx, %ecx
+	callq	update_signature
 .LBB0_44:                               #   Parent Loop BB0_38 Depth=1
                                         #     Parent Loop BB0_40 Depth=2
                                         #       Parent Loop BB0_42 Depth=3
                                         # =>      This Loop Header: Depth=4
                                         #           Child Loop BB0_46 Depth 5
-	movabsq	$main_signature, %rdi
-	movl	$65581, %esi            # imm = 0x1002D
-	callq	update_signature
-	movabsq	$main_signature, %rdi
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65581, %edx            # imm = 0x1002D
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movsd	-40(%rbp), %xmm0        # xmm0 = mem[0],zero
 	movsd	%xmm0, -64(%rbp)        # 8-byte Spill
-	movl	$65581, %esi            # imm = 0x1002D
-	callq	verify_signature
+	movl	$65582, %edx            # imm = 0x1002E
+	movl	$65588, %ecx            # imm = 0x10034
+	callq	update_signature
 	movsd	.LCPI0_31(%rip), %xmm0  # xmm0 = mem[0],zero
 	ucomisd	-64(%rbp), %xmm0        # 8-byte Folded Reload
 	jbe	.LBB0_51
 # BB#45:                                #   in Loop: Header=BB0_44 Depth=4
-	movabsq	$main_signature, %rdi
-	movl	$65582, %esi            # imm = 0x1002E
-	callq	update_signature
-	movabsq	$main_signature, %rdi
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65582, %edx            # imm = 0x1002E
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movsd	.LCPI0_33(%rip), %xmm0  # xmm0 = mem[0],zero
 	movsd	%xmm0, -32(%rbp)
-	movl	$65582, %esi            # imm = 0x1002E
-	callq	verify_signature
+	movl	$65583, %edx            # imm = 0x1002F
+	xorl	%ecx, %ecx
+	callq	update_signature
 .LBB0_46:                               #   Parent Loop BB0_38 Depth=1
                                         #     Parent Loop BB0_40 Depth=2
                                         #       Parent Loop BB0_42 Depth=3
                                         #         Parent Loop BB0_44 Depth=4
                                         # =>        This Inner Loop Header: Depth=5
-	movabsq	$main_signature, %rdi
-	movl	$65583, %esi            # imm = 0x1002F
-	callq	update_signature
-	movabsq	$main_signature, %rdi
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65583, %edx            # imm = 0x1002F
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movsd	-32(%rbp), %xmm0        # xmm0 = mem[0],zero
 	movsd	%xmm0, -64(%rbp)        # 8-byte Spill
-	movl	$65583, %esi            # imm = 0x1002F
-	callq	verify_signature
+	movl	$65584, %edx            # imm = 0x10030
+	movl	$65586, %ecx            # imm = 0x10032
+	callq	update_signature
 	movsd	.LCPI0_34(%rip), %xmm0  # xmm0 = mem[0],zero
 	movsd	-64(%rbp), %xmm1        # 8-byte Reload
                                         # xmm1 = mem[0],zero
 	ucomisd	%xmm0, %xmm1
 	jbe	.LBB0_49
 # BB#47:                                #   in Loop: Header=BB0_46 Depth=5
-	movabsq	$main_signature, %rdi
-	movl	$65584, %esi            # imm = 0x10030
-	callq	update_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65584, %edx            # imm = 0x10030
+	callq	verify_signature
 	leaq	-24(%rbp), %rdi
 	leaq	-112(%rbp), %rsi
 	movsd	-56(%rbp), %xmm0        # xmm0 = mem[0],zero
@@ -691,247 +829,323 @@ main:                                   # @main
 	movsd	-40(%rbp), %xmm2        # xmm2 = mem[0],zero
 	movsd	-32(%rbp), %xmm3        # xmm3 = mem[0],zero
 	callq	SolveCubic
-	movabsq	$main_signature, %rdi
-	movl	$65584, %esi            # imm = 0x10030
-	callq	verify_signature
-# BB#48:                                #   in Loop: Header=BB0_46 Depth=5
-	movabsq	$main_signature, %rdi
-	movl	$65585, %esi            # imm = 0x10031
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65585, %edx            # imm = 0x10031
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$main_signature, %rdi
+# BB#48:                                #   in Loop: Header=BB0_46 Depth=5
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65585, %edx            # imm = 0x10031
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movsd	.LCPI0_36(%rip), %xmm0  # xmm0 = mem[0],zero
 	movsd	-32(%rbp), %xmm1        # xmm1 = mem[0],zero
 	subsd	%xmm0, %xmm1
 	movsd	%xmm1, -32(%rbp)
-	movl	$65585, %esi            # imm = 0x10031
-	callq	verify_signature
+	movl	$65583, %edx            # imm = 0x1002F
+	xorl	%ecx, %ecx
+	callq	update_signature
 	jmp	.LBB0_46
 .LBB0_49:                               #   in Loop: Header=BB0_44 Depth=4
-	movabsq	$main_signature, %rdi
-	movl	$65586, %esi            # imm = 0x10032
-	callq	update_signature
-	movabsq	$main_signature, %rdi
-	movl	$65586, %esi            # imm = 0x10032
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65586, %edx            # imm = 0x10032
 	callq	verify_signature
-# BB#50:                                #   in Loop: Header=BB0_44 Depth=4
-	movabsq	$main_signature, %rdi
-	movl	$65587, %esi            # imm = 0x10033
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65587, %edx            # imm = 0x10033
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$main_signature, %rdi
+# BB#50:                                #   in Loop: Header=BB0_44 Depth=4
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65587, %edx            # imm = 0x10033
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movsd	.LCPI0_35(%rip), %xmm0  # xmm0 = mem[0],zero
 	addsd	-40(%rbp), %xmm0
 	movsd	%xmm0, -40(%rbp)
-	movl	$65587, %esi            # imm = 0x10033
-	callq	verify_signature
+	movl	$65581, %edx            # imm = 0x1002D
+	xorl	%ecx, %ecx
+	callq	update_signature
 	jmp	.LBB0_44
 .LBB0_51:                               #   in Loop: Header=BB0_42 Depth=3
-	movabsq	$main_signature, %rdi
-	movl	$65588, %esi            # imm = 0x10034
-	callq	update_signature
-	movabsq	$main_signature, %rdi
-	movl	$65588, %esi            # imm = 0x10034
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65588, %edx            # imm = 0x10034
 	callq	verify_signature
-# BB#52:                                #   in Loop: Header=BB0_42 Depth=3
-	movabsq	$main_signature, %rdi
-	movl	$65589, %esi            # imm = 0x10035
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65589, %edx            # imm = 0x10035
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$main_signature, %rdi
+# BB#52:                                #   in Loop: Header=BB0_42 Depth=3
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65589, %edx            # imm = 0x10035
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movsd	.LCPI0_32(%rip), %xmm0  # xmm0 = mem[0],zero
 	movsd	-48(%rbp), %xmm1        # xmm1 = mem[0],zero
 	subsd	%xmm0, %xmm1
 	movsd	%xmm1, -48(%rbp)
-	movl	$65589, %esi            # imm = 0x10035
-	callq	verify_signature
+	movl	$65579, %edx            # imm = 0x1002B
+	xorl	%ecx, %ecx
+	callq	update_signature
 	jmp	.LBB0_42
 .LBB0_53:                               #   in Loop: Header=BB0_40 Depth=2
-	movabsq	$main_signature, %rdi
-	movl	$65590, %esi            # imm = 0x10036
-	callq	update_signature
-	movabsq	$main_signature, %rdi
-	movl	$65590, %esi            # imm = 0x10036
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65590, %edx            # imm = 0x10036
 	callq	verify_signature
-# BB#54:                                #   in Loop: Header=BB0_40 Depth=2
-	movabsq	$main_signature, %rdi
-	movl	$65591, %esi            # imm = 0x10037
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65591, %edx            # imm = 0x10037
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$main_signature, %rdi
+# BB#54:                                #   in Loop: Header=BB0_40 Depth=2
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65591, %edx            # imm = 0x10037
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movsd	.LCPI0_3(%rip), %xmm0   # xmm0 = mem[0],zero
 	addsd	-56(%rbp), %xmm0
 	movsd	%xmm0, -56(%rbp)
-	movl	$65591, %esi            # imm = 0x10037
-	callq	verify_signature
+	movl	$65577, %edx            # imm = 0x10029
+	xorl	%ecx, %ecx
+	callq	update_signature
 	jmp	.LBB0_40
 .LBB0_55:                               #   in Loop: Header=BB0_38 Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65592, %esi            # imm = 0x10038
-	callq	update_signature
-	movabsq	$main_signature, %rdi
-	movl	$65592, %esi            # imm = 0x10038
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65592, %edx            # imm = 0x10038
 	callq	verify_signature
-# BB#56:                                #   in Loop: Header=BB0_38 Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65593, %esi            # imm = 0x10039
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65593, %edx            # imm = 0x10039
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$main_signature, %rdi
+# BB#56:                                #   in Loop: Header=BB0_38 Depth=1
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65593, %edx            # imm = 0x10039
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movl	-20(%rbp), %eax
 	addl	$1, %eax
 	movl	%eax, -20(%rbp)
-	movl	$65593, %esi            # imm = 0x10039
-	callq	verify_signature
+	movl	$65575, %edx            # imm = 0x10027
+	xorl	%ecx, %ecx
+	callq	update_signature
 	jmp	.LBB0_38
 .LBB0_57:
-	movabsq	$main_signature, %rdi
-	movl	$65594, %esi            # imm = 0x1003A
-	callq	update_signature
-	movabsq	$main_signature, %rdi
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65594, %edx            # imm = 0x1003A
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movl	$0, -20(%rbp)
-	movl	$65594, %esi            # imm = 0x1003A
-	callq	verify_signature
-.LBB0_58:                               # =>This Inner Loop Header: Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65595, %esi            # imm = 0x1003B
+	movl	$65595, %edx            # imm = 0x1003B
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$main_signature, %rdi
-	movl	-20(%rbp), %ebx
-	movl	$65595, %esi            # imm = 0x1003B
+.LBB0_58:                               # =>This Inner Loop Header: Depth=1
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65595, %edx            # imm = 0x1003B
 	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	-20(%rbp), %ebx
+	movl	$65596, %edx            # imm = 0x1003C
+	movl	$65598, %ecx            # imm = 0x1003E
+	callq	update_signature
 	cmpl	$100000, %ebx           # imm = 0x186A0
 	jge	.LBB0_61
 # BB#59:                                #   in Loop: Header=BB0_58 Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65596, %esi            # imm = 0x1003C
-	callq	update_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65596, %edx            # imm = 0x1003C
+	callq	verify_signature
 	leaq	-120(%rbp), %rsi
 	movslq	-20(%rbp), %rdi
 	callq	usqrt
-	movabsq	$main_signature, %rdi
-	movl	$65596, %esi            # imm = 0x1003C
-	callq	verify_signature
-# BB#60:                                #   in Loop: Header=BB0_58 Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65597, %esi            # imm = 0x1003D
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65597, %edx            # imm = 0x1003D
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$main_signature, %rdi
+# BB#60:                                #   in Loop: Header=BB0_58 Depth=1
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65597, %edx            # imm = 0x1003D
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movl	-20(%rbp), %eax
 	addl	$2, %eax
 	movl	%eax, -20(%rbp)
-	movl	$65597, %esi            # imm = 0x1003D
-	callq	verify_signature
+	movl	$65595, %edx            # imm = 0x1003B
+	xorl	%ecx, %ecx
+	callq	update_signature
 	jmp	.LBB0_58
 .LBB0_61:
-	movabsq	$main_signature, %rdi
-	movl	$65598, %esi            # imm = 0x1003E
-	callq	update_signature
-	movabsq	$main_signature, %rdi
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65598, %edx            # imm = 0x1003E
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movq	$1072497001, -80(%rbp)  # imm = 0x3FED0169
-	movl	$65598, %esi            # imm = 0x1003E
-	callq	verify_signature
-.LBB0_62:                               # =>This Inner Loop Header: Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65599, %esi            # imm = 0x1003F
+	movl	$65599, %edx            # imm = 0x1003F
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$main_signature, %rdi
-	movq	-80(%rbp), %rbx
-	movl	$65599, %esi            # imm = 0x1003F
+.LBB0_62:                               # =>This Inner Loop Header: Depth=1
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65599, %edx            # imm = 0x1003F
 	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movq	-80(%rbp), %rbx
+	movl	$65600, %edx            # imm = 0x10040
+	movl	$65602, %ecx            # imm = 0x10042
+	callq	update_signature
 	cmpq	$1072513385, %rbx       # imm = 0x3FED4169
 	jae	.LBB0_65
 # BB#63:                                #   in Loop: Header=BB0_62 Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65600, %esi            # imm = 0x10040
-	callq	update_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65600, %edx            # imm = 0x10040
+	callq	verify_signature
 	leaq	-120(%rbp), %rsi
 	movq	-80(%rbp), %rdi
 	callq	usqrt
-	movabsq	$main_signature, %rdi
-	movl	$65600, %esi            # imm = 0x10040
-	callq	verify_signature
-# BB#64:                                #   in Loop: Header=BB0_62 Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65601, %esi            # imm = 0x10041
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65601, %edx            # imm = 0x10041
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$main_signature, %rdi
+# BB#64:                                #   in Loop: Header=BB0_62 Depth=1
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65601, %edx            # imm = 0x10041
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movq	-80(%rbp), %rax
 	addq	$1, %rax
 	movq	%rax, -80(%rbp)
-	movl	$65601, %esi            # imm = 0x10041
-	callq	verify_signature
+	movl	$65599, %edx            # imm = 0x1003F
+	xorl	%ecx, %ecx
+	callq	update_signature
 	jmp	.LBB0_62
 .LBB0_65:
-	movabsq	$main_signature, %rdi
-	movl	$65602, %esi            # imm = 0x10042
-	callq	update_signature
-	movabsq	$main_signature, %rdi
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65602, %edx            # imm = 0x10042
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	xorps	%xmm0, %xmm0
 	movsd	%xmm0, -72(%rbp)
-	movl	$65602, %esi            # imm = 0x10042
-	callq	verify_signature
-.LBB0_66:                               # =>This Inner Loop Header: Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65603, %esi            # imm = 0x10043
+	movl	$65603, %edx            # imm = 0x10043
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$main_signature, %rdi
+.LBB0_66:                               # =>This Inner Loop Header: Depth=1
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65603, %edx            # imm = 0x10043
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movsd	-72(%rbp), %xmm0        # xmm0 = mem[0],zero
 	movsd	%xmm0, -64(%rbp)        # 8-byte Spill
-	movl	$65603, %esi            # imm = 0x10043
-	callq	verify_signature
+	movl	$65604, %edx            # imm = 0x10044
+	movl	$65607, %ecx            # imm = 0x10047
+	callq	update_signature
 	movsd	.LCPI0_23(%rip), %xmm0  # xmm0 = mem[0],zero
 	ucomisd	-64(%rbp), %xmm0        # 8-byte Folded Reload
 	jb	.LBB0_70
 # BB#67:                                #   in Loop: Header=BB0_66 Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65604, %esi            # imm = 0x10044
-	callq	update_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65604, %edx            # imm = 0x10044
+	callq	verify_signature
 	movsd	.LCPI0_3(%rip), %xmm0   # xmm0 = mem[0],zero
 	movsd	-72(%rbp), %xmm1        # xmm1 = mem[0],zero
 	callq	atan
-	movabsq	$main_signature, %rdi
-	movl	$65604, %esi            # imm = 0x10044
-	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65605, %edx            # imm = 0x10045
+	xorl	%ecx, %ecx
+	callq	update_signature
 # BB#68:                                #   in Loop: Header=BB0_66 Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65605, %esi            # imm = 0x10045
-	callq	update_signature
-	movabsq	$main_signature, %rdi
-	movl	$65605, %esi            # imm = 0x10045
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65605, %edx            # imm = 0x10045
 	callq	verify_signature
-# BB#69:                                #   in Loop: Header=BB0_66 Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65606, %esi            # imm = 0x10046
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65606, %edx            # imm = 0x10046
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$main_signature, %rdi
+# BB#69:                                #   in Loop: Header=BB0_66 Depth=1
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65606, %edx            # imm = 0x10046
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movsd	.LCPI0_29(%rip), %xmm0  # xmm0 = mem[0],zero
 	addsd	-72(%rbp), %xmm0
 	movsd	%xmm0, -72(%rbp)
-	movl	$65606, %esi            # imm = 0x10046
-	callq	verify_signature
+	movl	$65603, %edx            # imm = 0x10043
+	xorl	%ecx, %ecx
+	callq	update_signature
 	jmp	.LBB0_66
 .LBB0_70:
-	movabsq	$main_signature, %rdi
-	movl	$65607, %esi            # imm = 0x10047
-	callq	update_signature
-	movabsq	$main_signature, %rdi
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65607, %edx            # imm = 0x10047
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	xorps	%xmm0, %xmm0
 	movsd	%xmm0, -72(%rbp)
-	movl	$65607, %esi            # imm = 0x10047
-	callq	verify_signature
-.LBB0_71:                               # =>This Inner Loop Header: Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65608, %esi            # imm = 0x10048
+	movl	$65608, %edx            # imm = 0x10048
+	xorl	%ecx, %ecx
 	callq	update_signature
+.LBB0_71:                               # =>This Inner Loop Header: Depth=1
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65608, %edx            # imm = 0x10048
+	callq	verify_signature
 	movsd	.LCPI0_3(%rip), %xmm0   # xmm0 = mem[0],zero
 	movsd	-72(%rbp), %xmm1        # xmm1 = mem[0],zero
 	movsd	%xmm1, -64(%rbp)        # 8-byte Spill
 	callq	atan
 	movsd	%xmm0, -88(%rbp)        # 8-byte Spill
-	movabsq	$main_signature, %rdi
-	movl	$65608, %esi            # imm = 0x10048
-	callq	verify_signature
-# BB#72:                                #   in Loop: Header=BB0_71 Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65609, %esi            # imm = 0x10049
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65609, %edx            # imm = 0x10049
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$main_signature, %rdi
+# BB#72:                                #   in Loop: Header=BB0_71 Depth=1
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65609, %edx            # imm = 0x10049
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movsd	.LCPI0_24(%rip), %xmm0  # xmm0 = mem[0],zero
 	movsd	.LCPI0_25(%rip), %xmm1  # xmm1 = mem[0],zero
 	movsd	.LCPI0_26(%rip), %xmm2  # xmm2 = mem[0],zero
@@ -939,98 +1153,119 @@ main:                                   # @main
 	mulsd	%xmm1, %xmm2
 	addsd	%xmm0, %xmm2
 	movsd	%xmm2, -88(%rbp)        # 8-byte Spill
-	movl	$65609, %esi            # imm = 0x10049
-	callq	verify_signature
+	movl	$65610, %edx            # imm = 0x1004A
+	movl	$65614, %ecx            # imm = 0x1004E
+	callq	update_signature
 	movsd	-88(%rbp), %xmm0        # 8-byte Reload
                                         # xmm0 = mem[0],zero
 	ucomisd	-64(%rbp), %xmm0        # 8-byte Folded Reload
 	jb	.LBB0_77
 # BB#73:                                #   in Loop: Header=BB0_71 Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65610, %esi            # imm = 0x1004A
-	callq	update_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65610, %edx            # imm = 0x1004A
+	callq	verify_signature
 	movsd	.LCPI0_3(%rip), %xmm0   # xmm0 = mem[0],zero
 	movsd	.LCPI0_27(%rip), %xmm1  # xmm1 = mem[0],zero
 	mulsd	-72(%rbp), %xmm1
 	callq	atan
-	movabsq	$main_signature, %rdi
-	movl	$65610, %esi            # imm = 0x1004A
-	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65611, %edx            # imm = 0x1004B
+	xorl	%ecx, %ecx
+	callq	update_signature
 # BB#74:                                #   in Loop: Header=BB0_71 Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65611, %esi            # imm = 0x1004B
-	callq	update_signature
-	movabsq	$main_signature, %rdi
-	movl	$65611, %esi            # imm = 0x1004B
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65611, %edx            # imm = 0x1004B
 	callq	verify_signature
-# BB#75:                                #   in Loop: Header=BB0_71 Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65612, %esi            # imm = 0x1004C
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65612, %edx            # imm = 0x1004C
+	xorl	%ecx, %ecx
 	callq	update_signature
+# BB#75:                                #   in Loop: Header=BB0_71 Depth=1
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65612, %edx            # imm = 0x1004C
+	callq	verify_signature
 	movsd	.LCPI0_3(%rip), %xmm0   # xmm0 = mem[0],zero
 	callq	atan
 	movsd	%xmm0, -64(%rbp)        # 8-byte Spill
-	movabsq	$main_signature, %rdi
-	movl	$65612, %esi            # imm = 0x1004C
-	callq	verify_signature
-# BB#76:                                #   in Loop: Header=BB0_71 Depth=1
-	movabsq	$main_signature, %rdi
-	movl	$65613, %esi            # imm = 0x1004D
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65613, %edx            # imm = 0x1004D
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$main_signature, %rdi
+# BB#76:                                #   in Loop: Header=BB0_71 Depth=1
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65613, %edx            # imm = 0x1004D
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movsd	.LCPI0_28(%rip), %xmm0  # xmm0 = mem[0],zero
 	movsd	.LCPI0_26(%rip), %xmm1  # xmm1 = mem[0],zero
 	mulsd	-64(%rbp), %xmm1        # 8-byte Folded Reload
 	divsd	%xmm0, %xmm1
 	addsd	-72(%rbp), %xmm1
 	movsd	%xmm1, -72(%rbp)
-	movl	$65613, %esi            # imm = 0x1004D
-	callq	verify_signature
+	movl	$65608, %edx            # imm = 0x10048
+	xorl	%ecx, %ecx
+	callq	update_signature
 	jmp	.LBB0_71
 .LBB0_77:
-	movabsq	$main_signature, %rdi
-	movl	$65614, %esi            # imm = 0x1004E
-	callq	update_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65614, %edx            # imm = 0x1004E
+	callq	verify_signature
 	movabsq	$.L.str, %rdi
 	movb	$0, %al
 	callq	printf
-	movabsq	$main_signature, %rdi
-	movl	$65614, %esi            # imm = 0x1004E
-	callq	verify_signature
-# BB#78:
-	movabsq	$main_signature, %rdi
-	movl	$65615, %esi            # imm = 0x1004F
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65615, %edx            # imm = 0x1004F
+	xorl	%ecx, %ecx
 	callq	update_signature
+# BB#78:
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65615, %edx            # imm = 0x1004F
+	callq	verify_signature
 	leaq	-144(%rbp), %rdi
 	xorl	%esi, %esi
 	callq	gettimeofday
-	movabsq	$main_signature, %rdi
-	movl	$65615, %esi            # imm = 0x1004F
-	callq	verify_signature
-# BB#79:
-	movabsq	$main_signature, %rdi
-	movl	$65616, %esi            # imm = 0x10050
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65616, %edx            # imm = 0x10050
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$.L.str.1, %rdi
+# BB#79:
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65616, %edx            # imm = 0x10050
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movq	-144(%rbp), %rax
 	subq	-160(%rbp), %rax
-	imulq	$1000000, %rax, %rax    # imm = 0xF4240
+	imulq	$1000000, %rax, %rbx    # imm = 0xF4240
+	movl	$65617, %edx            # imm = 0x10051
+	xorl	%ecx, %ecx
+	callq	update_signature
+	movabsq	$.L.str.1, %rdi
 	movq	-136(%rbp), %rsi
 	subq	-152(%rbp), %rsi
-	addq	%rax, %rsi
+	addq	%rbx, %rsi
 	movb	$0, %al
 	callq	printf
-	movabsq	$main_signature, %rdi
-	movl	$65616, %esi            # imm = 0x10050
-	callq	verify_signature
 # BB#80:
-	movabsq	$main_signature, %rdi
-	movl	$65617, %esi            # imm = 0x10051
-	callq	update_signature
-	movabsq	$main_signature, %rdi
-	movl	$1, is_signature_queue_full
-	movl	$65617, %esi            # imm = 0x10051
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$65617, %edx            # imm = 0x10051
 	callq	verify_signature
+	movl	$65617, %edi            # imm = 0x10051
+	callq	exit_with_remainder_process
 	xorl	%eax, %eax
 	addq	$160, %rsp
 	popq	%rbx
@@ -1065,37 +1300,29 @@ rad2deg:                                # @rad2deg
 .Lcfi7:
 	.cfi_def_cfa_register %rbp
 	subq	$32, %rsp
-	movsd	%xmm0, -8(%rbp)         # 8-byte Spill
-	movabsq	$rad2deg_signature, %rdi
-	movl	$327681, %esi           # imm = 0x50001
-	callq	update_signature
-	movsd	.LCPI1_0(%rip), %xmm0   # xmm0 = mem[0],zero
-	movsd	.LCPI1_1(%rip), %xmm1   # xmm1 = mem[0],zero
-	movsd	-8(%rbp), %xmm2         # 8-byte Reload
-                                        # xmm2 = mem[0],zero
-	movsd	%xmm2, -24(%rbp)
-	mulsd	-24(%rbp), %xmm1
-	movsd	%xmm1, -8(%rbp)         # 8-byte Spill
+	movsd	.LCPI1_0(%rip), %xmm1   # xmm1 = mem[0],zero
+	movsd	.LCPI1_1(%rip), %xmm2   # xmm2 = mem[0],zero
+	movsd	%xmm0, -24(%rbp)
+	mulsd	-24(%rbp), %xmm2
+	movsd	%xmm2, -16(%rbp)        # 8-byte Spill
+	movaps	%xmm1, %xmm0
 	callq	atan
-	movsd	%xmm0, -16(%rbp)        # 8-byte Spill
-	movabsq	$rad2deg_signature, %rdi
-	movl	$327681, %esi           # imm = 0x50001
-	callq	verify_signature
-# BB#1:
-	movabsq	$rad2deg_signature, %rdi
-	movl	$327682, %esi           # imm = 0x50002
+	movsd	%xmm0, -8(%rbp)         # 8-byte Spill
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$327682, %edx           # imm = 0x50002
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$rad2deg_signature, %rdi
-	movsd	.LCPI1_2(%rip), %xmm0   # xmm0 = mem[0],zero
-	mulsd	-16(%rbp), %xmm0        # 8-byte Folded Reload
-	movsd	-8(%rbp), %xmm1         # 8-byte Reload
-                                        # xmm1 = mem[0],zero
-	divsd	%xmm0, %xmm1
-	movsd	%xmm1, -8(%rbp)         # 8-byte Spill
-	movl	$327682, %esi           # imm = 0x50002
+# BB#1:
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$327682, %edx           # imm = 0x50002
 	callq	verify_signature
-	movsd	-8(%rbp), %xmm0         # 8-byte Reload
+	movsd	.LCPI1_2(%rip), %xmm1   # xmm1 = mem[0],zero
+	mulsd	-8(%rbp), %xmm1         # 8-byte Folded Reload
+	movsd	-16(%rbp), %xmm0        # 8-byte Reload
                                         # xmm0 = mem[0],zero
+	divsd	%xmm1, %xmm0
 	addq	$32, %rsp
 	popq	%rbp
 	retq
@@ -1127,34 +1354,26 @@ deg2rad:                                # @deg2rad
 .Lcfi10:
 	.cfi_def_cfa_register %rbp
 	subq	$16, %rsp
-	movsd	%xmm0, -8(%rbp)         # 8-byte Spill
-	movabsq	$deg2rad_signature, %rdi
-	movl	$393217, %esi           # imm = 0x60001
-	callq	update_signature
-	movsd	.LCPI2_0(%rip), %xmm0   # xmm0 = mem[0],zero
-	movsd	-8(%rbp), %xmm1         # 8-byte Reload
-                                        # xmm1 = mem[0],zero
-	movsd	%xmm1, -16(%rbp)
+	movsd	.LCPI2_0(%rip), %xmm1   # xmm1 = mem[0],zero
+	movsd	%xmm0, -16(%rbp)
+	movaps	%xmm1, %xmm0
 	callq	atan
 	movsd	%xmm0, -8(%rbp)         # 8-byte Spill
-	movabsq	$deg2rad_signature, %rdi
-	movl	$393217, %esi           # imm = 0x60001
-	callq	verify_signature
-# BB#1:
-	movabsq	$deg2rad_signature, %rdi
-	movl	$393218, %esi           # imm = 0x60002
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$393218, %edx           # imm = 0x60002
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$deg2rad_signature, %rdi
-	movsd	.LCPI2_1(%rip), %xmm0   # xmm0 = mem[0],zero
-	movsd	.LCPI2_2(%rip), %xmm1   # xmm1 = mem[0],zero
-	mulsd	-8(%rbp), %xmm1         # 8-byte Folded Reload
-	mulsd	-16(%rbp), %xmm1
-	divsd	%xmm0, %xmm1
-	movsd	%xmm1, -8(%rbp)         # 8-byte Spill
-	movl	$393218, %esi           # imm = 0x60002
+# BB#1:
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$393218, %edx           # imm = 0x60002
 	callq	verify_signature
-	movsd	-8(%rbp), %xmm0         # 8-byte Reload
-                                        # xmm0 = mem[0],zero
+	movsd	.LCPI2_1(%rip), %xmm1   # xmm1 = mem[0],zero
+	movsd	.LCPI2_2(%rip), %xmm0   # xmm0 = mem[0],zero
+	mulsd	-8(%rbp), %xmm0         # 8-byte Folded Reload
+	mulsd	-16(%rbp), %xmm0
+	divsd	%xmm1, %xmm0
 	addq	$16, %rsp
 	popq	%rbp
 	retq
@@ -1191,6 +1410,8 @@ deg2rad:                                # @deg2rad
 	.quad	4611686018427387904     # double 2
 .LCPI3_10:
 	.quad	4616189618054758400     # double 4
+.LCPI3_11:
+	.quad	0                       # double 0
 	.text
 	.globl	SolveCubic
 	.p2align	4, 0x90
@@ -1206,67 +1427,53 @@ SolveCubic:                             # @SolveCubic
 	movq	%rsp, %rbp
 .Lcfi13:
 	.cfi_def_cfa_register %rbp
-	pushq	%r15
 	pushq	%r14
 	pushq	%rbx
-	subq	$344, %rsp              # imm = 0x158
+	subq	$320, %rsp              # imm = 0x140
 .Lcfi14:
-	.cfi_offset %rbx, -40
+	.cfi_offset %rbx, -32
 .Lcfi15:
-	.cfi_offset %r14, -32
-.Lcfi16:
-	.cfi_offset %r15, -24
-	movq	%rsi, %r15
-	movq	%rdi, %rbx
-	movsd	%xmm3, -40(%rbp)        # 8-byte Spill
-	movsd	%xmm2, -64(%rbp)        # 8-byte Spill
-	movsd	%xmm1, -80(%rbp)        # 8-byte Spill
-	movsd	%xmm0, -168(%rbp)       # 8-byte Spill
-	movabsq	$SolveCubic_signature, %r14
-	movl	$SolveCubic_signature, %edi
-	movl	$458753, %esi           # imm = 0x70001
-	callq	update_signature
-	movsd	-168(%rbp), %xmm0       # 8-byte Reload
-                                        # xmm0 = mem[0],zero
-	movsd	%xmm0, -328(%rbp)
-	movsd	-80(%rbp), %xmm0        # 8-byte Reload
-                                        # xmm0 = mem[0],zero
-	movsd	%xmm0, -320(%rbp)
-	movsd	-64(%rbp), %xmm0        # 8-byte Reload
-                                        # xmm0 = mem[0],zero
-	movsd	%xmm0, -312(%rbp)
-	movsd	-40(%rbp), %xmm0        # 8-byte Reload
-                                        # xmm0 = mem[0],zero
+	.cfi_offset %r14, -24
 	movsd	%xmm0, -304(%rbp)
-	movq	%rbx, -144(%rbp)
-	movq	%r15, -72(%rbp)
-	movsd	-320(%rbp), %xmm0       # xmm0 = mem[0],zero
-	movsd	-328(%rbp), %xmm1       # xmm1 = mem[0],zero
+	movsd	%xmm1, -296(%rbp)
+	movsd	%xmm2, -288(%rbp)
+	movsd	%xmm3, -280(%rbp)
+	movq	%rdi, -128(%rbp)
+	movq	%rsi, -56(%rbp)
+	movsd	-296(%rbp), %xmm0       # xmm0 = mem[0],zero
+	movsd	-304(%rbp), %xmm1       # xmm1 = mem[0],zero
 	divsd	%xmm1, %xmm0
-	movsd	%xmm0, -296(%rbp)
-	fldl	-296(%rbp)
-	fstpt	-128(%rbp)
-	movsd	-312(%rbp), %xmm0       # xmm0 = mem[0],zero
+	movsd	%xmm0, -272(%rbp)
+	fldl	-272(%rbp)
+	fstpt	-112(%rbp)
+	movsd	-288(%rbp), %xmm0       # xmm0 = mem[0],zero
 	divsd	%xmm1, %xmm0
-	movsd	%xmm0, -288(%rbp)
-	fldl	-288(%rbp)
-	fstpt	-368(%rbp)
-	movsd	-304(%rbp), %xmm0       # xmm0 = mem[0],zero
+	movsd	%xmm0, -264(%rbp)
+	fldl	-264(%rbp)
+	fstpt	-336(%rbp)
+	movsd	-280(%rbp), %xmm0       # xmm0 = mem[0],zero
 	divsd	%xmm1, %xmm0
-	movsd	%xmm0, -280(%rbp)
-	fldl	-280(%rbp)
-	fstpt	-352(%rbp)
-	fldt	-128(%rbp)
-	fld	%st(0)
+	movsd	%xmm0, -256(%rbp)
+	fldl	-256(%rbp)
+	fstpt	-320(%rbp)
+	fldt	-112(%rbp)
+	fstpt	-32(%rbp)               # 10-byte Folded Spill
+	movl	$main_run_signature_1, %edi
+	movl	$main_run_signature_2, %esi
+	movl	$458754, %edx           # imm = 0x70002
+	movl	$458765, %ecx           # imm = 0x7000D
+	callq	update_signature
+	fldt	-112(%rbp)
+	fldt	-32(%rbp)               # 10-byte Folded Reload
 	fmul	%st(1)
-	fldt	-368(%rbp)
+	fldt	-336(%rbp)
 	flds	.LCPI3_0(%rip)
 	fmul	%st(1)
 	faddp	%st(2)
 	flds	.LCPI3_1(%rip)
 	fdivr	%st(0), %st(2)
 	fxch	%st(2)
-	fstpt	-112(%rbp)
+	fstpt	-80(%rbp)
 	fld	%st(2)
 	fadd	%st(3)
 	fmul	%st(3)
@@ -1275,329 +1482,378 @@ SolveCubic:                             # @SolveCubic
 	fmulp	%st(2)
 	fmulp	%st(1)
 	fsubrp	%st(1)
-	fldt	-352(%rbp)
+	fldt	-320(%rbp)
 	flds	.LCPI3_2(%rip)
 	fmulp	%st(1)
 	faddp	%st(1)
 	flds	.LCPI3_3(%rip)
 	fdivrp	%st(1)
-	fstpt	-160(%rbp)
-	fldt	-160(%rbp)
+	fstpt	-144(%rbp)
+	fldt	-144(%rbp)
 	fmul	%st(0), %st(0)
-	fldt	-112(%rbp)
+	fldt	-80(%rbp)
 	fld	%st(0)
 	fmul	%st(1)
 	fmulp	%st(1)
 	fsubrp	%st(1)
-	fstpl	-272(%rbp)
-	movsd	-272(%rbp), %xmm0       # xmm0 = mem[0],zero
-	movsd	%xmm0, -136(%rbp)
-	movsd	-136(%rbp), %xmm0       # xmm0 = mem[0],zero
-	movsd	%xmm0, -40(%rbp)        # 8-byte Spill
-	movq	%r14, %rdi
-	movl	$458753, %esi           # imm = 0x70001
-	callq	verify_signature
-	xorps	%xmm0, %xmm0
-	ucomisd	-40(%rbp), %xmm0        # 8-byte Folded Reload
-	jb	.LBB3_12
-# BB#1:
-	movabsq	$SolveCubic_signature, %rbx
-	movl	$SolveCubic_signature, %edi
-	movl	$458754, %esi           # imm = 0x70002
-	callq	update_signature
-	movq	-144(%rbp), %rax
-	movl	$3, (%rax)
-	fldt	-160(%rbp)
-	fstpt	-40(%rbp)               # 10-byte Folded Spill
-	fldt	-112(%rbp)
-	fld	%st(0)
-	fmul	%st(1)
-	fmulp	%st(1)
 	fstpl	-248(%rbp)
 	movsd	-248(%rbp), %xmm0       # xmm0 = mem[0],zero
-	callq	sqrt
-	movsd	%xmm0, -64(%rbp)        # 8-byte Spill
-	movq	%rbx, %rdi
-	movl	$458754, %esi           # imm = 0x70002
+	movsd	%xmm0, -120(%rbp)
+	xorps	%xmm0, %xmm0
+	ucomisd	-120(%rbp), %xmm0
+	jb	.LBB3_12
+# BB#1:
+	movl	$main_run_signature_1, %edi
+	movl	$main_run_signature_2, %esi
+	movl	$458754, %edx           # imm = 0x70002
 	callq	verify_signature
-# BB#2:
-	movl	$SolveCubic_signature, %edi
-	movl	$458755, %esi           # imm = 0x70003
+	movq	-128(%rbp), %rax
+	movl	$3, (%rax)
+	fldt	-144(%rbp)
+	fstpt	-32(%rbp)               # 10-byte Folded Spill
+	fldt	-80(%rbp)
+	fstpt	-48(%rbp)               # 10-byte Folded Spill
+	movl	$main_run_signature_1, %edi
+	movl	$main_run_signature_2, %esi
+	movl	$458755, %edx           # imm = 0x70003
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movsd	-64(%rbp), %xmm0        # 8-byte Reload
-                                        # xmm0 = mem[0],zero
-	movsd	%xmm0, -240(%rbp)
-	fldl	-240(%rbp)
-	fldt	-40(%rbp)               # 10-byte Folded Reload
-	fdivp	%st(1)
-	fstpl	-232(%rbp)
-	movsd	-232(%rbp), %xmm0       # xmm0 = mem[0],zero
-	callq	acos
-	movsd	%xmm0, -40(%rbp)        # 8-byte Spill
-	movabsq	$SolveCubic_signature, %rdi
-	movl	$458755, %esi           # imm = 0x70003
-	callq	verify_signature
-# BB#3:
-	movabsq	$SolveCubic_signature, %rbx
-	movl	$SolveCubic_signature, %edi
-	movl	$458756, %esi           # imm = 0x70004
-	callq	update_signature
-	movsd	-40(%rbp), %xmm0        # 8-byte Reload
-                                        # xmm0 = mem[0],zero
-	movsd	%xmm0, -88(%rbp)
-	fldt	-112(%rbp)
+	fldt	-48(%rbp)               # 10-byte Folded Reload
+	fmul	%st(0), %st(0)
+	fldt	-80(%rbp)
+	fmulp	%st(1)
 	fstpl	-224(%rbp)
 	movsd	-224(%rbp), %xmm0       # xmm0 = mem[0],zero
 	callq	sqrt
-	movsd	%xmm0, -40(%rbp)        # 8-byte Spill
-	movq	%rbx, %rdi
-	movl	$458756, %esi           # imm = 0x70004
+	movsd	%xmm0, -48(%rbp)        # 8-byte Spill
+# BB#2:
+	movl	$main_run_signature_1, %edi
+	movl	$main_run_signature_2, %esi
+	movl	$458755, %edx           # imm = 0x70003
 	callq	verify_signature
-# BB#4:
-	movabsq	$SolveCubic_signature, %rdi
-	movl	$458757, %esi           # imm = 0x70005
-	callq	update_signature
-	movabsq	$SolveCubic_signature, %rbx
-	movsd	.LCPI3_6(%rip), %xmm1   # xmm1 = mem[0],zero
-	movsd	.LCPI3_7(%rip), %xmm0   # xmm0 = mem[0],zero
-	mulsd	-40(%rbp), %xmm0        # 8-byte Folded Reload
-	movsd	%xmm0, -40(%rbp)        # 8-byte Spill
-	movsd	-88(%rbp), %xmm0        # xmm0 = mem[0],zero
-	divsd	%xmm1, %xmm0
-	callq	cos
-	movsd	%xmm0, -64(%rbp)        # 8-byte Spill
-	movq	%rbx, %rdi
-	movl	$458757, %esi           # imm = 0x70005
-	callq	verify_signature
-# BB#5:
-	movabsq	$SolveCubic_signature, %rbx
-	movl	$SolveCubic_signature, %edi
-	movl	$458758, %esi           # imm = 0x70006
-	callq	update_signature
-	movsd	-40(%rbp), %xmm0        # 8-byte Reload
+	movsd	-48(%rbp), %xmm0        # 8-byte Reload
                                         # xmm0 = mem[0],zero
-	mulsd	-64(%rbp), %xmm0        # 8-byte Folded Reload
 	movsd	%xmm0, -216(%rbp)
 	fldl	-216(%rbp)
-	fldt	-128(%rbp)
+	fldt	-32(%rbp)               # 10-byte Folded Reload
+	fdivp	%st(1)
+	fstpl	-208(%rbp)
+	movsd	-208(%rbp), %xmm0       # xmm0 = mem[0],zero
+	callq	acos
+	movsd	%xmm0, -32(%rbp)        # 8-byte Spill
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$458756, %edx           # imm = 0x70004
+	xorl	%ecx, %ecx
+	callq	update_signature
+# BB#3:
+	movabsq	$main_run_signature_1, %rbx
+	movabsq	$main_run_signature_2, %r14
+	movl	$main_run_signature_1, %edi
+	movl	$main_run_signature_2, %esi
+	movl	$458756, %edx           # imm = 0x70004
+	callq	verify_signature
+	movsd	-32(%rbp), %xmm0        # 8-byte Reload
+                                        # xmm0 = mem[0],zero
+	movsd	%xmm0, -96(%rbp)
+	fldt	-80(%rbp)
+	fstpl	-200(%rbp)
+	movsd	-200(%rbp), %xmm0       # xmm0 = mem[0],zero
+	callq	sqrt
+	movsd	%xmm0, -32(%rbp)        # 8-byte Spill
+	movq	%rbx, %rdi
+	movq	%r14, %rsi
+	movl	$458757, %edx           # imm = 0x70005
+	xorl	%ecx, %ecx
+	callq	update_signature
+# BB#4:
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$458757, %edx           # imm = 0x70005
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rbx
+	movabsq	$main_run_signature_2, %r14
+	movsd	.LCPI3_6(%rip), %xmm1   # xmm1 = mem[0],zero
+	movsd	.LCPI3_7(%rip), %xmm0   # xmm0 = mem[0],zero
+	mulsd	-32(%rbp), %xmm0        # 8-byte Folded Reload
+	movsd	%xmm0, -32(%rbp)        # 8-byte Spill
+	movsd	-96(%rbp), %xmm0        # xmm0 = mem[0],zero
+	divsd	%xmm1, %xmm0
+	callq	cos
+	movsd	%xmm0, -48(%rbp)        # 8-byte Spill
+	movq	%rbx, %rdi
+	movq	%r14, %rsi
+	movl	$458758, %edx           # imm = 0x70006
+	xorl	%ecx, %ecx
+	callq	update_signature
+# BB#5:
+	movl	$main_run_signature_1, %edi
+	movl	$main_run_signature_2, %esi
+	movl	$458758, %edx           # imm = 0x70006
+	callq	verify_signature
+	movsd	-32(%rbp), %xmm0        # 8-byte Reload
+                                        # xmm0 = mem[0],zero
+	mulsd	-48(%rbp), %xmm0        # 8-byte Folded Reload
+	movsd	%xmm0, -192(%rbp)
+	fldl	-192(%rbp)
+	fldt	-112(%rbp)
 	flds	.LCPI3_0(%rip)
 	fdivrp	%st(1)
 	faddp	%st(1)
-	movq	-72(%rbp), %rax
-	fstpl	(%rax)
-	fldt	-112(%rbp)
-	fstpl	-208(%rbp)
-	movsd	-208(%rbp), %xmm0       # xmm0 = mem[0],zero
-	callq	sqrt
-	movsd	%xmm0, -40(%rbp)        # 8-byte Spill
-	movq	%rbx, %rdi
-	movl	$458758, %esi           # imm = 0x70006
-	callq	verify_signature
-# BB#6:
-	movabsq	$SolveCubic_signature, %rdi
-	movl	$458759, %esi           # imm = 0x70007
+	fstpt	-32(%rbp)               # 10-byte Folded Spill
+	movl	$main_run_signature_1, %edi
+	movl	$main_run_signature_2, %esi
+	movl	$458759, %edx           # imm = 0x70007
+	xorl	%ecx, %ecx
 	callq	update_signature
+	movq	-56(%rbp), %rax
+	fldt	-32(%rbp)               # 10-byte Folded Reload
+	fstpl	(%rax)
+	fldt	-80(%rbp)
+	fstpl	-184(%rbp)
+	movsd	-184(%rbp), %xmm0       # xmm0 = mem[0],zero
+	callq	sqrt
+	movsd	%xmm0, -32(%rbp)        # 8-byte Spill
+# BB#6:
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$458759, %edx           # imm = 0x70007
+	callq	verify_signature
 	movsd	.LCPI3_8(%rip), %xmm0   # xmm0 = mem[0],zero
 	movsd	.LCPI3_7(%rip), %xmm1   # xmm1 = mem[0],zero
-	mulsd	-40(%rbp), %xmm1        # 8-byte Folded Reload
-	movsd	%xmm1, -40(%rbp)        # 8-byte Spill
-	movsd	-88(%rbp), %xmm1        # xmm1 = mem[0],zero
-	movsd	%xmm1, -64(%rbp)        # 8-byte Spill
+	mulsd	-32(%rbp), %xmm1        # 8-byte Folded Reload
+	movsd	%xmm1, -32(%rbp)        # 8-byte Spill
+	movsd	-96(%rbp), %xmm1        # xmm1 = mem[0],zero
+	movsd	%xmm1, -48(%rbp)        # 8-byte Spill
 	callq	atan
-	movsd	%xmm0, -80(%rbp)        # 8-byte Spill
-	movabsq	$SolveCubic_signature, %rdi
-	movl	$458759, %esi           # imm = 0x70007
-	callq	verify_signature
-# BB#7:
-	movabsq	$SolveCubic_signature, %rdi
-	movl	$458760, %esi           # imm = 0x70008
+	movsd	%xmm0, -88(%rbp)        # 8-byte Spill
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$458760, %edx           # imm = 0x70008
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$SolveCubic_signature, %rbx
+# BB#7:
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$458760, %edx           # imm = 0x70008
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rbx
+	movabsq	$main_run_signature_2, %r14
 	movsd	.LCPI3_6(%rip), %xmm3   # xmm3 = mem[0],zero
 	movsd	.LCPI3_9(%rip), %xmm1   # xmm1 = mem[0],zero
 	movsd	.LCPI3_10(%rip), %xmm2  # xmm2 = mem[0],zero
-	mulsd	-80(%rbp), %xmm2        # 8-byte Folded Reload
+	mulsd	-88(%rbp), %xmm2        # 8-byte Folded Reload
 	mulsd	%xmm1, %xmm2
-	movsd	-64(%rbp), %xmm0        # 8-byte Reload
+	movsd	-48(%rbp), %xmm0        # 8-byte Reload
                                         # xmm0 = mem[0],zero
 	addsd	%xmm2, %xmm0
 	divsd	%xmm3, %xmm0
 	callq	cos
-	movsd	%xmm0, -64(%rbp)        # 8-byte Spill
+	movsd	%xmm0, -48(%rbp)        # 8-byte Spill
 	movq	%rbx, %rdi
-	movl	$458760, %esi           # imm = 0x70008
-	callq	verify_signature
-# BB#8:
-	movabsq	$SolveCubic_signature, %rbx
-	movl	$SolveCubic_signature, %edi
-	movl	$458761, %esi           # imm = 0x70009
+	movq	%r14, %rsi
+	movl	$458761, %edx           # imm = 0x70009
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movsd	-40(%rbp), %xmm0        # 8-byte Reload
+# BB#8:
+	movl	$main_run_signature_1, %edi
+	movl	$main_run_signature_2, %esi
+	movl	$458761, %edx           # imm = 0x70009
+	callq	verify_signature
+	movsd	-32(%rbp), %xmm0        # 8-byte Reload
                                         # xmm0 = mem[0],zero
-	mulsd	-64(%rbp), %xmm0        # 8-byte Folded Reload
-	movsd	%xmm0, -200(%rbp)
-	fldl	-200(%rbp)
-	fldt	-128(%rbp)
+	mulsd	-48(%rbp), %xmm0        # 8-byte Folded Reload
+	movsd	%xmm0, -176(%rbp)
+	fldl	-176(%rbp)
+	fldt	-112(%rbp)
 	flds	.LCPI3_0(%rip)
 	fdivrp	%st(1)
 	faddp	%st(1)
-	movq	-72(%rbp), %rax
-	fstpl	8(%rax)
-	fldt	-112(%rbp)
-	fstpl	-192(%rbp)
-	movsd	-192(%rbp), %xmm0       # xmm0 = mem[0],zero
-	callq	sqrt
-	movsd	%xmm0, -40(%rbp)        # 8-byte Spill
-	movq	%rbx, %rdi
-	movl	$458761, %esi           # imm = 0x70009
-	callq	verify_signature
-# BB#9:
-	movabsq	$SolveCubic_signature, %rdi
-	movl	$458762, %esi           # imm = 0x7000A
+	fstpt	-32(%rbp)               # 10-byte Folded Spill
+	movl	$main_run_signature_1, %edi
+	movl	$main_run_signature_2, %esi
+	movl	$458762, %edx           # imm = 0x7000A
+	xorl	%ecx, %ecx
 	callq	update_signature
+	movq	-56(%rbp), %rax
+	fldt	-32(%rbp)               # 10-byte Folded Reload
+	fstpl	8(%rax)
+	fldt	-80(%rbp)
+	fstpl	-168(%rbp)
+	movsd	-168(%rbp), %xmm0       # xmm0 = mem[0],zero
+	callq	sqrt
+	movsd	%xmm0, -32(%rbp)        # 8-byte Spill
+# BB#9:
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$458762, %edx           # imm = 0x7000A
+	callq	verify_signature
 	movsd	.LCPI3_8(%rip), %xmm0   # xmm0 = mem[0],zero
 	movsd	.LCPI3_7(%rip), %xmm1   # xmm1 = mem[0],zero
-	mulsd	-40(%rbp), %xmm1        # 8-byte Folded Reload
-	movsd	%xmm1, -40(%rbp)        # 8-byte Spill
-	movsd	-88(%rbp), %xmm1        # xmm1 = mem[0],zero
-	movsd	%xmm1, -64(%rbp)        # 8-byte Spill
+	mulsd	-32(%rbp), %xmm1        # 8-byte Folded Reload
+	movsd	%xmm1, -32(%rbp)        # 8-byte Spill
+	movsd	-96(%rbp), %xmm1        # xmm1 = mem[0],zero
+	movsd	%xmm1, -48(%rbp)        # 8-byte Spill
 	callq	atan
-	movsd	%xmm0, -80(%rbp)        # 8-byte Spill
-	movabsq	$SolveCubic_signature, %rdi
-	movl	$458762, %esi           # imm = 0x7000A
-	callq	verify_signature
-# BB#10:
-	movabsq	$SolveCubic_signature, %rdi
-	movl	$458763, %esi           # imm = 0x7000B
+	movsd	%xmm0, -88(%rbp)        # 8-byte Spill
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$458763, %edx           # imm = 0x7000B
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$SolveCubic_signature, %rbx
+# BB#10:
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$458763, %edx           # imm = 0x7000B
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rbx
+	movabsq	$main_run_signature_2, %r14
 	movsd	.LCPI3_6(%rip), %xmm2   # xmm2 = mem[0],zero
 	movsd	.LCPI3_10(%rip), %xmm1  # xmm1 = mem[0],zero
-	movsd	-80(%rbp), %xmm3        # 8-byte Reload
+	movsd	-88(%rbp), %xmm3        # 8-byte Reload
                                         # xmm3 = mem[0],zero
 	mulsd	%xmm1, %xmm3
 	mulsd	%xmm1, %xmm3
-	movsd	-64(%rbp), %xmm0        # 8-byte Reload
+	movsd	-48(%rbp), %xmm0        # 8-byte Reload
                                         # xmm0 = mem[0],zero
 	addsd	%xmm3, %xmm0
 	divsd	%xmm2, %xmm0
 	callq	cos
-	movsd	%xmm0, -64(%rbp)        # 8-byte Spill
+	movsd	%xmm0, -48(%rbp)        # 8-byte Spill
 	movq	%rbx, %rdi
-	movl	$458763, %esi           # imm = 0x7000B
-	callq	verify_signature
-# BB#11:
-	movabsq	$SolveCubic_signature, %rbx
-	movl	$SolveCubic_signature, %edi
-	movl	$458764, %esi           # imm = 0x7000C
+	movq	%r14, %rsi
+	movl	$458764, %edx           # imm = 0x7000C
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movsd	-40(%rbp), %xmm0        # 8-byte Reload
+# BB#11:
+	movabsq	$main_run_signature_1, %rbx
+	movabsq	$main_run_signature_2, %r14
+	movl	$main_run_signature_1, %edi
+	movl	$main_run_signature_2, %esi
+	movl	$458764, %edx           # imm = 0x7000C
+	callq	verify_signature
+	movsd	-32(%rbp), %xmm0        # 8-byte Reload
                                         # xmm0 = mem[0],zero
-	mulsd	-64(%rbp), %xmm0        # 8-byte Folded Reload
-	movsd	%xmm0, -184(%rbp)
-	fldl	-184(%rbp)
-	fldt	-128(%rbp)
+	mulsd	-48(%rbp), %xmm0        # 8-byte Folded Reload
+	movsd	%xmm0, -160(%rbp)
+	fldl	-160(%rbp)
+	fldt	-112(%rbp)
 	flds	.LCPI3_0(%rip)
 	fdivrp	%st(1)
 	faddp	%st(1)
-	fstpl	-176(%rbp)
-	movsd	-176(%rbp), %xmm0       # xmm0 = mem[0],zero
-	movq	-72(%rbp), %rax
+	fstpl	-152(%rbp)
+	movsd	-152(%rbp), %xmm0       # xmm0 = mem[0],zero
+	movq	-56(%rbp), %rax
 	movsd	%xmm0, 16(%rax)
 	movq	%rbx, %rdi
-	movl	$458764, %esi           # imm = 0x7000C
-	callq	verify_signature
+	movq	%r14, %rsi
+	movl	$458769, %edx           # imm = 0x70011
+	xorl	%ecx, %ecx
+	callq	update_signature
 	jmp	.LBB3_16
 .LBB3_12:
-	movabsq	$SolveCubic_signature, %rdi
-	movl	$458765, %esi           # imm = 0x7000D
-	callq	update_signature
-	movabsq	$SolveCubic_signature, %rbx
-	movq	-144(%rbp), %rax
-	movl	$1, (%rax)
-	movsd	-136(%rbp), %xmm0       # xmm0 = mem[0],zero
-	callq	sqrt
-	movsd	%xmm0, -40(%rbp)        # 8-byte Spill
-	movq	%rbx, %rdi
-	movl	$458765, %esi           # imm = 0x7000D
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$458765, %edx           # imm = 0x7000D
 	callq	verify_signature
-# BB#13:
-	movabsq	$SolveCubic_signature, %rbx
-	movl	$SolveCubic_signature, %edi
-	movl	$458766, %esi           # imm = 0x7000E
+	movabsq	$main_run_signature_1, %rbx
+	movabsq	$main_run_signature_2, %r14
+	movq	-128(%rbp), %rax
+	movl	$1, (%rax)
+	movsd	-120(%rbp), %xmm0       # xmm0 = mem[0],zero
+	callq	sqrt
+	movsd	%xmm0, -32(%rbp)        # 8-byte Spill
+	movq	%rbx, %rdi
+	movq	%r14, %rsi
+	movl	$458766, %edx           # imm = 0x7000E
+	xorl	%ecx, %ecx
 	callq	update_signature
-	fldt	-160(%rbp)
-	fstpl	-264(%rbp)
-	movsd	-264(%rbp), %xmm0       # xmm0 = mem[0],zero
+# BB#13:
+	movabsq	$main_run_signature_1, %rbx
+	movabsq	$main_run_signature_2, %r14
+	movl	$main_run_signature_1, %edi
+	movl	$main_run_signature_2, %esi
+	movl	$458766, %edx           # imm = 0x7000E
+	callq	verify_signature
+	fldt	-144(%rbp)
+	fstpl	-240(%rbp)
+	movsd	-240(%rbp), %xmm0       # xmm0 = mem[0],zero
 	movaps	.LCPI3_4(%rip), %xmm1   # xmm1 = [nan,nan]
 	pand	%xmm0, %xmm1
-	movaps	%xmm1, -64(%rbp)        # 16-byte Spill
+	movaps	%xmm1, -48(%rbp)        # 16-byte Spill
 	movq	%rbx, %rdi
-	movl	$458766, %esi           # imm = 0x7000E
-	callq	verify_signature
+	movq	%r14, %rsi
+	movl	$458767, %edx           # imm = 0x7000F
+	xorl	%ecx, %ecx
+	callq	update_signature
 # BB#14:
-	movabsq	$SolveCubic_signature, %rdi
-	movl	$458767, %esi           # imm = 0x7000F
-	callq	update_signature
-	movsd	.LCPI3_5(%rip), %xmm1   # xmm1 = mem[0],zero
-	movsd	-40(%rbp), %xmm0        # 8-byte Reload
-                                        # xmm0 = mem[0],zero
-	addsd	-64(%rbp), %xmm0        # 16-byte Folded Reload
-	callq	pow
-	movsd	%xmm0, -40(%rbp)        # 8-byte Spill
-	movabsq	$SolveCubic_signature, %rdi
-	movl	$458767, %esi           # imm = 0x7000F
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$458767, %edx           # imm = 0x7000F
 	callq	verify_signature
-# BB#15:
-	movabsq	$SolveCubic_signature, %rbx
-	movl	$SolveCubic_signature, %edi
-	movl	$458768, %esi           # imm = 0x70010
+	movsd	.LCPI3_5(%rip), %xmm1   # xmm1 = mem[0],zero
+	movsd	-32(%rbp), %xmm0        # 8-byte Reload
+                                        # xmm0 = mem[0],zero
+	addsd	-48(%rbp), %xmm0        # 16-byte Folded Reload
+	callq	pow
+	movsd	%xmm0, -32(%rbp)        # 8-byte Spill
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$458768, %edx           # imm = 0x70010
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movq	-72(%rbp), %rax
-	movsd	-40(%rbp), %xmm0        # 8-byte Reload
+# BB#15:
+	movl	$main_run_signature_1, %edi
+	movl	$main_run_signature_2, %esi
+	movl	$458768, %edx           # imm = 0x70010
+	callq	verify_signature
+	movq	-56(%rbp), %rax
+	movsd	-32(%rbp), %xmm0        # 8-byte Reload
                                         # xmm0 = mem[0],zero
 	movsd	%xmm0, (%rax)
-	fldt	-112(%rbp)
-	movq	-72(%rbp), %rax
+	fldt	-80(%rbp)
+	movq	-56(%rbp), %rax
 	fldl	(%rax)
 	fdivr	%st(0), %st(1)
 	faddp	%st(1)
 	fstpl	(%rax)
-	fldt	-160(%rbp)
+	fldt	-144(%rbp)
+	fstpt	-32(%rbp)               # 10-byte Folded Spill
+	movl	$main_run_signature_1, %edi
+	movl	$main_run_signature_2, %esi
+	movl	$458769, %edx           # imm = 0x70011
+	xorl	%ecx, %ecx
+	callq	update_signature
 	fldz
+	fldt	-32(%rbp)               # 10-byte Folded Reload
+	fxch	%st(1)
 	fucompi	%st(1)
 	fstp	%st(0)
 	movl	$1, %eax
 	movl	$-1, %ecx
 	cmoval	%eax, %ecx
 	cvtsi2sdl	%ecx, %xmm0
-	movq	-72(%rbp), %rax
+	movq	-56(%rbp), %rax
 	movsd	(%rax), %xmm1           # xmm1 = mem[0],zero
 	mulsd	%xmm0, %xmm1
 	movsd	%xmm1, (%rax)
-	fldt	-128(%rbp)
+	fldt	-112(%rbp)
 	flds	.LCPI3_0(%rip)
 	fdivrp	%st(1)
-	movq	-72(%rbp), %rax
+	movq	-56(%rbp), %rax
 	fldl	(%rax)
 	faddp	%st(1)
-	fstpl	-256(%rbp)
-	movsd	-256(%rbp), %xmm0       # xmm0 = mem[0],zero
+	fstpl	-232(%rbp)
+	movsd	-232(%rbp), %xmm0       # xmm0 = mem[0],zero
 	movsd	%xmm0, (%rax)
-	movq	%rbx, %rdi
-	movl	$458768, %esi           # imm = 0x70010
-	callq	verify_signature
 .LBB3_16:
-	movabsq	$SolveCubic_signature, %rdi
-	movl	$458769, %esi           # imm = 0x70011
-	callq	update_signature
-	movabsq	$SolveCubic_signature, %rdi
-	movl	$458769, %esi           # imm = 0x70011
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$458769, %edx           # imm = 0x70011
 	callq	verify_signature
-	addq	$344, %rsp              # imm = 0x158
+	addq	$320, %rsp              # imm = 0x140
 	popq	%rbx
 	popq	%r14
-	popq	%r15
 	popq	%rbp
 	retq
 .Lfunc_end3:
@@ -1611,49 +1867,53 @@ usqrt:                                  # @usqrt
 	.cfi_startproc
 # BB#0:
 	pushq	%rbp
-.Lcfi17:
+.Lcfi16:
 	.cfi_def_cfa_offset 16
-.Lcfi18:
+.Lcfi17:
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
-.Lcfi19:
+.Lcfi18:
 	.cfi_def_cfa_register %rbp
 	pushq	%r14
 	pushq	%rbx
 	subq	$48, %rsp
-.Lcfi20:
+.Lcfi19:
 	.cfi_offset %rbx, -32
-.Lcfi21:
+.Lcfi20:
 	.cfi_offset %r14, -24
 	movq	%rsi, %r14
 	movq	%rdi, %rbx
-	movabsq	$usqrt_signature, %rdi
-	movl	$851969, %esi           # imm = 0xD0001
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$851970, %edx           # imm = 0xD0002
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$usqrt_signature, %rdi
 	movq	%rbx, -56(%rbp)
 	movq	%r14, -64(%rbp)
 	movq	$0, -32(%rbp)
 	movq	$0, -40(%rbp)
 	movq	$0, -48(%rbp)
 	movl	$0, -20(%rbp)
-	movl	$851969, %esi           # imm = 0xD0001
-	callq	verify_signature
 .LBB4_1:                                # =>This Inner Loop Header: Depth=1
-	movabsq	$usqrt_signature, %rdi
-	movl	$851970, %esi           # imm = 0xD0002
-	callq	update_signature
-	movabsq	$usqrt_signature, %rdi
-	movl	-20(%rbp), %ebx
-	movl	$851970, %esi           # imm = 0xD0002
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$851970, %edx           # imm = 0xD0002
 	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	-20(%rbp), %ebx
+	movl	$851971, %edx           # imm = 0xD0003
+	movl	$851975, %ecx           # imm = 0xD0007
+	callq	update_signature
 	cmpl	$32, %ebx
 	jge	.LBB4_6
 # BB#2:                                 #   in Loop: Header=BB4_1 Depth=1
-	movabsq	$usqrt_signature, %rdi
-	movl	$851971, %esi           # imm = 0xD0003
-	callq	update_signature
-	movabsq	$usqrt_signature, %rdi
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$851971, %edx           # imm = 0xD0003
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movl	$3221225472, %eax       # imm = 0xC0000000
 	movq	-40(%rbp), %rcx
 	shlq	$2, %rcx
@@ -1664,6 +1924,9 @@ usqrt:                                  # @usqrt
 	movq	-56(%rbp), %rax
 	shlq	$2, %rax
 	movq	%rax, -56(%rbp)
+	movl	$851972, %edx           # imm = 0xD0004
+	movl	$851973, %ecx           # imm = 0xD0005
+	callq	update_signature
 	movq	-32(%rbp), %rax
 	shlq	$1, %rax
 	movq	%rax, -32(%rbp)
@@ -1671,17 +1934,16 @@ usqrt:                                  # @usqrt
 	shlq	$1, %rax
 	addq	$1, %rax
 	movq	%rax, -48(%rbp)
-	movq	-40(%rbp), %r14
-	movq	-48(%rbp), %rbx
-	movl	$851971, %esi           # imm = 0xD0003
-	callq	verify_signature
-	cmpq	%rbx, %r14
+	movq	-40(%rbp), %rax
+	cmpq	-48(%rbp), %rax
 	jb	.LBB4_4
 # BB#3:                                 #   in Loop: Header=BB4_1 Depth=1
-	movabsq	$usqrt_signature, %rdi
-	movl	$851972, %esi           # imm = 0xD0004
-	callq	update_signature
-	movabsq	$usqrt_signature, %rdi
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$851972, %edx           # imm = 0xD0004
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movq	-48(%rbp), %rax
 	movq	-40(%rbp), %rcx
 	subq	%rax, %rcx
@@ -1689,42 +1951,50 @@ usqrt:                                  # @usqrt
 	movq	-32(%rbp), %rax
 	addq	$1, %rax
 	movq	%rax, -32(%rbp)
-	movl	$851972, %esi           # imm = 0xD0004
-	callq	verify_signature
+	movl	$851973, %edx           # imm = 0xD0005
+	xorl	%ecx, %ecx
+	callq	update_signature
 .LBB4_4:                                #   in Loop: Header=BB4_1 Depth=1
-	movabsq	$usqrt_signature, %rdi
-	movl	$851973, %esi           # imm = 0xD0005
-	callq	update_signature
-	movabsq	$usqrt_signature, %rdi
-	movl	$851973, %esi           # imm = 0xD0005
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$851973, %edx           # imm = 0xD0005
 	callq	verify_signature
-# BB#5:                                 #   in Loop: Header=BB4_1 Depth=1
-	movabsq	$usqrt_signature, %rdi
-	movl	$851974, %esi           # imm = 0xD0006
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$851974, %edx           # imm = 0xD0006
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$usqrt_signature, %rdi
+# BB#5:                                 #   in Loop: Header=BB4_1 Depth=1
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$851974, %edx           # imm = 0xD0006
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movl	-20(%rbp), %eax
 	addl	$1, %eax
 	movl	%eax, -20(%rbp)
-	movl	$851974, %esi           # imm = 0xD0006
-	callq	verify_signature
+	movl	$851970, %edx           # imm = 0xD0002
+	xorl	%ecx, %ecx
+	callq	update_signature
 	jmp	.LBB4_1
 .LBB4_6:
-	movabsq	$usqrt_signature, %rdi
-	movl	$851975, %esi           # imm = 0xD0007
-	callq	update_signature
-	movabsq	$usqrt_signature, %rdi
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$851975, %edx           # imm = 0xD0007
+	callq	verify_signature
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
 	movq	-64(%rbp), %rax
 	movq	-32(%rbp), %rcx
 	movq	%rcx, (%rax)
-	movl	$851975, %esi           # imm = 0xD0007
-	callq	verify_signature
-# BB#7:
-	movabsq	$usqrt_signature, %rdi
-	movl	$851976, %esi           # imm = 0xD0008
+	movl	$851976, %edx           # imm = 0xD0008
+	xorl	%ecx, %ecx
 	callq	update_signature
-	movabsq	$usqrt_signature, %rdi
-	movl	$851976, %esi           # imm = 0xD0008
+# BB#7:
+	movabsq	$main_run_signature_1, %rdi
+	movabsq	$main_run_signature_2, %rsi
+	movl	$851976, %edx           # imm = 0xD0008
 	callq	verify_signature
 	addq	$48, %rsp
 	popq	%rbx
@@ -1742,19 +2012,22 @@ CallcheckerSet:                         # @CallcheckerSet
 	.cfi_startproc
 # BB#0:                                 # %entry
 	pushq	%rax
-.Lcfi22:
+.Lcfi21:
 	.cfi_def_cfa_offset 16
 	callq	init_monitor
-	movl	$CallcheckerSet_signature, %edi
-	movl	$1, %esi
+	movl	$CallcheckerSet_signature_1, %edi
+	movl	$CallcheckerSet_signature_1, %esi
+	movl	$1, %edx
+	movl	$1, %ecx
 	callq	update_signature
-	movl	$CallcheckerSet_signature, %edi
-	movl	$1, %esi
+	movl	$CallcheckerSet_signature_1, %edi
+	movl	$CallcheckerSet_signature_1, %esi
+	movl	$1, %edx
 	callq	verify_signature
 	movl	$1, %edi
 	callq	enqueue_signature_with_return
 	movl	$1, %edi
-	callq	enqueue_signature_with_remainder_process
+	callq	exit_with_remainder_process
 	popq	%rax
 	retq
 .Lfunc_end5:
@@ -1772,160 +2045,328 @@ CallcheckerSet:                         # @CallcheckerSet
 	.asciz	" [target] Execution Time: %ld\n"
 	.size	.L.str.1, 31
 
-	.type	main_signature,@object  # @main_signature
+	.type	main_run_signature_1,@object # @main_run_signature_1
 	.bss
-	.globl	main_signature
+	.globl	main_run_signature_1
 	.p2align	2
-main_signature:
+main_run_signature_1:
 	.long	0                       # 0x0
-	.size	main_signature, 4
+	.size	main_run_signature_1, 4
 
-	.type	gettimeofday_signature,@object # @gettimeofday_signature
-	.globl	gettimeofday_signature
+	.type	main_run_signature_2,@object # @main_run_signature_2
+	.globl	main_run_signature_2
 	.p2align	2
-gettimeofday_signature:
+main_run_signature_2:
 	.long	0                       # 0x0
-	.size	gettimeofday_signature, 4
+	.size	main_run_signature_2, 4
 
-	.type	atan_signature,@object  # @atan_signature
-	.globl	atan_signature
+	.type	main_signature_1,@object # @main_signature_1
+	.globl	main_signature_1
 	.p2align	2
-atan_signature:
+main_signature_1:
 	.long	0                       # 0x0
-	.size	atan_signature, 4
+	.size	main_signature_1, 4
 
-	.type	printf_signature,@object # @printf_signature
-	.globl	printf_signature
+	.type	main_signature_2,@object # @main_signature_2
+	.globl	main_signature_2
 	.p2align	2
-printf_signature:
+main_signature_2:
 	.long	0                       # 0x0
-	.size	printf_signature, 4
+	.size	main_signature_2, 4
 
-	.type	rad2deg_signature,@object # @rad2deg_signature
-	.globl	rad2deg_signature
+	.type	gettimeofday_signature_1,@object # @gettimeofday_signature_1
+	.globl	gettimeofday_signature_1
 	.p2align	2
-rad2deg_signature:
+gettimeofday_signature_1:
 	.long	0                       # 0x0
-	.size	rad2deg_signature, 4
+	.size	gettimeofday_signature_1, 4
 
-	.type	deg2rad_signature,@object # @deg2rad_signature
-	.globl	deg2rad_signature
+	.type	gettimeofday_signature_2,@object # @gettimeofday_signature_2
+	.globl	gettimeofday_signature_2
 	.p2align	2
-deg2rad_signature:
+gettimeofday_signature_2:
 	.long	0                       # 0x0
-	.size	deg2rad_signature, 4
+	.size	gettimeofday_signature_2, 4
 
-	.type	SolveCubic_signature,@object # @SolveCubic_signature
-	.globl	SolveCubic_signature
+	.type	atan_signature_1,@object # @atan_signature_1
+	.globl	atan_signature_1
 	.p2align	2
-SolveCubic_signature:
+atan_signature_1:
 	.long	0                       # 0x0
-	.size	SolveCubic_signature, 4
+	.size	atan_signature_1, 4
 
-	.type	sqrt_signature,@object  # @sqrt_signature
-	.globl	sqrt_signature
+	.type	atan_signature_2,@object # @atan_signature_2
+	.globl	atan_signature_2
 	.p2align	2
-sqrt_signature:
+atan_signature_2:
 	.long	0                       # 0x0
-	.size	sqrt_signature, 4
+	.size	atan_signature_2, 4
 
-	.type	acos_signature,@object  # @acos_signature
-	.globl	acos_signature
+	.type	printf_signature_1,@object # @printf_signature_1
+	.globl	printf_signature_1
 	.p2align	2
-acos_signature:
+printf_signature_1:
 	.long	0                       # 0x0
-	.size	acos_signature, 4
+	.size	printf_signature_1, 4
 
-	.type	cos_signature,@object   # @cos_signature
-	.globl	cos_signature
+	.type	printf_signature_2,@object # @printf_signature_2
+	.globl	printf_signature_2
 	.p2align	2
-cos_signature:
+printf_signature_2:
 	.long	0                       # 0x0
-	.size	cos_signature, 4
+	.size	printf_signature_2, 4
 
-	.type	fabs_signature,@object  # @fabs_signature
-	.globl	fabs_signature
+	.type	rad2deg_signature_1,@object # @rad2deg_signature_1
+	.globl	rad2deg_signature_1
 	.p2align	2
-fabs_signature:
+rad2deg_signature_1:
 	.long	0                       # 0x0
-	.size	fabs_signature, 4
+	.size	rad2deg_signature_1, 4
 
-	.type	pow_signature,@object   # @pow_signature
-	.globl	pow_signature
+	.type	rad2deg_signature_2,@object # @rad2deg_signature_2
+	.globl	rad2deg_signature_2
 	.p2align	2
-pow_signature:
+rad2deg_signature_2:
 	.long	0                       # 0x0
-	.size	pow_signature, 4
+	.size	rad2deg_signature_2, 4
 
-	.type	usqrt_signature,@object # @usqrt_signature
-	.globl	usqrt_signature
+	.type	deg2rad_signature_1,@object # @deg2rad_signature_1
+	.globl	deg2rad_signature_1
 	.p2align	2
-usqrt_signature:
+deg2rad_signature_1:
 	.long	0                       # 0x0
-	.size	usqrt_signature, 4
+	.size	deg2rad_signature_1, 4
 
-	.type	llvm.memcpy.p0i8.p0i8.i64_signature,@object # @llvm.memcpy.p0i8.p0i8.i64_signature
-	.globl	llvm.memcpy.p0i8.p0i8.i64_signature
+	.type	deg2rad_signature_2,@object # @deg2rad_signature_2
+	.globl	deg2rad_signature_2
 	.p2align	2
-llvm.memcpy.p0i8.p0i8.i64_signature:
+deg2rad_signature_2:
 	.long	0                       # 0x0
-	.size	llvm.memcpy.p0i8.p0i8.i64_signature, 4
+	.size	deg2rad_signature_2, 4
 
-	.type	init_monitor_signature,@object # @init_monitor_signature
-	.globl	init_monitor_signature
+	.type	SolveCubic_signature_1,@object # @SolveCubic_signature_1
+	.globl	SolveCubic_signature_1
 	.p2align	2
-init_monitor_signature:
+SolveCubic_signature_1:
 	.long	0                       # 0x0
-	.size	init_monitor_signature, 4
+	.size	SolveCubic_signature_1, 4
 
-	.type	update_signature_signature,@object # @update_signature_signature
-	.globl	update_signature_signature
+	.type	SolveCubic_signature_2,@object # @SolveCubic_signature_2
+	.globl	SolveCubic_signature_2
 	.p2align	2
-update_signature_signature:
+SolveCubic_signature_2:
 	.long	0                       # 0x0
-	.size	update_signature_signature, 4
+	.size	SolveCubic_signature_2, 4
 
-	.type	verify_signature_signature,@object # @verify_signature_signature
-	.globl	verify_signature_signature
+	.type	sqrt_signature_1,@object # @sqrt_signature_1
+	.globl	sqrt_signature_1
 	.p2align	2
-verify_signature_signature:
+sqrt_signature_1:
 	.long	0                       # 0x0
-	.size	verify_signature_signature, 4
+	.size	sqrt_signature_1, 4
 
-	.type	enqueue_signature_with_return_signature,@object # @enqueue_signature_with_return_signature
-	.globl	enqueue_signature_with_return_signature
+	.type	sqrt_signature_2,@object # @sqrt_signature_2
+	.globl	sqrt_signature_2
 	.p2align	2
-enqueue_signature_with_return_signature:
+sqrt_signature_2:
 	.long	0                       # 0x0
-	.size	enqueue_signature_with_return_signature, 4
+	.size	sqrt_signature_2, 4
 
-	.type	enqueue_signature_with_remainder_process_signature,@object # @enqueue_signature_with_remainder_process_signature
-	.globl	enqueue_signature_with_remainder_process_signature
+	.type	acos_signature_1,@object # @acos_signature_1
+	.globl	acos_signature_1
 	.p2align	2
-enqueue_signature_with_remainder_process_signature:
+acos_signature_1:
 	.long	0                       # 0x0
-	.size	enqueue_signature_with_remainder_process_signature, 4
+	.size	acos_signature_1, 4
 
-	.type	update_signature2_signature,@object # @update_signature2_signature
-	.globl	update_signature2_signature
+	.type	acos_signature_2,@object # @acos_signature_2
+	.globl	acos_signature_2
 	.p2align	2
-update_signature2_signature:
+acos_signature_2:
 	.long	0                       # 0x0
-	.size	update_signature2_signature, 4
+	.size	acos_signature_2, 4
 
-	.type	update_signature3_signature,@object # @update_signature3_signature
-	.globl	update_signature3_signature
+	.type	cos_signature_1,@object # @cos_signature_1
+	.globl	cos_signature_1
 	.p2align	2
-update_signature3_signature:
+cos_signature_1:
 	.long	0                       # 0x0
-	.size	update_signature3_signature, 4
+	.size	cos_signature_1, 4
 
-	.type	CallcheckerSet_signature,@object # @CallcheckerSet_signature
-	.globl	CallcheckerSet_signature
+	.type	cos_signature_2,@object # @cos_signature_2
+	.globl	cos_signature_2
 	.p2align	2
-CallcheckerSet_signature:
+cos_signature_2:
 	.long	0                       # 0x0
-	.size	CallcheckerSet_signature, 4
+	.size	cos_signature_2, 4
+
+	.type	fabs_signature_1,@object # @fabs_signature_1
+	.globl	fabs_signature_1
+	.p2align	2
+fabs_signature_1:
+	.long	0                       # 0x0
+	.size	fabs_signature_1, 4
+
+	.type	fabs_signature_2,@object # @fabs_signature_2
+	.globl	fabs_signature_2
+	.p2align	2
+fabs_signature_2:
+	.long	0                       # 0x0
+	.size	fabs_signature_2, 4
+
+	.type	pow_signature_1,@object # @pow_signature_1
+	.globl	pow_signature_1
+	.p2align	2
+pow_signature_1:
+	.long	0                       # 0x0
+	.size	pow_signature_1, 4
+
+	.type	pow_signature_2,@object # @pow_signature_2
+	.globl	pow_signature_2
+	.p2align	2
+pow_signature_2:
+	.long	0                       # 0x0
+	.size	pow_signature_2, 4
+
+	.type	usqrt_signature_1,@object # @usqrt_signature_1
+	.globl	usqrt_signature_1
+	.p2align	2
+usqrt_signature_1:
+	.long	0                       # 0x0
+	.size	usqrt_signature_1, 4
+
+	.type	usqrt_signature_2,@object # @usqrt_signature_2
+	.globl	usqrt_signature_2
+	.p2align	2
+usqrt_signature_2:
+	.long	0                       # 0x0
+	.size	usqrt_signature_2, 4
+
+	.type	llvm.memcpy.p0i8.p0i8.i64_signature_1,@object # @llvm.memcpy.p0i8.p0i8.i64_signature_1
+	.globl	llvm.memcpy.p0i8.p0i8.i64_signature_1
+	.p2align	2
+llvm.memcpy.p0i8.p0i8.i64_signature_1:
+	.long	0                       # 0x0
+	.size	llvm.memcpy.p0i8.p0i8.i64_signature_1, 4
+
+	.type	llvm.memcpy.p0i8.p0i8.i64_signature_2,@object # @llvm.memcpy.p0i8.p0i8.i64_signature_2
+	.globl	llvm.memcpy.p0i8.p0i8.i64_signature_2
+	.p2align	2
+llvm.memcpy.p0i8.p0i8.i64_signature_2:
+	.long	0                       # 0x0
+	.size	llvm.memcpy.p0i8.p0i8.i64_signature_2, 4
+
+	.type	init_monitor_signature_1,@object # @init_monitor_signature_1
+	.globl	init_monitor_signature_1
+	.p2align	2
+init_monitor_signature_1:
+	.long	0                       # 0x0
+	.size	init_monitor_signature_1, 4
+
+	.type	init_monitor_signature_2,@object # @init_monitor_signature_2
+	.globl	init_monitor_signature_2
+	.p2align	2
+init_monitor_signature_2:
+	.long	0                       # 0x0
+	.size	init_monitor_signature_2, 4
+
+	.type	update_signature_signature_1,@object # @update_signature_signature_1
+	.globl	update_signature_signature_1
+	.p2align	2
+update_signature_signature_1:
+	.long	0                       # 0x0
+	.size	update_signature_signature_1, 4
+
+	.type	update_signature_signature_2,@object # @update_signature_signature_2
+	.globl	update_signature_signature_2
+	.p2align	2
+update_signature_signature_2:
+	.long	0                       # 0x0
+	.size	update_signature_signature_2, 4
+
+	.type	verify_signature_signature_1,@object # @verify_signature_signature_1
+	.globl	verify_signature_signature_1
+	.p2align	2
+verify_signature_signature_1:
+	.long	0                       # 0x0
+	.size	verify_signature_signature_1, 4
+
+	.type	verify_signature_signature_2,@object # @verify_signature_signature_2
+	.globl	verify_signature_signature_2
+	.p2align	2
+verify_signature_signature_2:
+	.long	0                       # 0x0
+	.size	verify_signature_signature_2, 4
+
+	.type	enqueue_signature_with_return_signature_1,@object # @enqueue_signature_with_return_signature_1
+	.globl	enqueue_signature_with_return_signature_1
+	.p2align	2
+enqueue_signature_with_return_signature_1:
+	.long	0                       # 0x0
+	.size	enqueue_signature_with_return_signature_1, 4
+
+	.type	enqueue_signature_with_return_signature_2,@object # @enqueue_signature_with_return_signature_2
+	.globl	enqueue_signature_with_return_signature_2
+	.p2align	2
+enqueue_signature_with_return_signature_2:
+	.long	0                       # 0x0
+	.size	enqueue_signature_with_return_signature_2, 4
+
+	.type	exit_with_remainder_process_signature_1,@object # @exit_with_remainder_process_signature_1
+	.globl	exit_with_remainder_process_signature_1
+	.p2align	2
+exit_with_remainder_process_signature_1:
+	.long	0                       # 0x0
+	.size	exit_with_remainder_process_signature_1, 4
+
+	.type	exit_with_remainder_process_signature_2,@object # @exit_with_remainder_process_signature_2
+	.globl	exit_with_remainder_process_signature_2
+	.p2align	2
+exit_with_remainder_process_signature_2:
+	.long	0                       # 0x0
+	.size	exit_with_remainder_process_signature_2, 4
+
+	.type	update_signature2_signature_1,@object # @update_signature2_signature_1
+	.globl	update_signature2_signature_1
+	.p2align	2
+update_signature2_signature_1:
+	.long	0                       # 0x0
+	.size	update_signature2_signature_1, 4
+
+	.type	update_signature2_signature_2,@object # @update_signature2_signature_2
+	.globl	update_signature2_signature_2
+	.p2align	2
+update_signature2_signature_2:
+	.long	0                       # 0x0
+	.size	update_signature2_signature_2, 4
+
+	.type	update_signature3_signature_1,@object # @update_signature3_signature_1
+	.globl	update_signature3_signature_1
+	.p2align	2
+update_signature3_signature_1:
+	.long	0                       # 0x0
+	.size	update_signature3_signature_1, 4
+
+	.type	update_signature3_signature_2,@object # @update_signature3_signature_2
+	.globl	update_signature3_signature_2
+	.p2align	2
+update_signature3_signature_2:
+	.long	0                       # 0x0
+	.size	update_signature3_signature_2, 4
+
+	.type	CallcheckerSet_signature_1,@object # @CallcheckerSet_signature_1
+	.globl	CallcheckerSet_signature_1
+	.p2align	2
+CallcheckerSet_signature_1:
+	.long	0                       # 0x0
+	.size	CallcheckerSet_signature_1, 4
+
+	.type	CallcheckerSet_signature_2,@object # @CallcheckerSet_signature_2
+	.globl	CallcheckerSet_signature_2
+	.p2align	2
+CallcheckerSet_signature_2:
+	.long	0                       # 0x0
+	.size	CallcheckerSet_signature_2, 4
 
 
 	.ident	"clang version 5.0.0 (tags/RELEASE_500/final)"

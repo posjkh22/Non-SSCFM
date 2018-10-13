@@ -7,7 +7,7 @@
 #include "sha.h"
 #include <sys/time.h>
 
-extern unsigned int is_signature_queue_full;
+//extern unsigned int is_signature_queue_full;
 
 int main(int argc, char **argv)
 {
@@ -28,7 +28,7 @@ int main(int argc, char **argv)
 	printf(" [target finished!]\n");
 	gettimeofday(&endTick, NULL);
 	printf(" [target] Execution Time: %ld\n", (endTick.tv_sec - begTick.tv_sec) * 1000000 + (endTick.tv_usec - begTick.tv_usec));
-	is_signature_queue_full =1;
+	//is_signature_queue_full =1;
 	
     
 		return(0);

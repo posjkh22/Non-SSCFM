@@ -32,4 +32,4 @@ sha_main.bc:
 	clang -emit-llvm -c sha.c -o sha_main.bc
 
 clean:
-	rm -rf *.o sha output*
+	rm -rf *.o sha output* *.bc
